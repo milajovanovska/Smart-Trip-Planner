@@ -22,7 +22,7 @@ namespace Trip_Planner
         public Form1()
         {
             InitializeComponent();
-            steps = new Panel[] { questionPanel1 , questionPanel2, questionPanel3 };
+            steps = new Panel[] { questionPanel1 , questionPanel2, questionPanel3, questionPanel4, questionPanel5, questionPanel6, questionPanel7, questionPanel8 };
 
             UpdateUI();
 
@@ -36,6 +36,18 @@ namespace Trip_Planner
                 dateTimePickerStart.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, dateTimePickerStart.Width, dateTimePickerStart.Height, 15, 15));
                dateTimePickerEnd.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, dateTimePickerEnd.Width, dateTimePickerEnd.Height, 15, 15));
                 lblDuration.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, lblDuration.Width, lblDuration.Height, 20, 20));
+            };
+            this.Shown += (s, e) => {
+                var allStyleButtons = new[] {
+        btnMuseum, btnCafes, btnNightLife, btnNature, btnBeaches, btnFood, btnShopping, btnHiddenGems,
+        btnRelaxed, btnBalanced, btnPacked, btnWalking,  btnPublicTransport, btnBike, btnTaxiUber, btnRentACar,btnAvoidTraps, btnHighlyRatedOnly
+    };
+
+                foreach (var btn in allStyleButtons)
+                {
+                    if (btn != null)
+                        ApplyRoundCorners(btn, 20);
+                }
             };
 
         }
@@ -70,11 +82,26 @@ namespace Trip_Planner
                     btnContinue.Enabled = true;
                     break;
 
-                case 4: lblTitle.Text = "Travel style?"; break;
-                case 5: lblTitle.Text = "Interests?"; break;
-                case 6: lblTitle.Text = "Pace of travel?"; break;
-                case 7: lblTitle.Text = "Transport preference?"; break;
-                case 8: lblTitle.Text = "Almost there!"; break;
+                case 4:
+                    lblTitle.Text = "What kind of trip?";
+                    ResetStyleButtons();
+                    btnContinue.Enabled = false; 
+                    break;
+                case 5:
+                    lblTitle.Text = "What excites you?";
+                    btnContinue.Enabled = true; 
+                    break;
+                case 6:
+                    lblTitle.Text = "How packed should the days be?";
+                    break;
+                case 7:
+                    lblTitle.Text = "How do you want to move?";
+                    btnContinue.Enabled = true; 
+                    break;
+                case 8:
+                    lblTitle.Text = "A few finishing touches";
+                    btnContinue.Enabled = true; 
+                    break;
                 case 9: lblTitle.Text = "Review your plan"; break;
             }
         }
@@ -304,6 +331,246 @@ namespace Trip_Planner
                     lblBudgetValue.Text = val.ToString("N0") + " €";
                 }
             }
+        }
+        private void SelectStyle(Button selectedBtn)
+        {
+            ResetStyleButtons();
+            selectedBtn.FlatAppearance.BorderColor = Color.FromArgb(234, 88, 12);
+            selectedBtn.FlatAppearance.BorderSize = 2;
+            selectedBtn.BackColor = Color.FromArgb(255, 241, 232);
+            btnContinue.Enabled = true;
+        }
+
+        private void ResetStyleButtons()
+        {
+            var styleButtons = new[] { btnActive, btnRelaxing, btnAdventure, btnLuxury, btnBackpacking };
+            foreach (var btn in styleButtons)
+            {
+                if (btn != null)
+                {
+                    btn.FlatAppearance.BorderColor = Color.Gainsboro;
+                    btn.FlatAppearance.BorderSize = 1;
+                    btn.BackColor = Color.White;
+                }
+            }
+        }
+        private void btnActive_Click(object sender, EventArgs e)
+        {
+            SelectStyle(btnActive);
+        }
+
+        private void btnRelaxing_Click(object sender, EventArgs e)
+        {
+            SelectStyle(btnRelaxing);
+        }
+
+        private void btnAdventure_Click(object sender, EventArgs e)
+        {
+            SelectStyle(btnAdventure);
+        }
+
+        private void btnLuxury_Click(object sender, EventArgs e)
+        {
+            SelectStyle(btnLuxury);
+        }
+
+        private void btnBackpacking_Click(object sender, EventArgs e)
+        {
+            SelectStyle(btnBackpacking);
+        }
+        private void ApplyRoundCorners(Button btn, int radius)
+        {
+            btn.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, btn.Width, btn.Height, radius, radius));
+        }
+        private void ToggleInterest(Button btn)
+        {
+            if (btn.BackColor == SystemColors.GradientInactiveCaption)
+            {
+                btn.BackColor = Color.FromArgb(255, 241, 232); 
+                btn.FlatAppearance.BorderColor = Color.FromArgb(234, 88, 12); 
+                btn.ForeColor = Color.FromArgb(234, 88, 12); 
+
+               
+                btn.Size = new Size(btn.Width + 10, btn.Height + 10);
+                btn.Location = new Point(btn.Location.X - 5, btn.Location.Y - 5);
+            }
+            else
+            {
+                btn.BackColor = SystemColors.GradientInactiveCaption;
+                btn.FlatAppearance.BorderColor = SystemColors.GradientInactiveCaption; 
+                btn.ForeColor = Color.DarkSlateGray;
+
+                
+                btn.Size = new Size(btn.Width - 10, btn.Height - 10);
+                btn.Location = new Point(btn.Location.X + 5, btn.Location.Y + 5);
+            }
+
+            ApplyRoundCorners(btn, 20);
+        }
+
+        private void btnMuseum_Click(object sender, EventArgs e)
+        {
+            ToggleInterest(btnMuseum);
+        }
+
+        private void btnBeaches_Click(object sender, EventArgs e)
+        {
+            ToggleInterest(btnBeaches);
+        }
+
+        private void btnCafes_Click(object sender, EventArgs e)
+        {
+            ToggleInterest(btnCafes);
+        }
+
+        private void btnFood_Click(object sender, EventArgs e)
+        {
+            ToggleInterest(btnFood);
+        }
+
+        private void btnNightLife_Click(object sender, EventArgs e)
+        {
+            ToggleInterest(btnNightLife);
+        }
+
+        private void btnShopping_Click(object sender, EventArgs e)
+        {
+            ToggleInterest(btnShopping);
+        }
+
+        private void btnNature_Click(object sender, EventArgs e)
+        {
+            ToggleInterest(btnNature);
+        }
+
+        private void btnHiddenGems_Click(object sender, EventArgs e)
+        {
+            ToggleInterest(btnHiddenGems);
+        }
+
+        private void SelectPace(Button selectedBtn)
+        {
+            var paceButtons = new[] { btnRelaxed, btnBalanced, btnPacked };
+            foreach (var btn in paceButtons)
+            {
+                if (btn.BackColor == Color.FromArgb(255, 241, 232))
+                {
+                    btn.Size = new Size(btn.Width - 10, btn.Height - 10);
+                    btn.Location = new Point(btn.Location.X + 5, btn.Location.Y + 5);
+                }
+
+                btn.BackColor = Color.White;
+                btn.FlatAppearance.BorderColor = Color.Gainsboro;
+                btn.ForeColor = Color.DarkSlateGray;
+                ApplyRoundCorners(btn, 20);
+            }
+
+           
+            selectedBtn.BackColor = Color.FromArgb(255, 241, 232);
+            selectedBtn.FlatAppearance.BorderColor = Color.FromArgb(234, 88, 12);
+            selectedBtn.ForeColor = Color.FromArgb(234, 88, 12);
+
+            selectedBtn.Size = new Size(selectedBtn.Width + 10, selectedBtn.Height + 10);
+            selectedBtn.Location = new Point(selectedBtn.Location.X - 5, selectedBtn.Location.Y - 5);
+
+            ApplyRoundCorners(selectedBtn, 20);
+            btnContinue.Enabled = true;
+        }
+
+        private void btnRelaxed_Click(object sender, EventArgs e)
+        {
+            SelectPace(btnRelaxed);
+        }
+
+        private void btnBalanced_Click(object sender, EventArgs e)
+        {
+            SelectPace(btnBalanced);
+        }
+
+        private void btnPacked_Click(object sender, EventArgs e)
+        {
+            SelectPace(btnPacked);
+        }
+        private void ToggleTransport(Button btn)
+        {
+            if (btn.BackColor != Color.FromArgb(255, 241, 232))
+            {
+                btn.BackColor = Color.FromArgb(255, 241, 232);
+                btn.FlatAppearance.BorderColor = Color.FromArgb(234, 88, 12);
+                btn.ForeColor = Color.FromArgb(234, 88, 12);
+
+                btn.Size = new Size(btn.Width + 6, btn.Height + 6);
+                btn.Location = new Point(btn.Location.X - 3, btn.Location.Y - 3);
+            }
+            else
+            {
+                btn.BackColor = Color.White;
+                btn.FlatAppearance.BorderColor = Color.Gainsboro;
+                btn.ForeColor = Color.DarkSlateGray;
+
+                btn.Size = new Size(btn.Width - 6, btn.Height - 6);
+                btn.Location = new Point(btn.Location.X + 3, btn.Location.Y + 3);
+            }
+            ApplyRoundCorners(btn, 20);
+        }
+
+        private void btnWalking_Click(object sender, EventArgs e)
+        {
+            ToggleTransport(btnWalking);
+        }
+
+        private void btnPublicTransport_Click(object sender, EventArgs e)
+        {
+            ToggleTransport(btnPublicTransport);
+
+        }
+
+        private void btnRentACar_Click(object sender, EventArgs e)
+        {
+            ToggleTransport(btnRentACar);
+
+        }
+
+        private void btnBike_Click(object sender, EventArgs e)
+        {
+            ToggleTransport(btnBike);
+
+        }
+
+        private void btnTaxiUber_Click(object sender, EventArgs e)
+        {
+            ToggleTransport(btnTaxiUber);
+
+        }
+        private void ToggleQuality(Button btn, string title, string description)
+        {
+            if (btn.BackColor != Color.FromArgb(255, 241, 232))
+            {
+                btn.BackColor = Color.FromArgb(255, 241, 232);
+                btn.FlatAppearance.BorderColor = Color.FromArgb(234, 88, 12);
+                btn.ForeColor = Color.FromArgb(234, 88, 12);
+               
+            }
+            else
+            {
+                btn.BackColor = Color.White;
+                btn.FlatAppearance.BorderColor = Color.Gainsboro;
+                btn.ForeColor = Color.DarkSlateGray;
+              
+            }
+
+          
+            ApplyRoundCorners(btn, 20);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ToggleQuality(btnAvoidTraps, "Avoid tourist traps", "Skip the obvious crowd-magnets");
+        }
+
+        private void btnHighlyRatedOnly_Click(object sender, EventArgs e)
+        {
+            ToggleQuality(btnHighlyRatedOnly, "Highly-rated places only", "Stick to top-reviewed spots");
         }
     }
 }

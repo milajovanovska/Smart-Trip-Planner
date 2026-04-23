@@ -146,7 +146,6 @@
             this.label1.Size = new System.Drawing.Size(603, 51);
             this.label1.TabIndex = 0;
             this.label1.Text = "Plan a perfect trip in minutes";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -194,7 +193,6 @@
             this.lblPercentage.Size = new System.Drawing.Size(41, 20);
             this.lblPercentage.TabIndex = 3;
             this.lblPercentage.Text = "11%";
-            this.lblPercentage.Click += new System.EventHandler(this.lblPercentage_Click);
             // 
             // btnBack
             // 
@@ -372,7 +370,6 @@
             this.lblDuration.Name = "lblDuration";
             this.lblDuration.Size = new System.Drawing.Size(703, 48);
             this.lblDuration.TabIndex = 10;
-            this.lblDuration.Paint += new System.Windows.Forms.PaintEventHandler(this.lblDuration_Paint);
             // 
             // label28
             // 

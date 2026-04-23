@@ -105,10 +105,12 @@ namespace Trip_Planner
                 case 9: lblTitle.Text = "Review your plan"; break;
             }
         }
-        private void label1_Click(object sender, EventArgs e)
-        {
 
+        private void txtDestination_TextChanged(object sender, EventArgs e)
+        {
+            
         }
+
         private void btnBack_MouseEnter(object sender, EventArgs e)
         {
             btnBack.BackColor = Color.Orange;
@@ -149,32 +151,7 @@ namespace Trip_Planner
                 txtDestination.ForeColor = Color.Gray;
             }
         }
-        private void txtDestination_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void btnContinue_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void lblPercentage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnLisbon_Click_2(object sender, EventArgs e)
-        {
-           
-        }
-
-       
+              
         private void CalculateDuration()
         {
             DateTime start = dateTimePickerStart.Value.Date;
@@ -195,34 +172,7 @@ namespace Trip_Planner
             }
         }
 
-        private void dateTimePickerStart_ValueChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void dateTimePickerEnd_ValueChanged(object sender, EventArgs e)
-        {
-        }
-        private void dateTimePickerEnd_ValueChanged_1(object sender, EventArgs e)
-        {
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void trkBudget_Scroll_Scroll(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void txtBudgetTotal_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-       
-
+        
         private void btnContinue_Click_1(object sender, EventArgs e)
         {
             if (currentStep < 9)
@@ -310,11 +260,7 @@ namespace Trip_Planner
 
         }
 
-        private void lblDuration_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+      
         private void trkBudget_Scroll_Scroll_1(object sender, EventArgs e)
         {
             lblBudgetValue.Text = trkBudget_Scroll.Value.ToString("N0") + " €";

@@ -511,5 +511,7 @@ namespace Trip_Planner
         {
             ToggleQuality(btnHighlyRatedOnly, "", "");
         }
+
+       
     }
 }

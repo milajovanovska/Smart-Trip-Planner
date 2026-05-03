@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,6 +30,10 @@ namespace Trip_Planner
         {
             InitializeComponent();
             steps = new Panel[] { questionPanel1, questionPanel2, questionPanel3, questionPanel4, questionPanel5, questionPanel6, questionPanel7};
+
+            dateTimePickerStart.Value = DateTime.Today;
+            dateTimePickerEnd.Value = DateTime.Today.AddDays(7);
+
 
             UpdateUI();
 
@@ -167,21 +172,19 @@ namespace Trip_Planner
             DateTime start = dateTimePickerStart.Value.Date;
             DateTime end = dateTimePickerEnd.Value.Date;
 
-            TimeSpan difference = end - start;
-            int days = difference.Days + 1;
+            int days = (end - start).Days ;
 
             if (days >= 1)
             {
-                lblDuration.Text = $"Duration: {days} days";
+                labelDuration.Text = $"Duration: {days} {(days == 1 ? "day" : "days")}";
                 btnContinue.Enabled = true;
             }
             else
             {
-                lblDuration.Text = "End date is before start date";
+                labelDuration.Text = "End date must be after start date";
                 btnContinue.Enabled = false;
             }
         }
-
         private void btnContinue_Click_1(object sender, EventArgs e)
         {
             if (currentStep < 9)

@@ -68,6 +68,11 @@
             this.questionPanel4 = new System.Windows.Forms.Panel();
             this.btnBackpacking = new System.Windows.Forms.Button();
             this.btnLuxury = new System.Windows.Forms.Button();
+            this.btnRelaxing = new System.Windows.Forms.Button();
+            this.btnAdventure = new System.Windows.Forms.Button();
+            this.btnActive = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.questionPanel5 = new System.Windows.Forms.Panel();
             this.btnShopping = new System.Windows.Forms.Button();
             this.btnFood = new System.Windows.Forms.Button();
@@ -81,11 +86,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnRelaxing = new System.Windows.Forms.Button();
-            this.btnAdventure = new System.Windows.Forms.Button();
-            this.btnActive = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.questionPanel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.btnFlorence = new System.Windows.Forms.Button();
@@ -178,7 +178,7 @@
             this.lblStepCount.Name = "lblStepCount";
             this.lblStepCount.Size = new System.Drawing.Size(69, 16);
             this.lblStepCount.TabIndex = 0;
-            this.lblStepCount.Text = "Step 1 of 9";
+            this.lblStepCount.Text = "Step 1 of 8";
             // 
             // lblPercentage
             // 
@@ -593,6 +593,73 @@
             this.btnLuxury.UseVisualStyleBackColor = false;
             this.btnLuxury.Click += new System.EventHandler(this.btnLuxury_Click);
             // 
+            // btnRelaxing
+            // 
+            this.btnRelaxing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
+            this.btnRelaxing.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
+            this.btnRelaxing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRelaxing.Location = new System.Drawing.Point(306, 94);
+            this.btnRelaxing.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRelaxing.Name = "btnRelaxing";
+            this.btnRelaxing.Size = new System.Drawing.Size(220, 54);
+            this.btnRelaxing.TabIndex = 6;
+            this.btnRelaxing.Text = "Relaxing\r\n-Slow & calm";
+            this.btnRelaxing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRelaxing.UseVisualStyleBackColor = false;
+            this.btnRelaxing.Click += new System.EventHandler(this.btnRelaxing_Click);
+            // 
+            // btnAdventure
+            // 
+            this.btnAdventure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
+            this.btnAdventure.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
+            this.btnAdventure.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdventure.Location = new System.Drawing.Point(586, 94);
+            this.btnAdventure.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAdventure.Name = "btnAdventure";
+            this.btnAdventure.Size = new System.Drawing.Size(220, 54);
+            this.btnAdventure.TabIndex = 4;
+            this.btnAdventure.Text = "Adventure\r\n-Off the beaten path";
+            this.btnAdventure.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdventure.UseVisualStyleBackColor = false;
+            this.btnAdventure.Click += new System.EventHandler(this.btnAdventure_Click);
+            // 
+            // btnActive
+            // 
+            this.btnActive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
+            this.btnActive.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
+            this.btnActive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActive.Location = new System.Drawing.Point(35, 94);
+            this.btnActive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnActive.Name = "btnActive";
+            this.btnActive.Size = new System.Drawing.Size(220, 54);
+            this.btnActive.TabIndex = 3;
+            this.btnActive.Text = "Active\r\n-Move every day \r\n";
+            this.btnActive.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnActive.UseVisualStyleBackColor = false;
+            this.btnActive.Click += new System.EventHandler(this.btnActive_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
+            this.label11.Location = new System.Drawing.Point(28, 11);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(56, 25);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Style";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Elephant", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(27, 46);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(237, 31);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "What kind of trip?";
+            // 
             // questionPanel5
             // 
             this.questionPanel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
@@ -783,73 +850,6 @@
             this.label8.Size = new System.Drawing.Size(233, 31);
             this.label8.TabIndex = 0;
             this.label8.Text = "What excites you?";
-            // 
-            // btnRelaxing
-            // 
-            this.btnRelaxing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
-            this.btnRelaxing.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
-            this.btnRelaxing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRelaxing.Location = new System.Drawing.Point(306, 94);
-            this.btnRelaxing.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRelaxing.Name = "btnRelaxing";
-            this.btnRelaxing.Size = new System.Drawing.Size(220, 54);
-            this.btnRelaxing.TabIndex = 6;
-            this.btnRelaxing.Text = "Relaxing\r\n-Slow & calm";
-            this.btnRelaxing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRelaxing.UseVisualStyleBackColor = false;
-            this.btnRelaxing.Click += new System.EventHandler(this.btnRelaxing_Click);
-            // 
-            // btnAdventure
-            // 
-            this.btnAdventure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
-            this.btnAdventure.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
-            this.btnAdventure.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdventure.Location = new System.Drawing.Point(586, 94);
-            this.btnAdventure.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAdventure.Name = "btnAdventure";
-            this.btnAdventure.Size = new System.Drawing.Size(220, 54);
-            this.btnAdventure.TabIndex = 4;
-            this.btnAdventure.Text = "Adventure\r\n-Off the beaten path";
-            this.btnAdventure.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdventure.UseVisualStyleBackColor = false;
-            this.btnAdventure.Click += new System.EventHandler(this.btnAdventure_Click);
-            // 
-            // btnActive
-            // 
-            this.btnActive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
-            this.btnActive.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
-            this.btnActive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActive.Location = new System.Drawing.Point(35, 94);
-            this.btnActive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnActive.Name = "btnActive";
-            this.btnActive.Size = new System.Drawing.Size(220, 54);
-            this.btnActive.TabIndex = 3;
-            this.btnActive.Text = "Active\r\n-Move every day \r\n";
-            this.btnActive.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActive.UseVisualStyleBackColor = false;
-            this.btnActive.Click += new System.EventHandler(this.btnActive_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
-            this.label11.Location = new System.Drawing.Point(28, 11);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 25);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "Style";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Elephant", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(27, 46);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(237, 31);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "What kind of trip?";
             // 
             // questionPanel1
             // 

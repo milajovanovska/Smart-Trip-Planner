@@ -129,8 +129,10 @@ namespace Trip_Planner
             btnBack.ForeColor = TEXT;
         }
 
-        private void UpdateProgress(int step, int totalSteps)
+        private void UpdateProgress(int step, int t)
         {
+            int totalSteps = 8;
+
             lblStepCount.Text = $"Step {step} of {totalSteps}";
 
             int percentage = (int)(((double)step / totalSteps) * 100);

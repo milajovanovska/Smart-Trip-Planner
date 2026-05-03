@@ -15,14 +15,20 @@ namespace Trip_Planner
         [System.Runtime.InteropServices.DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
 
+        Color PRIMARY = Color.FromArgb(140, 190, 230);
+        Color PRIMARY_DARK = Color.FromArgb(100, 150, 200);
+        Color BACKGROUND = Color.FromArgb(210, 230, 250);
+        Color BORDER = Color.FromArgb(180, 210, 240);
+        Color TEXT = Color.FromArgb(70, 100, 140);
+        Color TEXT_LIGHT = Color.White;
 
         int currentStep = 1;
         Panel[] steps;
-        
+
         public Form1()
         {
             InitializeComponent();
-            steps = new Panel[] { questionPanel1 , questionPanel2, questionPanel3, questionPanel4, questionPanel5, questionPanel6, questionPanel7, questionPanel8 };
+            steps = new Panel[] { questionPanel1, questionPanel2, questionPanel3, questionPanel4, questionPanel5, questionPanel6, questionPanel7, questionPanel8 };
 
             UpdateUI();
 
@@ -34,7 +40,7 @@ namespace Trip_Planner
             };
             this.Shown += (s, e) => {
                 dateTimePickerStart.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, dateTimePickerStart.Width, dateTimePickerStart.Height, 15, 15));
-               dateTimePickerEnd.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, dateTimePickerEnd.Width, dateTimePickerEnd.Height, 15, 15));
+                dateTimePickerEnd.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, dateTimePickerEnd.Width, dateTimePickerEnd.Height, 15, 15));
                 lblDuration.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, lblDuration.Width, lblDuration.Height, 20, 20));
             };
             this.Shown += (s, e) => {
@@ -85,41 +91,44 @@ namespace Trip_Planner
                 case 4:
                     lblTitle.Text = "What kind of trip?";
                     ResetStyleButtons();
-                    btnContinue.Enabled = false; 
+                    btnContinue.Enabled = false;
                     break;
                 case 5:
                     lblTitle.Text = "What excites you?";
-                    btnContinue.Enabled = true; 
+                    btnContinue.Enabled = true;
                     break;
                 case 6:
                     lblTitle.Text = "How packed should the days be?";
                     break;
                 case 7:
                     lblTitle.Text = "How do you want to move?";
-                    btnContinue.Enabled = true; 
+                    btnContinue.Enabled = true;
                     break;
                 case 8:
                     lblTitle.Text = "A few finishing touches";
-                    btnContinue.Enabled = true; 
+                    btnContinue.Enabled = true;
                     break;
                 case 9: lblTitle.Text = "Review your plan"; break;
             }
         }
-        private void label1_Click(object sender, EventArgs e)
+
+        private void txtDestination_TextChanged(object sender, EventArgs e)
         {
 
         }
+
         private void btnBack_MouseEnter(object sender, EventArgs e)
         {
-            btnBack.BackColor = Color.Orange;
-            btnBack.ForeColor = Color.White;
+            btnBack.BackColor = PRIMARY;
+            btnBack.ForeColor = TEXT_LIGHT;
         }
 
         private void btnBack_MouseLeave(object sender, EventArgs e)
         {
-            btnBack.BackColor = Color.Transparent; 
-            btnBack.ForeColor = Color.Gray;
+            btnBack.BackColor = Color.Transparent;
+            btnBack.ForeColor = TEXT;
         }
+
         private void UpdateProgress(int step, int totalSteps)
         {
             lblStepCount.Text = $"Step {step} of {totalSteps}";
@@ -132,12 +141,13 @@ namespace Trip_Planner
 
             panelProgressBar.Width = newWidth;
         }
+
         private void txtDestination_Enter(object sender, EventArgs e)
         {
             if (txtDestination.Text == "e. g. Rome, Sevilla, Japan")
             {
                 txtDestination.Text = "";
-                txtDestination.ForeColor = Color.Black; 
+                txtDestination.ForeColor = TEXT;
             }
         }
 
@@ -146,35 +156,10 @@ namespace Trip_Planner
             if (string.IsNullOrWhiteSpace(txtDestination.Text))
             {
                 txtDestination.Text = "e. g. Rome, Sevilla, Japan";
-                txtDestination.ForeColor = Color.Gray;
+                txtDestination.ForeColor = TEXT;
             }
         }
-        private void txtDestination_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
 
-        private void btnContinue_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void lblPercentage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnLisbon_Click_2(object sender, EventArgs e)
-        {
-           
-        }
-
-       
         private void CalculateDuration()
         {
             DateTime start = dateTimePickerStart.Value.Date;
@@ -195,34 +180,6 @@ namespace Trip_Planner
             }
         }
 
-        private void dateTimePickerStart_ValueChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void dateTimePickerEnd_ValueChanged(object sender, EventArgs e)
-        {
-        }
-        private void dateTimePickerEnd_ValueChanged_1(object sender, EventArgs e)
-        {
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void trkBudget_Scroll_Scroll(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void txtBudgetTotal_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-       
-
         private void btnContinue_Click_1(object sender, EventArgs e)
         {
             if (currentStep < 9)
@@ -235,6 +192,7 @@ namespace Trip_Planner
                 MessageBox.Show("Generating your plan...");
             }
         }
+
         private void btnBack_Click_1(object sender, EventArgs e)
         {
             if (currentStep > 1)
@@ -247,42 +205,42 @@ namespace Trip_Planner
         private void btnLisbon_Click(object sender, EventArgs e)
         {
             txtDestination.Text = "Lisbon, Portugal";
-            txtDestination.ForeColor = Color.Black;
+            txtDestination.ForeColor = TEXT;
             btnContinue.Enabled = true;
         }
 
         private void btnVienna_Click(object sender, EventArgs e)
         {
             txtDestination.Text = "Vienna, Austria";
-            txtDestination.ForeColor = Color.Black;
+            txtDestination.ForeColor = TEXT;
             btnContinue.Enabled = true;
         }
 
         private void btnIstanbul_Click(object sender, EventArgs e)
         {
             txtDestination.Text = "Istanbul, Turkey";
-            txtDestination.ForeColor = Color.Black;
+            txtDestination.ForeColor = TEXT;
             btnContinue.Enabled = true;
         }
 
         private void btnTokyo_Click(object sender, EventArgs e)
         {
             txtDestination.Text = "Tokyo, Japan";
-            txtDestination.ForeColor = Color.Black;
+            txtDestination.ForeColor = TEXT;
             btnContinue.Enabled = true;
         }
 
         private void btnFlorence_Click(object sender, EventArgs e)
         {
             txtDestination.Text = "Florence, Italy";
-            txtDestination.ForeColor = Color.Black;
+            txtDestination.ForeColor = TEXT;
             btnContinue.Enabled = true;
         }
 
         private void btnChicago_Click(object sender, EventArgs e)
         {
             txtDestination.Text = "Chicago, Illionis";
-            txtDestination.ForeColor = Color.Black;
+            txtDestination.ForeColor = TEXT;
             btnContinue.Enabled = true;
         }
 
@@ -301,18 +259,11 @@ namespace Trip_Planner
         private void dateTimePickerStart_ValueChanged_1(object sender, EventArgs e)
         {
             CalculateDuration();
-
         }
 
         private void dateTimePickerEnd_ValueChanged_2(object sender, EventArgs e)
         {
             CalculateDuration();
-
-        }
-
-        private void lblDuration_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void trkBudget_Scroll_Scroll_1(object sender, EventArgs e)
@@ -332,12 +283,13 @@ namespace Trip_Planner
                 }
             }
         }
+
         private void SelectStyle(Button selectedBtn)
         {
             ResetStyleButtons();
-            selectedBtn.FlatAppearance.BorderColor = Color.FromArgb(234, 88, 12);
+            selectedBtn.FlatAppearance.BorderColor = PRIMARY_DARK;
             selectedBtn.FlatAppearance.BorderSize = 2;
-            selectedBtn.BackColor = Color.FromArgb(255, 241, 232);
+            selectedBtn.BackColor = PRIMARY;
             btnContinue.Enabled = true;
         }
 
@@ -348,12 +300,13 @@ namespace Trip_Planner
             {
                 if (btn != null)
                 {
-                    btn.FlatAppearance.BorderColor = Color.Gainsboro;
+                    btn.FlatAppearance.BorderColor = BORDER;
                     btn.FlatAppearance.BorderSize = 1;
-                    btn.BackColor = Color.White;
+                    btn.BackColor = BACKGROUND;
                 }
             }
         }
+
         private void btnActive_Click(object sender, EventArgs e)
         {
             SelectStyle(btnActive);
@@ -378,29 +331,29 @@ namespace Trip_Planner
         {
             SelectStyle(btnBackpacking);
         }
+
         private void ApplyRoundCorners(Button btn, int radius)
         {
             btn.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, btn.Width, btn.Height, radius, radius));
         }
+
         private void ToggleInterest(Button btn)
         {
-            if (btn.BackColor == SystemColors.GradientInactiveCaption)
+            if (btn.BackColor == BACKGROUND)
             {
-                btn.BackColor = Color.FromArgb(255, 241, 232); 
-                btn.FlatAppearance.BorderColor = Color.FromArgb(234, 88, 12); 
-                btn.ForeColor = Color.FromArgb(234, 88, 12); 
+                btn.BackColor = PRIMARY;
+                btn.FlatAppearance.BorderColor = PRIMARY_DARK;
+                btn.ForeColor = TEXT_LIGHT;
 
-               
                 btn.Size = new Size(btn.Width + 10, btn.Height + 10);
                 btn.Location = new Point(btn.Location.X - 5, btn.Location.Y - 5);
             }
             else
             {
-                btn.BackColor = SystemColors.GradientInactiveCaption;
-                btn.FlatAppearance.BorderColor = SystemColors.GradientInactiveCaption; 
-                btn.ForeColor = Color.DarkSlateGray;
+                btn.BackColor = BACKGROUND;
+                btn.FlatAppearance.BorderColor = BACKGROUND;
+                btn.ForeColor = TEXT;
 
-                
                 btn.Size = new Size(btn.Width - 10, btn.Height - 10);
                 btn.Location = new Point(btn.Location.X + 5, btn.Location.Y + 5);
             }
@@ -447,28 +400,26 @@ namespace Trip_Planner
         {
             ToggleInterest(btnHiddenGems);
         }
-
         private void SelectPace(Button selectedBtn)
         {
             var paceButtons = new[] { btnRelaxed, btnBalanced, btnPacked };
             foreach (var btn in paceButtons)
             {
-                if (btn.BackColor == Color.FromArgb(255, 241, 232))
+                if (btn.BackColor == PRIMARY)
                 {
                     btn.Size = new Size(btn.Width - 10, btn.Height - 10);
                     btn.Location = new Point(btn.Location.X + 5, btn.Location.Y + 5);
                 }
 
-                btn.BackColor = Color.White;
-                btn.FlatAppearance.BorderColor = Color.Gainsboro;
-                btn.ForeColor = Color.DarkSlateGray;
+                btn.BackColor = BACKGROUND;
+                btn.FlatAppearance.BorderColor = BORDER;
+                btn.ForeColor = TEXT;
                 ApplyRoundCorners(btn, 20);
             }
 
-           
-            selectedBtn.BackColor = Color.FromArgb(255, 241, 232);
-            selectedBtn.FlatAppearance.BorderColor = Color.FromArgb(234, 88, 12);
-            selectedBtn.ForeColor = Color.FromArgb(234, 88, 12);
+            selectedBtn.BackColor = PRIMARY;
+            selectedBtn.FlatAppearance.BorderColor = PRIMARY_DARK;
+            selectedBtn.ForeColor = TEXT_LIGHT;
 
             selectedBtn.Size = new Size(selectedBtn.Width + 10, selectedBtn.Height + 10);
             selectedBtn.Location = new Point(selectedBtn.Location.X - 5, selectedBtn.Location.Y - 5);
@@ -477,36 +428,27 @@ namespace Trip_Planner
             btnContinue.Enabled = true;
         }
 
-        private void btnRelaxed_Click(object sender, EventArgs e)
-        {
-            SelectPace(btnRelaxed);
+        private void btnRelaxed_Click(object sender, EventArgs e) { 
+            SelectPace(btnRelaxed); 
         }
-
-        private void btnBalanced_Click(object sender, EventArgs e)
-        {
-            SelectPace(btnBalanced);
-        }
-
-        private void btnPacked_Click(object sender, EventArgs e)
-        {
-            SelectPace(btnPacked);
-        }
+        private void btnBalanced_Click(object sender, EventArgs e) { SelectPace(btnBalanced); }
+        private void btnPacked_Click(object sender, EventArgs e) { SelectPace(btnPacked); }
         private void ToggleTransport(Button btn)
         {
-            if (btn.BackColor != Color.FromArgb(255, 241, 232))
+            if (btn.BackColor != PRIMARY)
             {
-                btn.BackColor = Color.FromArgb(255, 241, 232);
-                btn.FlatAppearance.BorderColor = Color.FromArgb(234, 88, 12);
-                btn.ForeColor = Color.FromArgb(234, 88, 12);
+                btn.BackColor = PRIMARY;
+                btn.FlatAppearance.BorderColor = PRIMARY_DARK;
+                btn.ForeColor = TEXT_LIGHT;
 
                 btn.Size = new Size(btn.Width + 6, btn.Height + 6);
                 btn.Location = new Point(btn.Location.X - 3, btn.Location.Y - 3);
             }
             else
             {
-                btn.BackColor = Color.White;
-                btn.FlatAppearance.BorderColor = Color.Gainsboro;
-                btn.ForeColor = Color.DarkSlateGray;
+                btn.BackColor = BACKGROUND;
+                btn.FlatAppearance.BorderColor = BORDER;
+                btn.ForeColor = TEXT;
 
                 btn.Size = new Size(btn.Width - 6, btn.Height - 6);
                 btn.Location = new Point(btn.Location.X + 3, btn.Location.Y + 3);
@@ -544,33 +486,32 @@ namespace Trip_Planner
         }
         private void ToggleQuality(Button btn, string title, string description)
         {
-            if (btn.BackColor != Color.FromArgb(255, 241, 232))
+            if (btn.BackColor != PRIMARY)
             {
-                btn.BackColor = Color.FromArgb(255, 241, 232);
-                btn.FlatAppearance.BorderColor = Color.FromArgb(234, 88, 12);
-                btn.ForeColor = Color.FromArgb(234, 88, 12);
-               
+                btn.BackColor = PRIMARY;
+                btn.FlatAppearance.BorderColor = PRIMARY_DARK;
+                btn.ForeColor = TEXT_LIGHT;
             }
             else
             {
-                btn.BackColor = Color.White;
-                btn.FlatAppearance.BorderColor = Color.Gainsboro;
-                btn.ForeColor = Color.DarkSlateGray;
-              
+                btn.BackColor = BACKGROUND;
+                btn.FlatAppearance.BorderColor = BORDER;
+                btn.ForeColor = TEXT;
             }
 
-          
             ApplyRoundCorners(btn, 20);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ToggleQuality(btnAvoidTraps, "Avoid tourist traps", "Skip the obvious crowd-magnets");
+            ToggleQuality(btnAvoidTraps, "", "");
         }
 
         private void btnHighlyRatedOnly_Click(object sender, EventArgs e)
         {
-            ToggleQuality(btnHighlyRatedOnly, "Highly-rated places only", "Stick to top-reviewed spots");
+            ToggleQuality(btnHighlyRatedOnly, "", "");
         }
+
+       
     }
 }

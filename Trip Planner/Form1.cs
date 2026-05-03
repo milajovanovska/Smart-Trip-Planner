@@ -23,6 +23,8 @@ namespace Trip_Planner
         Color TEXT = Color.FromArgb(70, 100, 140);
         Color TEXT_LIGHT = Color.White;
 
+        
+
         int currentStep = 1;
         Panel[] steps;
 
@@ -73,6 +75,14 @@ namespace Trip_Planner
             UpdateProgress(currentStep, 9);
 
             btnBack.Enabled = (currentStep > 1);
+            if (btnBack.Enabled)
+            {
+                btnBack.ForeColor = Color.Black;
+            }
+            else
+            {
+                btnBack.ForeColor = Color.Gray;
+            }
 
             switch (currentStep)
             {
@@ -126,6 +136,7 @@ namespace Trip_Planner
         {
             btnBack.BackColor = PRIMARY;
             btnBack.ForeColor = TEXT_LIGHT;
+          
         }
 
         private void btnBack_MouseLeave(object sender, EventArgs e)
@@ -274,7 +285,7 @@ namespace Trip_Planner
         private void trkBudget_Scroll_Scroll_1(object sender, EventArgs e)
         {
             lblBudgetValue.Text = trkBudget_Scroll.Value.ToString("N0") + " €";
-            txtBudgetInput.Text = trkBudget_Scroll.Value.ToString();
+            txtBudgetInput.Text = trkBudget_Scroll.Value.ToString() + " €";
         }
 
         private void txtBudgetInput_TextChanged(object sender, EventArgs e)

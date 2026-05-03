@@ -191,9 +191,11 @@
             // 
             // btnBack
             // 
+            this.btnBack.BackColor = System.Drawing.Color.Transparent;
             this.btnBack.Enabled = false;
             this.btnBack.FlatAppearance.BorderSize = 0;
-            this.btnBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnBack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightBlue;
+            this.btnBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.AppWorkspace;
@@ -203,15 +205,15 @@
             this.btnBack.Size = new System.Drawing.Size(188, 41);
             this.btnBack.TabIndex = 19;
             this.btnBack.Text = "⬅ Back";
-            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click_1);
             // 
             // btnContinue
             // 
             this.btnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
             this.btnContinue.Enabled = false;
-            this.btnContinue.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(110)))), ((int)(((byte)(64)))));
-            this.btnContinue.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnContinue.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightBlue;
+            this.btnContinue.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
             this.btnContinue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnContinue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnContinue.ForeColor = System.Drawing.Color.Black;
@@ -461,7 +463,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(250)))));
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.trkBudget_Scroll);
@@ -1176,10 +1178,10 @@
             this.btnRentACar.FlatAppearance.BorderSize = 0;
             this.btnRentACar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRentACar.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRentACar.Location = new System.Drawing.Point(482, 44);
+            this.btnRentACar.Location = new System.Drawing.Point(476, 54);
             this.btnRentACar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRentACar.Name = "btnRentACar";
-            this.btnRentACar.Size = new System.Drawing.Size(370, 66);
+            this.btnRentACar.Size = new System.Drawing.Size(375, 66);
             this.btnRentACar.TabIndex = 6;
             this.btnRentACar.Text = "Rent a car";
             this.btnRentACar.UseVisualStyleBackColor = false;

@@ -235,7 +235,7 @@
             this.questionPanel2.Controls.Add(this.label36);
             this.questionPanel2.Controls.Add(this.label37);
             this.questionPanel2.Controls.Add(this.label38);
-            this.questionPanel2.Location = new System.Drawing.Point(0, 0);
+            this.questionPanel2.Location = new System.Drawing.Point(69, 303);
             this.questionPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.questionPanel2.Name = "questionPanel2";
             this.questionPanel2.Size = new System.Drawing.Size(820, 290);
@@ -443,7 +443,7 @@
             this.questionPanel3.Controls.Add(this.label4);
             this.questionPanel3.Controls.Add(this.label14);
             this.questionPanel3.Controls.Add(this.label15);
-            this.questionPanel3.Location = new System.Drawing.Point(0, 0);
+            this.questionPanel3.Location = new System.Drawing.Point(66, 322);
             this.questionPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.questionPanel3.Name = "questionPanel3";
             this.questionPanel3.Size = new System.Drawing.Size(821, 290);
@@ -557,7 +557,7 @@
             this.questionPanel4.Controls.Add(this.btnActive);
             this.questionPanel4.Controls.Add(this.label11);
             this.questionPanel4.Controls.Add(this.label13);
-            this.questionPanel4.Location = new System.Drawing.Point(0, 0);
+            this.questionPanel4.Location = new System.Drawing.Point(87, 323);
             this.questionPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.questionPanel4.Name = "questionPanel4";
             this.questionPanel4.Size = new System.Drawing.Size(821, 289);
@@ -676,7 +676,7 @@
             this.questionPanel5.Controls.Add(this.label9);
             this.questionPanel5.Controls.Add(this.label5);
             this.questionPanel5.Controls.Add(this.label8);
-            this.questionPanel5.Location = new System.Drawing.Point(0, 0);
+            this.questionPanel5.Location = new System.Drawing.Point(87, 323);
             this.questionPanel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.questionPanel5.Name = "questionPanel5";
             this.questionPanel5.Size = new System.Drawing.Size(821, 289);
@@ -865,12 +865,6 @@
             this.questionPanel1.Controls.Add(this.txtDestination);
             this.questionPanel1.Controls.Add(this.label12);
             this.questionPanel1.Controls.Add(this.lblTitle);
-            this.questionPanel1.Controls.Add(this.questionPanel2);
-            this.questionPanel1.Controls.Add(this.questionPanel3);
-            this.questionPanel1.Controls.Add(this.questionPanel4);
-            this.questionPanel1.Controls.Add(this.questionPanel5);
-            this.questionPanel1.Controls.Add(this.questionPanel6);
-            this.questionPanel1.Controls.Add(this.questionPanel7);
             this.questionPanel1.Location = new System.Drawing.Point(99, 311);
             this.questionPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.questionPanel1.Name = "questionPanel1";
@@ -1032,7 +1026,7 @@
             this.questionPanel6.Controls.Add(this.label17);
             this.questionPanel6.Controls.Add(this.label18);
             this.questionPanel6.Controls.Add(this.label19);
-            this.questionPanel6.Location = new System.Drawing.Point(0, 0);
+            this.questionPanel6.Location = new System.Drawing.Point(91, 326);
             this.questionPanel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.questionPanel6.Name = "questionPanel6";
             this.questionPanel6.Size = new System.Drawing.Size(821, 289);
@@ -1121,7 +1115,7 @@
             this.questionPanel7.Controls.Add(this.label20);
             this.questionPanel7.Controls.Add(this.label21);
             this.questionPanel7.Controls.Add(this.label22);
-            this.questionPanel7.Location = new System.Drawing.Point(100, 311);
+            this.questionPanel7.Location = new System.Drawing.Point(96, 316);
             this.questionPanel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.questionPanel7.Name = "questionPanel7";
             this.questionPanel7.Size = new System.Drawing.Size(820, 289);
@@ -1254,6 +1248,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(248)))), ((int)(((byte)(245)))));
             this.ClientSize = new System.Drawing.Size(1013, 701);
+            this.Controls.Add(this.questionPanel7);
+            this.Controls.Add(this.questionPanel6);
+            this.Controls.Add(this.questionPanel5);
+            this.Controls.Add(this.questionPanel4);
+            this.Controls.Add(this.questionPanel3);
+            this.Controls.Add(this.questionPanel2);
             this.Controls.Add(this.questionPanel1);
             this.Controls.Add(this.btnContinue);
             this.Controls.Add(this.btnBack);

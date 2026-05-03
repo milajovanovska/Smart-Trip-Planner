@@ -28,7 +28,7 @@ namespace Trip_Planner
         public Form1()
         {
             InitializeComponent();
-            steps = new Panel[] { questionPanel1, questionPanel2, questionPanel3, questionPanel4, questionPanel5, questionPanel6, questionPanel7, questionPanel8 };
+            steps = new Panel[] { questionPanel1, questionPanel2, questionPanel3, questionPanel4, questionPanel5, questionPanel6, questionPanel7};
 
             UpdateUI();
 
@@ -46,7 +46,7 @@ namespace Trip_Planner
             this.Shown += (s, e) => {
                 var allStyleButtons = new[] {
         btnMuseum, btnCafes, btnNightLife, btnNature, btnBeaches, btnFood, btnShopping, btnHiddenGems,
-        btnRelaxed, btnBalanced, btnPacked, btnWalking,  btnPublicTransport, btnBike, btnTaxiUber, btnRentACar,btnAvoidTraps, btnHighlyRatedOnly
+        btnRelaxed, btnBalanced, btnPacked, btnWalking,  btnPublicTransport, btnBike, btnTaxiUber, btnRentACar
     };
 
                 foreach (var btn in allStyleButtons)
@@ -502,15 +502,7 @@ namespace Trip_Planner
             ApplyRoundCorners(btn, 20);
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            ToggleQuality(btnAvoidTraps, "", "");
-        }
-
-        private void btnHighlyRatedOnly_Click(object sender, EventArgs e)
-        {
-            ToggleQuality(btnHighlyRatedOnly, "", "");
-        }
+   
 
        
     }

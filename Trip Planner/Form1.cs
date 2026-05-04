@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -31,6 +32,9 @@ namespace Trip_Planner
         public Form1()
         {
             InitializeComponent();
+
+            this.DoubleBuffered = true;
+
             steps = new Panel[] { questionPanel1, questionPanel2, questionPanel3, questionPanel4, questionPanel5, questionPanel6, questionPanel7,questionPanel8};
 
             dateTimePickerStart.Value = DateTime.Today;
@@ -535,6 +539,17 @@ namespace Trip_Planner
         {
             MessageBox.Show("Generating your plan...");
             
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Color lightColor = Color.White;
+            Color darkColor = Color.FromArgb(180, 200, 240);
+
+            using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, lightColor, darkColor, 45F))
+            {
+                e.Graphics.FillRectangle(brush, this.ClientRectangle);
+            }
         }
     }
 }

@@ -115,15 +115,15 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.questionPanel8 = new System.Windows.Forms.Panel();
+            this.label28 = new System.Windows.Forms.Label();
+            this.btnGenerate = new System.Windows.Forms.Button();
+            this.rbAvoid = new System.Windows.Forms.RadioButton();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.rbAvoid = new System.Windows.Forms.RadioButton();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.btnGenerate = new System.Windows.Forms.Button();
-            this.label28 = new System.Windows.Forms.Label();
             this.questionPanel2.SuspendLayout();
             this.lblDuration.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -137,7 +137,7 @@
             this.questionPanel1.SuspendLayout();
             this.questionPanel6.SuspendLayout();
             this.questionPanel7.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.questionPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -1129,7 +1129,7 @@
             this.questionPanel7.Controls.Add(this.label20);
             this.questionPanel7.Controls.Add(this.label21);
             this.questionPanel7.Controls.Add(this.label22);
-            this.questionPanel7.Location = new System.Drawing.Point(96, 316);
+            this.questionPanel7.Location = new System.Drawing.Point(87, 314);
             this.questionPanel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.questionPanel7.Name = "questionPanel7";
             this.questionPanel7.Size = new System.Drawing.Size(820, 289);
@@ -1256,28 +1256,62 @@
             this.label22.TabIndex = 0;
             this.label22.Text = "How do you want to move?";
             // 
-            // panel1
+            // questionPanel8
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label28);
-            this.panel1.Controls.Add(this.btnGenerate);
-            this.panel1.Controls.Add(this.rbAvoid);
-            this.panel1.Controls.Add(this.label23);
-            this.panel1.Controls.Add(this.label24);
-            this.panel1.Controls.Add(this.label25);
-            this.panel1.Controls.Add(this.label26);
-            this.panel1.Location = new System.Drawing.Point(95, 316);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(788, 269);
-            this.panel1.TabIndex = 30;
+            this.questionPanel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.questionPanel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.questionPanel8.Controls.Add(this.label28);
+            this.questionPanel8.Controls.Add(this.btnGenerate);
+            this.questionPanel8.Controls.Add(this.rbAvoid);
+            this.questionPanel8.Controls.Add(this.label23);
+            this.questionPanel8.Controls.Add(this.label24);
+            this.questionPanel8.Controls.Add(this.label25);
+            this.questionPanel8.Controls.Add(this.label26);
+            this.questionPanel8.Location = new System.Drawing.Point(92, 314);
+            this.questionPanel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.questionPanel8.Name = "questionPanel8";
+            this.questionPanel8.Size = new System.Drawing.Size(820, 298);
+            this.questionPanel8.TabIndex = 30;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.label28.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label28.Location = new System.Drawing.Point(108, 182);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(169, 16);
+            this.label28.TabIndex = 8;
+            this.label28.Text = "Favor authentic local spots.";
+            // 
+            // btnGenerate
+            // 
+            this.btnGenerate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnGenerate.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.btnGenerate.Location = new System.Drawing.Point(504, 204);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(247, 61);
+            this.btnGenerate.TabIndex = 6;
+            this.btnGenerate.Text = "Generate plan";
+            this.btnGenerate.UseVisualStyleBackColor = false;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            // 
+            // rbAvoid
+            // 
+            this.rbAvoid.Font = new System.Drawing.Font("Elephant", 12F);
+            this.rbAvoid.Location = new System.Drawing.Point(86, 137);
+            this.rbAvoid.Name = "rbAvoid";
+            this.rbAvoid.Size = new System.Drawing.Size(609, 53);
+            this.rbAvoid.TabIndex = 5;
+            this.rbAvoid.TabStop = true;
+            this.rbAvoid.Text = "Explore like a local";
+            this.rbAvoid.UseVisualStyleBackColor = true;
             // 
             // label23
             // 
             this.label23.AutoSize = true;
             this.label23.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label23.Location = new System.Drawing.Point(31, 72);
+            this.label23.Location = new System.Drawing.Point(32, 97);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(230, 16);
             this.label23.TabIndex = 4;
@@ -1298,7 +1332,7 @@
             this.label25.BackColor = System.Drawing.Color.Transparent;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
-            this.label25.Location = new System.Drawing.Point(29, 13);
+            this.label25.Location = new System.Drawing.Point(33, 25);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(117, 25);
             this.label25.TabIndex = 2;
@@ -1308,44 +1342,11 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Elephant", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(25, 38);
+            this.label26.Location = new System.Drawing.Point(28, 60);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(222, 31);
             this.label26.TabIndex = 0;
             this.label26.Text = "Any preferences?";
-            // 
-            // rbAvoid
-            // 
-            this.rbAvoid.Font = new System.Drawing.Font("Elephant", 12F);
-            this.rbAvoid.Location = new System.Drawing.Point(83, 117);
-            this.rbAvoid.Name = "rbAvoid";
-            this.rbAvoid.Size = new System.Drawing.Size(609, 53);
-            this.rbAvoid.TabIndex = 5;
-            this.rbAvoid.TabStop = true;
-            this.rbAvoid.Text = "Avoid tourist stuff";
-            this.rbAvoid.UseVisualStyleBackColor = true;
-            // 
-            // btnGenerate
-            // 
-            this.btnGenerate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnGenerate.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.btnGenerate.Location = new System.Drawing.Point(476, 188);
-            this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(247, 61);
-            this.btnGenerate.TabIndex = 6;
-            this.btnGenerate.Text = "Generate plan";
-            this.btnGenerate.UseVisualStyleBackColor = false;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.label28.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label28.Location = new System.Drawing.Point(110, 163);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(169, 16);
-            this.label28.TabIndex = 8;
-            this.label28.Text = "Favor authentic local spots.";
             // 
             // Form1
             // 
@@ -1353,6 +1354,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(248)))), ((int)(((byte)(245)))));
             this.ClientSize = new System.Drawing.Size(1023, 701);
+            this.Controls.Add(this.questionPanel8);
             this.Controls.Add(this.questionPanel7);
             this.Controls.Add(this.questionPanel6);
             this.Controls.Add(this.questionPanel5);
@@ -1361,7 +1363,6 @@
             this.Controls.Add(this.questionPanel2);
             this.Controls.Add(this.questionPanel1);
             this.Controls.Add(this.btnContinue);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lblPercentage);
             this.Controls.Add(this.lblStepCount);
@@ -1396,8 +1397,8 @@
             this.questionPanel6.PerformLayout();
             this.questionPanel7.ResumeLayout(false);
             this.questionPanel7.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.questionPanel8.ResumeLayout(false);
+            this.questionPanel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1492,7 +1493,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel questionPanel8;
         private System.Windows.Forms.RadioButton rbAvoid;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;

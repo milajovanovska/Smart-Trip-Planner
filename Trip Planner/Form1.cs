@@ -31,7 +31,7 @@ namespace Trip_Planner
         public Form1()
         {
             InitializeComponent();
-            steps = new Panel[] { questionPanel1, questionPanel2, questionPanel3, questionPanel4, questionPanel5, questionPanel6, questionPanel7};
+            steps = new Panel[] { questionPanel1, questionPanel2, questionPanel3, questionPanel4, questionPanel5, questionPanel6, questionPanel7,questionPanel8};
 
             dateTimePickerStart.Value = DateTime.Today;
             dateTimePickerEnd.Value = DateTime.Today.AddDays(7);
@@ -66,13 +66,13 @@ namespace Trip_Planner
         }
         private void UpdateUI()
         {
-            for (int i = 0; i < steps.Length; i++)
+            for (int i = 1; i < steps.Length; i++)
             {
                 if (steps[i] != null)
                     steps[i].Visible = (i == currentStep - 1);
             }
 
-            UpdateProgress(currentStep, 9);
+            UpdateProgress(currentStep, 8);
 
             btnBack.Enabled = (currentStep > 1);
             if (btnBack.Enabled)
@@ -89,6 +89,8 @@ namespace Trip_Planner
                 case 1:
                     lblTitle.Text = "Pick your destination";
                     txtDestination_TextChanged(null, null);
+                    btnContinue.Enabled = false;
+                    btnBack.Visible= false;
                     break;
 
                 case 2:
@@ -96,34 +98,43 @@ namespace Trip_Planner
                     dateTimePickerStart.MinDate = DateTime.Today;
                     dateTimePickerEnd.MinDate = DateTime.Today;
                     CalculateDuration();
+                    btnContinue.Enabled = true;
+                    btnBack.Visible = true;
                     break;
 
                 case 3:
                     lblTitle.Text = "What's your total budget?";
                     btnContinue.Enabled = true;
+                    btnBack.Visible = true;
                     break;
 
                 case 4:
                     lblTitle.Text = "What kind of trip?";
                     ResetStyleButtons();
                     btnContinue.Enabled = false;
+                    btnBack.Visible = true;
                     break;
                 case 5:
                     lblTitle.Text = "What excites you?";
                     btnContinue.Enabled = true;
+                    btnBack.Visible = true;
                     break;
                 case 6:
                     lblTitle.Text = "How packed should the days be?";
+                    btnContinue.Enabled = false;
+                    btnBack.Visible = true;
                     break;
                 case 7:
                     lblTitle.Text = "How do you want to move?";
-                    btnContinue.Enabled = true;
+                    btnBack.Visible = true;
+                    btnContinue.Enabled = false;
                     break;
                 case 8:
                     lblTitle.Text = "A few finishing touches";
-                    btnContinue.Enabled = true;
+                    btnContinue.Visible = false;
+                    btnBack.Visible = true;
                     break;
-                case 9: lblTitle.Text = "Review your plan"; break;
+                
             }
         }
 
@@ -145,10 +156,9 @@ namespace Trip_Planner
             btnBack.ForeColor = TEXT;
         }
 
-        private void UpdateProgress(int step, int t)
+        private void UpdateProgress(int step, int totalSteps)
         {
-            int totalSteps = 8;
-
+            
             lblStepCount.Text = $"Step {step} of {totalSteps}";
 
             int percentage = (int)(((double)step / totalSteps) * 100);
@@ -198,15 +208,12 @@ namespace Trip_Planner
         }
         private void btnContinue_Click_1(object sender, EventArgs e)
         {
-            if (currentStep < 9)
+            if (currentStep < 8)
             {
                 currentStep++;
                 UpdateUI();
             }
-            else
-            {
-                MessageBox.Show("Generating your plan...");
-            }
+            
         }
 
         private void btnBack_Click_1(object sender, EventArgs e)
@@ -474,29 +481,35 @@ namespace Trip_Planner
 
         private void btnWalking_Click(object sender, EventArgs e)
         {
+            btnContinue.Enabled = true;
             ToggleTransport(btnWalking);
         }
 
         private void btnPublicTransport_Click(object sender, EventArgs e)
         {
+            btnContinue.Enabled = true;
             ToggleTransport(btnPublicTransport);
 
         }
 
         private void btnRentACar_Click(object sender, EventArgs e)
         {
+            btnContinue.Enabled = true;
             ToggleTransport(btnRentACar);
-
+           
         }
 
         private void btnBike_Click(object sender, EventArgs e)
         {
+            btnContinue.Enabled = true;
             ToggleTransport(btnBike);
+            
 
         }
 
         private void btnTaxiUber_Click(object sender, EventArgs e)
         {
+            btnContinue.Enabled = true;
             ToggleTransport(btnTaxiUber);
 
         }
@@ -518,8 +531,10 @@ namespace Trip_Planner
             ApplyRoundCorners(btn, 20);
         }
 
-   
-
-       
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Generating your plan...");
+            
+        }
     }
 }

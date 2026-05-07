@@ -175,6 +175,7 @@
             this.panelProgressBarBack.Name = "panelProgressBarBack";
             this.panelProgressBarBack.Size = new System.Drawing.Size(922, 20);
             this.panelProgressBarBack.TabIndex = 2;
+            this.panelProgressBarBack.Paint += new System.Windows.Forms.PaintEventHandler(this.panelProgressBarBack_Paint);
             // 
             // panelProgressBar
             // 

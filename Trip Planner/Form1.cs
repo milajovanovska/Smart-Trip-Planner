@@ -17,14 +17,37 @@ namespace Trip_Planner
         [System.Runtime.InteropServices.DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
 
-        Color PRIMARY = Color.FromArgb(140, 190, 230);
-        Color PRIMARY_DARK = Color.FromArgb(100, 150, 200);
-        Color BACKGROUND = Color.FromArgb(210, 230, 250);
-        Color BORDER = Color.FromArgb(180, 210, 240);
-        Color TEXT = Color.FromArgb(70, 100, 140);
+      
+        Color PRIMARY = Color.FromArgb(59, 130, 246);
+        Color PRIMARY_DARK = Color.FromArgb(37, 99, 235);
+
+        Color BACKGROUND = Color.FromArgb(245, 247, 250);
+        Color CARD = Color.White;
+
+        Color BORDER = Color.FromArgb(225, 230, 235);
+
+        Color TEXT = Color.FromArgb(30, 41, 59);
+        Color SUBTEXT = Color.FromArgb(100, 116, 139);
+
+        Color SUCCESS = Color.FromArgb(34, 197, 94);
         Color TEXT_LIGHT = Color.White;
 
-        
+        private GraphicsPath GetRoundedRect(Rectangle rect, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            path.StartFigure();
+            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+            path.AddArc(rect.Right - radius, rect.Y, radius, radius, 270, 90);
+            path.AddArc(rect.Right - radius, rect.Bottom - radius, radius, radius, 0, 90);
+            path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90);
+            path.CloseFigure();
+
+            return path;
+        }
+
+
+
 
         int currentStep = 1;
         Panel[] steps;
@@ -151,7 +174,7 @@ namespace Trip_Planner
         {
             btnBack.BackColor = PRIMARY;
             btnBack.ForeColor = TEXT_LIGHT;
-          
+
         }
 
         private void btnBack_MouseLeave(object sender, EventArgs e)
@@ -364,30 +387,26 @@ namespace Trip_Planner
             btn.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, btn.Width, btn.Height, radius, radius));
         }
 
+        
         private void ToggleInterest(Button btn)
         {
-            if (btn.BackColor == BACKGROUND)
+            bool selected = btn.BackColor == BACKGROUND;
+
+            if (selected)
             {
                 btn.BackColor = PRIMARY;
+                btn.ForeColor = Color.White;
                 btn.FlatAppearance.BorderColor = PRIMARY_DARK;
-                btn.ForeColor = TEXT_LIGHT;
-
-                btn.Size = new Size(btn.Width + 10, btn.Height + 10);
-                btn.Location = new Point(btn.Location.X - 5, btn.Location.Y - 5);
+                btn.FlatAppearance.BorderSize = 2;
             }
             else
             {
-                btn.BackColor = BACKGROUND;
-                btn.FlatAppearance.BorderColor = BACKGROUND;
+                btn.BackColor = CARD;
                 btn.ForeColor = TEXT;
-
-                btn.Size = new Size(btn.Width - 10, btn.Height - 10);
-                btn.Location = new Point(btn.Location.X + 5, btn.Location.Y + 5);
+                btn.FlatAppearance.BorderColor = BORDER;
+                btn.FlatAppearance.BorderSize = 1;
             }
-
-            ApplyRoundCorners(btn, 20);
         }
-
         private void btnMuseum_Click(object sender, EventArgs e)
         {
             ToggleInterest(btnMuseum);
@@ -549,6 +568,20 @@ namespace Trip_Planner
             using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, lightColor, darkColor, 45F))
             {
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
+            }
+        }
+
+        private void panelProgressBarBack_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            using (SolidBrush brush = new SolidBrush(PRIMARY))
+            {
+                using (GraphicsPath path = GetRoundedRect(
+                    new Rectangle(0, 0, panelProgressBar.Width, panelProgressBar.Height), 10))
+                {
+                    e.Graphics.FillPath(brush, path);
+                }
             }
         }
     }

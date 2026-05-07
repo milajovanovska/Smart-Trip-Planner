@@ -70,7 +70,7 @@ namespace Trip_Planner
         }
         private void UpdateUI()
         {
-            for (int i = 1; i < steps.Length; i++)
+            for (int i = 0; i < steps.Length; i++)
             {
                 if (steps[i] != null)
                     steps[i].Visible = (i == currentStep - 1);

@@ -1,13 +1,8 @@
-﻿using System;
+﻿using FontAwesome.Sharp;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Trip_Planner
@@ -32,6 +27,66 @@ namespace Trip_Planner
         Color SUCCESS = Color.FromArgb(34, 197, 94);
         Color TEXT_LIGHT = Color.White;
 
+        private readonly Dictionary<Button, IconChar> _buttonIconMap = new Dictionary<Button, IconChar>();
+
+        private void SetButtonIcon(Button btn, IconChar icon, Color iconColor, int iconSize = 18)
+        {
+            if (btn == null) return;
+            _buttonIconMap[btn] = icon; 
+            btn.Image = icon.ToBitmap(iconColor, iconSize);
+            btn.ImageAlign = ContentAlignment.MiddleLeft;
+            btn.TextAlign = ContentAlignment.MiddleRight;
+            btn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn.Padding = new Padding(10, 0, 10, 0);
+        }
+        private void ApplyButtonIcons()
+        { 
+            SetButtonIcon(btnLisbon, IconChar.MapMarkerAlt, TEXT);
+            SetButtonIcon(btnVienna, IconChar.MapMarkerAlt, TEXT);
+            SetButtonIcon(btnIstanbul, IconChar.MapMarkerAlt, TEXT);
+            SetButtonIcon(btnTokyo, IconChar.MapMarkerAlt, TEXT);
+            SetButtonIcon(btnFlorence, IconChar.MapMarkerAlt, TEXT);
+            SetButtonIcon(btnChicago, IconChar.MapMarkerAlt, TEXT);
+
+            
+            SetButtonIcon(btnMuseum, IconChar.Building, TEXT);
+            SetButtonIcon(btnCafes, IconChar.MugHot, TEXT);
+            SetButtonIcon(btnNightLife, IconChar.GlassMartini, TEXT);
+            SetButtonIcon(btnNature, IconChar.Tree, TEXT);
+            SetButtonIcon(btnBeaches, IconChar.UmbrellaBeach, TEXT);
+            SetButtonIcon(btnFood, IconChar.Utensils, TEXT);
+            SetButtonIcon(btnShopping, IconChar.ShoppingBag, TEXT);
+            SetButtonIcon(btnHiddenGems, IconChar.Gem, TEXT);
+
+            
+            SetButtonIcon(btnActive, IconChar.Running, TEXT);
+            SetButtonIcon(btnRelaxing, IconChar.Smile, TEXT);
+            SetButtonIcon(btnAdventure, IconChar.Mountain, TEXT);
+            SetButtonIcon(btnLuxury, IconChar.Crown, TEXT);
+            SetButtonIcon(btnBackpacking, IconChar.Hiking, TEXT);
+
+            
+            SetButtonIcon(btnRelaxed, IconChar.Moon, TEXT);
+            SetButtonIcon(btnBalanced, IconChar.BalanceScale, TEXT);
+            SetButtonIcon(btnPacked, IconChar.Bolt, TEXT);
+
+            
+            SetButtonIcon(btnWalking, IconChar.Walking, TEXT);
+            SetButtonIcon(btnPublicTransport, IconChar.Bus, TEXT);
+            SetButtonIcon(btnBike, IconChar.Bicycle, TEXT);
+            SetButtonIcon(btnTaxiUber, IconChar.Car, TEXT);
+            SetButtonIcon(btnRentACar, IconChar.Key, TEXT);
+
+           
+            SetButtonIcon(btnContinue, IconChar.ArrowRight, Color.White, 16);
+            SetButtonIcon(btnBack, IconChar.ArrowLeft, TEXT, 16);
+        }
+        private void UpdateButtonIconColor(Button btn, Color newColor, int iconSize = 18)
+        {
+            if (btn == null || !_buttonIconMap.ContainsKey(btn)) return;
+            IconChar icon = _buttonIconMap[btn];
+            btn.Image = icon.ToBitmap(newColor, iconSize);
+        }
 
         private GraphicsPath GetRoundedRect(Rectangle rect, int radius)
         {
@@ -54,6 +109,8 @@ namespace Trip_Planner
         public Form1()
         {
             InitializeComponent();
+
+            ApplyButtonIcons();
 
             this.DoubleBuffered = true;
 
@@ -336,9 +393,9 @@ namespace Trip_Planner
         private void SelectStyle(Button selectedBtn)
         {
             ResetStyleButtons();
-            selectedBtn.FlatAppearance.BorderColor = PRIMARY_DARK;
-            selectedBtn.FlatAppearance.BorderSize = 2;
             selectedBtn.BackColor = PRIMARY;
+            selectedBtn.ForeColor = Color.White;
+            UpdateButtonIconColor(selectedBtn, Color.White);
             btnContinue.Enabled = true;
         }
 
@@ -347,12 +404,9 @@ namespace Trip_Planner
             var styleButtons = new[] { btnActive, btnRelaxing, btnAdventure, btnLuxury, btnBackpacking };
             foreach (var btn in styleButtons)
             {
-                if (btn != null)
-                {
-                    btn.FlatAppearance.BorderColor = BORDER;
-                    btn.FlatAppearance.BorderSize = 1;
-                    btn.BackColor = BACKGROUND;
-                }
+                btn.BackColor = BACKGROUND;
+                btn.ForeColor = TEXT;
+                UpdateButtonIconColor(btn, TEXT);
             }
         }
 
@@ -389,21 +443,17 @@ namespace Trip_Planner
         
         private void ToggleInterest(Button btn)
         {
-            bool selected = btn.BackColor == BACKGROUND;
-
-            if (selected)
+            if (btn.BackColor != PRIMARY)
             {
                 btn.BackColor = PRIMARY;
                 btn.ForeColor = Color.White;
-                btn.FlatAppearance.BorderColor = PRIMARY_DARK;
-                btn.FlatAppearance.BorderSize = 2;
+                UpdateButtonIconColor(btn, Color.White);
             }
             else
             {
                 btn.BackColor = CARD;
                 btn.ForeColor = TEXT;
-                btn.FlatAppearance.BorderColor = BORDER;
-                btn.FlatAppearance.BorderSize = 1;
+                UpdateButtonIconColor(btn, TEXT);
             }
         }
         private void btnMuseum_Click(object sender, EventArgs e)

@@ -227,7 +227,7 @@
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(188, 41);
             this.btnBack.TabIndex = 19;
-            this.btnBack.Text = "⬅ Back";
+            this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click_1);
             // 
@@ -246,7 +246,7 @@
             this.btnContinue.Name = "btnContinue";
             this.btnContinue.Size = new System.Drawing.Size(188, 41);
             this.btnContinue.TabIndex = 20;
-            this.btnContinue.Text = "Continue ➔";
+            this.btnContinue.Text = "Continue ";
             this.btnContinue.UseVisualStyleBackColor = false;
             this.btnContinue.Click += new System.EventHandler(this.btnContinue_Click_1);
             // 
@@ -720,7 +720,7 @@
             this.btnShopping.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnShopping.FlatAppearance.BorderSize = 0;
             this.btnShopping.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShopping.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShopping.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShopping.Location = new System.Drawing.Point(508, 244);
             this.btnShopping.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnShopping.Name = "btnShopping";
@@ -737,7 +737,7 @@
             this.btnFood.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnFood.FlatAppearance.BorderSize = 0;
             this.btnFood.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFood.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFood.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFood.Location = new System.Drawing.Point(272, 244);
             this.btnFood.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFood.Name = "btnFood";
@@ -754,7 +754,7 @@
             this.btnNature.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnNature.FlatAppearance.BorderSize = 0;
             this.btnNature.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNature.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNature.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNature.Location = new System.Drawing.Point(738, 132);
             this.btnNature.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNature.Name = "btnNature";
@@ -771,7 +771,7 @@
             this.btnNightLife.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnNightLife.FlatAppearance.BorderSize = 0;
             this.btnNightLife.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNightLife.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNightLife.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNightLife.Location = new System.Drawing.Point(508, 132);
             this.btnNightLife.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNightLife.Name = "btnNightLife";
@@ -788,7 +788,7 @@
             this.btnCafes.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnCafes.FlatAppearance.BorderSize = 0;
             this.btnCafes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCafes.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCafes.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCafes.Location = new System.Drawing.Point(272, 132);
             this.btnCafes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCafes.Name = "btnCafes";
@@ -805,7 +805,7 @@
             this.btnBeaches.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnBeaches.FlatAppearance.BorderSize = 0;
             this.btnBeaches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBeaches.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBeaches.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBeaches.Location = new System.Drawing.Point(39, 244);
             this.btnBeaches.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBeaches.Name = "btnBeaches";
@@ -822,7 +822,7 @@
             this.btnMuseum.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnMuseum.FlatAppearance.BorderSize = 0;
             this.btnMuseum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMuseum.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMuseum.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMuseum.Location = new System.Drawing.Point(37, 132);
             this.btnMuseum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMuseum.Name = "btnMuseum";
@@ -839,7 +839,7 @@
             this.btnHiddenGems.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnHiddenGems.FlatAppearance.BorderSize = 0;
             this.btnHiddenGems.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHiddenGems.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHiddenGems.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHiddenGems.Location = new System.Drawing.Point(735, 244);
             this.btnHiddenGems.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHiddenGems.Name = "btnHiddenGems";

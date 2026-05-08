@@ -54,8 +54,6 @@ namespace Trip_Planner
         public Form1()
         {
             InitializeComponent();
-            ApplyHoverEffects();
-
             progressBarLoading.ForeColor = Color.CornflowerBlue;
 
             this.DoubleBuffered = true;
@@ -558,10 +556,14 @@ namespace Trip_Planner
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Generating your plan...");
+            int centerX = (this.ClientSize.Width - panelLoading.Width) / 2;
+            int centerY = (this.ClientSize.Height - panelLoading.Height) / 2;
+
+            panelLoading.Location = new Point(centerX, centerY);
+
             panelLoading.Visible = true;
             panelLoading.BringToFront();
-            //fadeValue = 0; 
+
             panelLoading.BackColor = Color.FromArgb(0, 240, 245, 255);
             timerFade.Start();
 
@@ -591,26 +593,12 @@ namespace Trip_Planner
                 }
             }
         }
-        private void AddHoverEffect(Button btn, Color hoverBack, Color hoverFore, Color normalBack, Color normalFore)
+    
+
+        private void Form1_Resize(object sender, EventArgs e)
         {
-            btn.MouseEnter += (s, e) => {
-                btn.BackColor = hoverBack; btn.ForeColor = hoverFore;
-            };
-            btn.MouseLeave += (s, e) => {
-                btn.BackColor = normalBack; btn.ForeColor = normalFore;
-            };
+            panelLoading.Left = (this.ClientSize.Width - panelLoading.Width) / 2;
+            panelLoading.Top = (this.ClientSize.Height - panelLoading.Height) / 2;
         }
-
-        private void ApplyHoverEffects() {
-            var interestButtons = new[] {btnMuseum, btnCafes, btnNightLife, btnNature, btnBeaches, btnFood, btnShopping, btnHiddenGems }; 
-            foreach (var btn in interestButtons) { 
-                AddHoverEffect(btn, PRIMARY, TEXT_LIGHT, BACKGROUND, TEXT);
-            }
-            var destinationButtons = new[] { btnLisbon, btnVienna, btnIstanbul, btnTokyo, btnFlorence, btnChicago };
-            foreach (var btn in destinationButtons) { 
-                AddHoverEffect(btn, PRIMARY, TEXT_LIGHT, CARD, TEXT); 
-            } 
-        }
-
     }
 }

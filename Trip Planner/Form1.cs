@@ -32,6 +32,7 @@ namespace Trip_Planner
         Color SUCCESS = Color.FromArgb(34, 197, 94);
         Color TEXT_LIGHT = Color.White;
 
+      
         private GraphicsPath GetRoundedRect(Rectangle rect, int radius)
         {
             GraphicsPath path = new GraphicsPath();
@@ -55,6 +56,7 @@ namespace Trip_Planner
         public Form1()
         {
             InitializeComponent();
+            ApplyHoverEffects();
 
             this.DoubleBuffered = true;
 
@@ -584,5 +586,26 @@ namespace Trip_Planner
                 }
             }
         }
+        private void AddHoverEffect(Button btn, Color hoverBack, Color hoverFore, Color normalBack, Color normalFore)
+        {
+            btn.MouseEnter += (s, e) => {
+                btn.BackColor = hoverBack; btn.ForeColor = hoverFore;
+            };
+            btn.MouseLeave += (s, e) => {
+                btn.BackColor = normalBack; btn.ForeColor = normalFore;
+            };
+        }
+
+        private void ApplyHoverEffects() {
+            var interestButtons = new[] {btnMuseum, btnCafes, btnNightLife, btnNature, btnBeaches, btnFood, btnShopping, btnHiddenGems }; 
+            foreach (var btn in interestButtons) { 
+                AddHoverEffect(btn, PRIMARY, TEXT_LIGHT, BACKGROUND, TEXT);
+            }
+            var destinationButtons = new[] { btnLisbon, btnVienna, btnIstanbul, btnTokyo, btnFlorence, btnChicago };
+            foreach (var btn in destinationButtons) { 
+                AddHoverEffect(btn, PRIMARY, TEXT_LIGHT, CARD, TEXT); 
+            } 
+        }
+
     }
 }

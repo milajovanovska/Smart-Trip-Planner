@@ -54,7 +54,6 @@ namespace Trip_Planner
         public Form1()
         {
             InitializeComponent();
-            progressBarLoading.ForeColor = Color.CornflowerBlue;
 
             this.DoubleBuffered = true;
 

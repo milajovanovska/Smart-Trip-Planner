@@ -125,9 +125,9 @@
             this.label26 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panelLoading = new System.Windows.Forms.Panel();
-            this.label27 = new System.Windows.Forms.Label();
-            this.progressBarLoading = new System.Windows.Forms.ProgressBar();
             this.timerFade = new System.Windows.Forms.Timer(this.components);
+            this.progressBarLoading = new System.Windows.Forms.ProgressBar();
+            this.label27 = new System.Windows.Forms.Label();
             this.questionPanel2.SuspendLayout();
             this.lblDuration.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -592,6 +592,7 @@
             // btnBackpacking
             // 
             this.btnBackpacking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
+            this.btnBackpacking.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBackpacking.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
             this.btnBackpacking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBackpacking.Location = new System.Drawing.Point(546, 222);
@@ -607,6 +608,7 @@
             // btnLuxury
             // 
             this.btnLuxury.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
+            this.btnLuxury.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLuxury.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
             this.btnLuxury.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLuxury.Location = new System.Drawing.Point(194, 222);
@@ -622,6 +624,7 @@
             // btnRelaxing
             // 
             this.btnRelaxing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
+            this.btnRelaxing.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRelaxing.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
             this.btnRelaxing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRelaxing.Location = new System.Drawing.Point(344, 118);
@@ -637,6 +640,7 @@
             // btnAdventure
             // 
             this.btnAdventure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
+            this.btnAdventure.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdventure.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
             this.btnAdventure.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdventure.Location = new System.Drawing.Point(659, 118);
@@ -652,6 +656,7 @@
             // btnActive
             // 
             this.btnActive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
+            this.btnActive.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnActive.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
             this.btnActive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActive.Location = new System.Drawing.Point(39, 118);
@@ -711,6 +716,7 @@
             // btnShopping
             // 
             this.btnShopping.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnShopping.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnShopping.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnShopping.FlatAppearance.BorderSize = 0;
             this.btnShopping.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -727,6 +733,7 @@
             // btnFood
             // 
             this.btnFood.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnFood.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFood.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnFood.FlatAppearance.BorderSize = 0;
             this.btnFood.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -743,6 +750,7 @@
             // btnNature
             // 
             this.btnNature.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnNature.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNature.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnNature.FlatAppearance.BorderSize = 0;
             this.btnNature.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -759,6 +767,7 @@
             // btnNightLife
             // 
             this.btnNightLife.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnNightLife.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNightLife.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnNightLife.FlatAppearance.BorderSize = 0;
             this.btnNightLife.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -775,6 +784,7 @@
             // btnCafes
             // 
             this.btnCafes.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnCafes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCafes.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnCafes.FlatAppearance.BorderSize = 0;
             this.btnCafes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -791,6 +801,7 @@
             // btnBeaches
             // 
             this.btnBeaches.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnBeaches.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBeaches.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnBeaches.FlatAppearance.BorderSize = 0;
             this.btnBeaches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -807,6 +818,7 @@
             // btnMuseum
             // 
             this.btnMuseum.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnMuseum.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMuseum.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnMuseum.FlatAppearance.BorderSize = 0;
             this.btnMuseum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -823,6 +835,7 @@
             // btnHiddenGems
             // 
             this.btnHiddenGems.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnHiddenGems.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnHiddenGems.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnHiddenGems.FlatAppearance.BorderSize = 0;
             this.btnHiddenGems.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1060,6 +1073,7 @@
             // 
             // btnPacked
             // 
+            this.btnPacked.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPacked.Location = new System.Drawing.Point(33, 264);
             this.btnPacked.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPacked.Name = "btnPacked";
@@ -1073,6 +1087,7 @@
             // 
             // btnBalanced
             // 
+            this.btnBalanced.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBalanced.Location = new System.Drawing.Point(33, 185);
             this.btnBalanced.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBalanced.Name = "btnBalanced";
@@ -1086,6 +1101,7 @@
             // 
             // btnRelaxed
             // 
+            this.btnRelaxed.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRelaxed.Location = new System.Drawing.Point(35, 106);
             this.btnRelaxed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRelaxed.Name = "btnRelaxed";
@@ -1150,6 +1166,7 @@
             // btnBike
             // 
             this.btnBike.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnBike.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBike.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnBike.FlatAppearance.BorderSize = 0;
             this.btnBike.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1166,6 +1183,7 @@
             // btnTaxiUber
             // 
             this.btnTaxiUber.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnTaxiUber.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTaxiUber.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnTaxiUber.FlatAppearance.BorderSize = 0;
             this.btnTaxiUber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1182,6 +1200,7 @@
             // btnPublicTransport
             // 
             this.btnPublicTransport.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnPublicTransport.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPublicTransport.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnPublicTransport.FlatAppearance.BorderSize = 0;
             this.btnPublicTransport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1198,6 +1217,7 @@
             // btnRentACar
             // 
             this.btnRentACar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnRentACar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRentACar.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnRentACar.FlatAppearance.BorderSize = 0;
             this.btnRentACar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1214,6 +1234,7 @@
             // btnWalking
             // 
             this.btnWalking.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnWalking.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWalking.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnWalking.FlatAppearance.BorderSize = 0;
             this.btnWalking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1367,39 +1388,38 @@
             // panelLoading
             // 
             this.panelLoading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.panelLoading.Controls.Add(this.progressBarLoading);
             this.panelLoading.Controls.Add(this.label27);
+            this.panelLoading.Controls.Add(this.progressBarLoading);
             this.panelLoading.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelLoading.Location = new System.Drawing.Point(0, 0);
             this.panelLoading.Name = "panelLoading";
-            this.panelLoading.Size = new System.Drawing.Size(1728, 1332);
+            this.panelLoading.Size = new System.Drawing.Size(1152, 888);
             this.panelLoading.TabIndex = 31;
             this.panelLoading.Visible = false;
+            // 
+            // timerFade
+            // 
+            this.timerFade.Interval = 30;
+            // 
+            // progressBarLoading
+            // 
+            this.progressBarLoading.Location = new System.Drawing.Point(333, 394);
+            this.progressBarLoading.MarqueeAnimationSpeed = 30;
+            this.progressBarLoading.Name = "progressBarLoading";
+            this.progressBarLoading.Size = new System.Drawing.Size(527, 29);
+            this.progressBarLoading.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBarLoading.TabIndex = 1;
             // 
             // label27
             // 
             this.label27.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Modern No. 20", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(398, 329);
+            this.label27.Location = new System.Drawing.Point(383, 320);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(617, 62);
-            this.label27.TabIndex = 0;
+            this.label27.Size = new System.Drawing.Size(411, 41);
+            this.label27.TabIndex = 2;
             this.label27.Text = "Generating your plan...";
-            // 
-            // progressBarLoading
-            // 
-            this.progressBarLoading.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.progressBarLoading.Location = new System.Drawing.Point(371, 396);
-            this.progressBarLoading.MarqueeAnimationSpeed = 30;
-            this.progressBarLoading.Name = "progressBarLoading";
-            this.progressBarLoading.Size = new System.Drawing.Size(452, 27);
-            this.progressBarLoading.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBarLoading.TabIndex = 1;
-            // 
-            // timerFade
-            // 
-            this.timerFade.Interval = 30;
             // 
             // Form1
             // 
@@ -1565,9 +1585,9 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.Panel panelLoading;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.ProgressBar progressBarLoading;
         private System.Windows.Forms.Timer timerFade;
+        private System.Windows.Forms.ProgressBar progressBarLoading;
+        private System.Windows.Forms.Label label27;
     }
 }
 

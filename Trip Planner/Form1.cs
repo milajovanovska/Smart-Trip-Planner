@@ -32,7 +32,7 @@ namespace Trip_Planner
         Color SUCCESS = Color.FromArgb(34, 197, 94);
         Color TEXT_LIGHT = Color.White;
 
-      
+
         private GraphicsPath GetRoundedRect(Rectangle rect, int radius)
         {
             GraphicsPath path = new GraphicsPath();
@@ -48,8 +48,6 @@ namespace Trip_Planner
         }
 
 
-
-
         int currentStep = 1;
         Panel[] steps;
 
@@ -57,6 +55,8 @@ namespace Trip_Planner
         {
             InitializeComponent();
             ApplyHoverEffects();
+
+            progressBarLoading.ForeColor = Color.CornflowerBlue;
 
             this.DoubleBuffered = true;
 
@@ -558,8 +558,13 @@ namespace Trip_Planner
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Generating your plan...");
-            
+            //MessageBox.Show("Generating your plan...");
+            panelLoading.Visible = true;
+            panelLoading.BringToFront();
+            //fadeValue = 0; 
+            panelLoading.BackColor = Color.FromArgb(0, 240, 245, 255);
+            timerFade.Start();
+
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)

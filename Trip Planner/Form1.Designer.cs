@@ -128,6 +128,7 @@
             this.timerFade = new System.Windows.Forms.Timer(this.components);
             this.progressBarLoading = new System.Windows.Forms.ProgressBar();
             this.label27 = new System.Windows.Forms.Label();
+            this.btnThemeToggle = new FontAwesome.Sharp.IconButton();
             this.questionPanel2.SuspendLayout();
             this.lblDuration.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -1421,6 +1422,20 @@
             this.label27.TabIndex = 2;
             this.label27.Text = "Generating your plan...";
             // 
+            // btnThemeToggle
+            // 
+            this.btnThemeToggle.FlatAppearance.BorderSize = 0;
+            this.btnThemeToggle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThemeToggle.IconChar = FontAwesome.Sharp.IconChar.Moon;
+            this.btnThemeToggle.IconColor = System.Drawing.Color.Black;
+            this.btnThemeToggle.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnThemeToggle.Location = new System.Drawing.Point(1051, 26);
+            this.btnThemeToggle.Name = "btnThemeToggle";
+            this.btnThemeToggle.Size = new System.Drawing.Size(55, 49);
+            this.btnThemeToggle.TabIndex = 32;
+            this.btnThemeToggle.UseVisualStyleBackColor = true;
+            this.btnThemeToggle.Click += new System.EventHandler(this.btnThemeToggle_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -1428,6 +1443,7 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1152, 888);
+            this.Controls.Add(this.btnThemeToggle);
             this.Controls.Add(this.panelLoading);
             this.Controls.Add(this.questionPanel8);
             this.Controls.Add(this.questionPanel7);
@@ -1588,6 +1604,7 @@
         private System.Windows.Forms.Timer timerFade;
         private System.Windows.Forms.ProgressBar progressBarLoading;
         private System.Windows.Forms.Label label27;
+        private FontAwesome.Sharp.IconButton btnThemeToggle;
     }
 }
 

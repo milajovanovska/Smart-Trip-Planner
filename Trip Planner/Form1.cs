@@ -27,6 +27,10 @@ namespace Trip_Planner
         Color SUCCESS = Color.FromArgb(34, 197, 94);
         Color TEXT_LIGHT = Color.White;
 
+        Color ICON_COLOR = Color.FromArgb(30, 41, 59);
+
+        bool isDarkMode = false;
+
         private readonly Dictionary<Button, IconChar> _buttonIconMap = new Dictionary<Button, IconChar>();
 
         private void SetButtonIcon(Button btn, IconChar icon, Color iconColor, int iconSize = 18)
@@ -41,45 +45,97 @@ namespace Trip_Planner
         }
         private void ApplyButtonIcons()
         { 
-            SetButtonIcon(btnLisbon, IconChar.MapMarkerAlt, TEXT);
-            SetButtonIcon(btnVienna, IconChar.MapMarkerAlt, TEXT);
-            SetButtonIcon(btnIstanbul, IconChar.MapMarkerAlt, TEXT);
-            SetButtonIcon(btnTokyo, IconChar.MapMarkerAlt, TEXT);
-            SetButtonIcon(btnFlorence, IconChar.MapMarkerAlt, TEXT);
-            SetButtonIcon(btnChicago, IconChar.MapMarkerAlt, TEXT);
+            SetButtonIcon(btnLisbon, IconChar.MapMarkerAlt, ICON_COLOR);
+            SetButtonIcon(btnVienna, IconChar.MapMarkerAlt, ICON_COLOR);
+            SetButtonIcon(btnIstanbul, IconChar.MapMarkerAlt, ICON_COLOR);
+            SetButtonIcon(btnTokyo, IconChar.MapMarkerAlt, ICON_COLOR);
+            SetButtonIcon(btnFlorence, IconChar.MapMarkerAlt, ICON_COLOR);
+            SetButtonIcon(btnChicago, IconChar.MapMarkerAlt, ICON_COLOR);
 
             
-            SetButtonIcon(btnMuseum, IconChar.Building, TEXT);
-            SetButtonIcon(btnCafes, IconChar.MugHot, TEXT);
-            SetButtonIcon(btnNightLife, IconChar.GlassMartini, TEXT);
-            SetButtonIcon(btnNature, IconChar.Tree, TEXT);
-            SetButtonIcon(btnBeaches, IconChar.UmbrellaBeach, TEXT);
-            SetButtonIcon(btnFood, IconChar.Utensils, TEXT);
-            SetButtonIcon(btnShopping, IconChar.ShoppingBag, TEXT);
-            SetButtonIcon(btnHiddenGems, IconChar.Gem, TEXT);
+            SetButtonIcon(btnMuseum, IconChar.Building, ICON_COLOR);
+            SetButtonIcon(btnCafes, IconChar.MugHot, ICON_COLOR);
+            SetButtonIcon(btnNightLife, IconChar.GlassMartini, ICON_COLOR);
+            SetButtonIcon(btnNature, IconChar.Tree, ICON_COLOR);
+            SetButtonIcon(btnBeaches, IconChar.UmbrellaBeach, ICON_COLOR);
+            SetButtonIcon(btnFood, IconChar.Utensils, ICON_COLOR);
+            SetButtonIcon(btnShopping, IconChar.ShoppingBag, ICON_COLOR);
+            SetButtonIcon(btnHiddenGems, IconChar.Gem, ICON_COLOR);
 
             
-            SetButtonIcon(btnActive, IconChar.Running, TEXT);
-            SetButtonIcon(btnRelaxing, IconChar.Smile, TEXT);
-            SetButtonIcon(btnAdventure, IconChar.Mountain, TEXT);
-            SetButtonIcon(btnLuxury, IconChar.Crown, TEXT);
-            SetButtonIcon(btnBackpacking, IconChar.Hiking, TEXT);
+            SetButtonIcon(btnActive, IconChar.Running, ICON_COLOR);
+            SetButtonIcon(btnRelaxing, IconChar.Smile, ICON_COLOR);
+            SetButtonIcon(btnAdventure, IconChar.Mountain, ICON_COLOR);
+            SetButtonIcon(btnLuxury, IconChar.Crown, ICON_COLOR);
+            SetButtonIcon(btnBackpacking, IconChar.Hiking, ICON_COLOR);
 
             
-            SetButtonIcon(btnRelaxed, IconChar.Moon, TEXT);
-            SetButtonIcon(btnBalanced, IconChar.BalanceScale, TEXT);
-            SetButtonIcon(btnPacked, IconChar.Bolt, TEXT);
+            SetButtonIcon(btnRelaxed, IconChar.Moon, ICON_COLOR);
+            SetButtonIcon(btnBalanced, IconChar.BalanceScale, ICON_COLOR);
+            SetButtonIcon(btnPacked, IconChar.Bolt, ICON_COLOR);
 
             
-            SetButtonIcon(btnWalking, IconChar.Walking, TEXT);
-            SetButtonIcon(btnPublicTransport, IconChar.Bus, TEXT);
-            SetButtonIcon(btnBike, IconChar.Bicycle, TEXT);
-            SetButtonIcon(btnTaxiUber, IconChar.Car, TEXT);
-            SetButtonIcon(btnRentACar, IconChar.Key, TEXT);
+            SetButtonIcon(btnWalking, IconChar.Walking, ICON_COLOR);
+            SetButtonIcon(btnPublicTransport, IconChar.Bus, ICON_COLOR);
+            SetButtonIcon(btnBike, IconChar.Bicycle, ICON_COLOR);
+            SetButtonIcon(btnTaxiUber, IconChar.Car, ICON_COLOR);
+            SetButtonIcon(btnRentACar, IconChar.Key, ICON_COLOR);
 
-           
+
             SetButtonIcon(btnContinue, IconChar.ArrowRight, Color.White, 16);
-            SetButtonIcon(btnBack, IconChar.ArrowLeft, TEXT, 16);
+            SetButtonIcon(btnBack, IconChar.ArrowLeft, ICON_COLOR, 16);
+        }
+        private void ApplyTheme()
+        {
+          /*  if (isDarkMode)
+            {
+                BACKGROUND = Color.FromArgb(30, 30, 30);
+                CARD = Color.FromArgb(45, 45, 45);
+                TEXT = Color.FromArgb(240, 240, 240);
+                BORDER = Color.FromArgb(60, 60, 60);
+                PRIMARY_DARK = Color.FromArgb(80, 120, 200);
+            }
+            else
+            {
+                BACKGROUND = Color.FromArgb(245, 247, 250);
+                CARD = Color.White;
+                TEXT = Color.FromArgb(64, 64, 64);
+                BORDER = Color.FromArgb(230, 233, 237);
+                PRIMARY_DARK = Color.FromArgb(70, 130, 180);
+            }
+
+            this.BackColor = BACKGROUND;
+            lblTitle.ForeColor = TEXT;
+            lblStepCount.ForeColor = TEXT;
+            lblPercentage.ForeColor = TEXT;
+
+            foreach (var panel in steps)
+            {
+                if (panel == null) continue;
+
+                panel.BackColor = Color.Transparent;
+                foreach (Control child in panel.Controls)
+                {
+                    if (child is Label)
+                    {
+                        child.ForeColor = TEXT;
+                    }
+                    else if (child is TextBox txt)
+                    {
+                        txt.ForeColor = Color.FromArgb(30, 41, 59);
+                    }
+                    else if (child is Button btn)
+                    {
+                        if (btn.BackColor != PRIMARY)
+                        {
+                            btn.ForeColor = Color.FromArgb(30, 41, 59);
+                        }
+                    }
+                }
+            }
+
+            this.Invalidate();
+          */
         }
         private void UpdateButtonIconColor(Button btn, Color newColor, int iconSize = 18)
         {
@@ -620,10 +676,15 @@ namespace Trip_Planner
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Color lightColor = Color.White;
-            Color darkColor = Color.FromArgb(180, 200, 240);
+            //Color lightColor = Color.White;
+            //Color darkColor = Color.FromArgb(180, 200, 240);
 
-            using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, lightColor, darkColor, 45F))
+            //using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, lightColor, darkColor, 45F))
+            //{
+            //    e.Graphics.FillRectangle(brush, this.ClientRectangle);
+            //}
+
+            using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, CARD, BACKGROUND, 45F))
             {
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }
@@ -648,6 +709,23 @@ namespace Trip_Planner
         {
             panelLoading.Left = (this.ClientSize.Width - panelLoading.Width) / 2;
             panelLoading.Top = (this.ClientSize.Height - panelLoading.Height) / 2;
+        }
+
+        private void btnThemeToggle_Click(object sender, EventArgs e)
+        {
+        /*    isDarkMode = !isDarkMode;
+            if (isDarkMode)
+            {
+                btnThemeToggle.IconChar = IconChar.Sun;
+                btnThemeToggle.IconColor = Color.Gold;
+            }
+            else
+            {
+                btnThemeToggle.IconChar = IconChar.Moon;
+                btnThemeToggle.IconColor = TEXT;
+            }
+         ApplyTheme();  
+        */ 
         }
     }
 }

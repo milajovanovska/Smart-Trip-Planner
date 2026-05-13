@@ -276,6 +276,7 @@ namespace Trip_Planner
                     lblTitle.Text = "A few finishing touches";
                     btnContinue.Visible = false;
                     btnBack.Visible = true;
+                    rbAvoid.Checked=false;
                     break;
                 
             }
@@ -833,19 +834,24 @@ namespace Trip_Planner
 
         private void btnThemeToggle_Click(object sender, EventArgs e)
         {
-        /*    isDarkMode = !isDarkMode;
-            if (isDarkMode)
-            {
-                btnThemeToggle.IconChar = IconChar.Sun;
-                btnThemeToggle.IconColor = Color.Gold;
-            }
-            else
-            {
-                btnThemeToggle.IconChar = IconChar.Moon;
-                btnThemeToggle.IconColor = TEXT;
-            }
-         ApplyTheme();  
-        */ 
+            /*    isDarkMode = !isDarkMode;
+                if (isDarkMode)
+                {
+                    btnThemeToggle.IconChar = IconChar.Sun;
+                    btnThemeToggle.IconColor = Color.Gold;
+                }
+                else
+                {
+                    btnThemeToggle.IconChar = IconChar.Moon;
+                    btnThemeToggle.IconColor = TEXT;
+                }
+             ApplyTheme();  
+            */
+        }
+
+        private void rbAvoid_Click(object sender, EventArgs e)
+        {
+            rbAvoid.Checked = !rbAvoid.Checked;
         }
     }
 }

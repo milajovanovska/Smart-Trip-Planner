@@ -116,6 +116,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.questionPanel8 = new System.Windows.Forms.Panel();
+            this.rbPreferences = new System.Windows.Forms.RichTextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.rbAvoid = new System.Windows.Forms.RadioButton();
@@ -1327,6 +1328,7 @@
             // 
             this.questionPanel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.questionPanel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.questionPanel8.Controls.Add(this.rbPreferences);
             this.questionPanel8.Controls.Add(this.label28);
             this.questionPanel8.Controls.Add(this.btnGenerate);
             this.questionPanel8.Controls.Add(this.rbAvoid);
@@ -1334,18 +1336,28 @@
             this.questionPanel8.Controls.Add(this.label24);
             this.questionPanel8.Controls.Add(this.label25);
             this.questionPanel8.Controls.Add(this.label26);
-            this.questionPanel8.Location = new System.Drawing.Point(87, 327);
+            this.questionPanel8.Location = new System.Drawing.Point(87, 320);
             this.questionPanel8.Margin = new System.Windows.Forms.Padding(2);
             this.questionPanel8.Name = "questionPanel8";
-            this.questionPanel8.Size = new System.Drawing.Size(769, 310);
+            this.questionPanel8.Size = new System.Drawing.Size(776, 321);
             this.questionPanel8.TabIndex = 30;
+            // 
+            // rbPreferences
+            // 
+            this.rbPreferences.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.rbPreferences.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.rbPreferences.Location = new System.Drawing.Point(309, 32);
+            this.rbPreferences.Name = "rbPreferences";
+            this.rbPreferences.Size = new System.Drawing.Size(420, 204);
+            this.rbPreferences.TabIndex = 9;
+            this.rbPreferences.Text = " Include anything that will help us refine your trip…";
             // 
             // label28
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.label28.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label28.Location = new System.Drawing.Point(102, 190);
+            this.label28.Location = new System.Drawing.Point(49, 195);
             this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(169, 16);
@@ -1357,10 +1369,10 @@
             this.btnGenerate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnGenerate.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.btnGenerate.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.btnGenerate.Location = new System.Drawing.Point(472, 212);
+            this.btnGenerate.Location = new System.Drawing.Point(417, 253);
             this.btnGenerate.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(232, 63);
+            this.btnGenerate.Size = new System.Drawing.Size(248, 48);
             this.btnGenerate.TabIndex = 6;
             this.btnGenerate.Text = "Generate plan";
             this.btnGenerate.UseVisualStyleBackColor = false;
@@ -1370,11 +1382,11 @@
             // 
             this.rbAvoid.AutoCheck = false;
             this.rbAvoid.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbAvoid.Font = new System.Drawing.Font("Elephant", 12F);
-            this.rbAvoid.Location = new System.Drawing.Point(81, 142);
+            this.rbAvoid.Font = new System.Drawing.Font("Elephant", 11F);
+            this.rbAvoid.Location = new System.Drawing.Point(27, 163);
             this.rbAvoid.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.rbAvoid.Name = "rbAvoid";
-            this.rbAvoid.Size = new System.Drawing.Size(571, 55);
+            this.rbAvoid.Size = new System.Drawing.Size(222, 35);
             this.rbAvoid.TabIndex = 5;
             this.rbAvoid.TabStop = true;
             this.rbAvoid.Text = "Explore like a local";
@@ -1385,12 +1397,12 @@
             // 
             this.label23.AutoSize = true;
             this.label23.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label23.Location = new System.Drawing.Point(30, 101);
+            this.label23.Location = new System.Drawing.Point(27, 94);
             this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(230, 16);
+            this.label23.Size = new System.Drawing.Size(233, 16);
             this.label23.TabIndex = 4;
-            this.label23.Text = "Final touches before we plan your trip.";
+            this.label23.Text = " Final touches before we plan your trip.";
             // 
             // label24
             // 
@@ -1406,12 +1418,12 @@
             // 
             this.label25.AutoSize = true;
             this.label25.BackColor = System.Drawing.Color.Transparent;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
             this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
             this.label25.Location = new System.Drawing.Point(31, 26);
             this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(117, 25);
+            this.label25.Size = new System.Drawing.Size(128, 25);
             this.label25.TabIndex = 2;
             this.label25.Text = "Preferences";
             // 
@@ -1608,6 +1620,7 @@
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.Timer timerFade;
         private FontAwesome.Sharp.IconButton btnThemeToggle;
+        private System.Windows.Forms.RichTextBox rbPreferences;
     }
 }
 

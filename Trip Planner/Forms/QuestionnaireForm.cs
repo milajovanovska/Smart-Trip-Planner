@@ -3,11 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using Trip_Planner.Forms;
+using Trip_Planner.Models;
+using Trip_Planner.Services;
 
 namespace Trip_Planner
 {
-    public partial class Form1 : Form
+    public partial class QuestionnaireForm : Form
     {
         [System.Runtime.InteropServices.DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
@@ -162,7 +166,7 @@ namespace Trip_Planner
         int currentStep = 1;
         Panel[] steps;
 
-        public Form1()
+        public QuestionnaireForm()
         {
             InitializeComponent();
 
@@ -659,20 +663,136 @@ namespace Trip_Planner
             ApplyRoundCorners(btn, 20);
         }
 
-        private void btnGenerate_Click(object sender, EventArgs e)
+        private async void btnGenerate_Click(object sender, EventArgs e)
         {
-            int centerX = (this.ClientSize.Width - panelLoading.Width) / 2;
-            int centerY = (this.ClientSize.Height - panelLoading.Height) / 2;
+           
+            var requestData = CollectFormData();
 
-            panelLoading.Location = new Point(centerX, centerY);
+            LoadingForm loadingForm = new LoadingForm();
+            loadingForm.Show();
+            Application.DoEvents();
 
-            panelLoading.Visible = true;
-            panelLoading.BringToFront();
+            this.Enabled = false;
 
-            panelLoading.BackColor = Color.FromArgb(0, 240, 245, 255);
-            timerFade.Start();
+            TripGeneratorService service = new TripGeneratorService();
 
+            string generatedResult = await service.GenerateTripAsync(requestData);
+
+            loadingForm.Close();
+
+            this.Enabled = true;
+
+            Result resultForm = new Result(generatedResult);
+
+            resultForm.Show();
+
+            this.Hide();
         }
+        private TripRequest CollectFormData()
+        {
+            return new TripRequest
+            {
+                Destination = txtDestination.Text,
+
+                StartDate = dateTimePickerStart.Value,
+
+                EndDate = dateTimePickerEnd.Value,
+
+                Budget = trkBudget_Scroll.Value,
+
+                TravelStyle = GetSelectedTravelStyle(),
+
+                Interests = GetSelectedInterests(),
+
+                Pace = GetSelectedPace(),
+
+                TransportPreferences = GetSelectedTransport()
+            };
+        }
+        private string GetSelectedTravelStyle()
+        {
+            if (btnActive.BackColor == PRIMARY)
+                return "Active";
+
+            if (btnRelaxing.BackColor == PRIMARY)
+                return "Relaxing";
+
+            if (btnAdventure.BackColor == PRIMARY)
+                return "Adventure";
+
+            if (btnLuxury.BackColor == PRIMARY)
+                return "Luxury";
+
+            if (btnBackpacking.BackColor == PRIMARY)
+                return "Backpacking";
+
+            return "";
+        }
+        private List<string> GetSelectedInterests()
+        {
+            List<string> interests = new List<string>();
+
+            if (btnMuseum.BackColor == PRIMARY)
+                interests.Add("Museums");
+
+            if (btnFood.BackColor == PRIMARY)
+                interests.Add("Food");
+
+            if (btnNightLife.BackColor == PRIMARY)
+                interests.Add("Nightlife");
+
+            if (btnNature.BackColor == PRIMARY)
+                interests.Add("Nature");
+
+            if (btnShopping.BackColor == PRIMARY)
+                interests.Add("Shopping");
+
+            if (btnBeaches.BackColor == PRIMARY)
+                interests.Add("Beaches");
+
+            if (btnCafes.BackColor == PRIMARY)
+                interests.Add("Cafes");
+
+            if (btnHiddenGems.BackColor == PRIMARY)
+                interests.Add("Hidden Gems");
+
+            return interests;
+        }
+        private string GetSelectedPace()
+        {
+            if (btnRelaxed.BackColor == PRIMARY)
+                return "Relaxed";
+
+            if (btnBalanced.BackColor == PRIMARY)
+                return "Balanced";
+
+            if (btnPacked.BackColor == PRIMARY)
+                return "Packed";
+
+            return "";
+        }
+        private List<string> GetSelectedTransport()
+        {
+            List<string> transport = new List<string>();
+
+            if (btnWalking.BackColor == PRIMARY)
+                transport.Add("Walking");
+
+            if (btnBike.BackColor == PRIMARY)
+                transport.Add("Bike");
+
+            if (btnPublicTransport.BackColor == PRIMARY)
+                transport.Add("Public Transport");
+
+            if (btnTaxiUber.BackColor == PRIMARY)
+                transport.Add("Taxi");
+
+            if (btnRentACar.BackColor == PRIMARY)
+                transport.Add("Car Rental");
+
+            return transport;
+        }
+       
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
@@ -707,8 +827,8 @@ namespace Trip_Planner
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            panelLoading.Left = (this.ClientSize.Width - panelLoading.Width) / 2;
-            panelLoading.Top = (this.ClientSize.Height - panelLoading.Height) / 2;
+            //panelLoading.Left = (this.ClientSize.Width - panelLoading.Width) / 2;
+            //panelLoading.Top = (this.ClientSize.Height - panelLoading.Height) / 2;
         }
 
         private void btnThemeToggle_Click(object sender, EventArgs e)

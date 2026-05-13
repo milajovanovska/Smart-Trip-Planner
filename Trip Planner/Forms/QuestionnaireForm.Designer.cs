@@ -1,6 +1,6 @@
 ﻿namespace Trip_Planner
 {
-    partial class Form1
+    partial class QuestionnaireForm
     {
         /// <summary>
         /// Required designer variable.
@@ -124,10 +124,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.panelLoading = new System.Windows.Forms.Panel();
             this.timerFade = new System.Windows.Forms.Timer(this.components);
-            this.progressBarLoading = new System.Windows.Forms.ProgressBar();
-            this.label27 = new System.Windows.Forms.Label();
             this.btnThemeToggle = new FontAwesome.Sharp.IconButton();
             this.questionPanel2.SuspendLayout();
             this.lblDuration.SuspendLayout();
@@ -144,7 +141,6 @@
             this.questionPanel7.SuspendLayout();
             this.questionPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            this.panelLoading.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -1386,41 +1382,9 @@
             this.label26.TabIndex = 0;
             this.label26.Text = "Any preferences?";
             // 
-            // panelLoading
-            // 
-            this.panelLoading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.panelLoading.Controls.Add(this.label27);
-            this.panelLoading.Controls.Add(this.progressBarLoading);
-            this.panelLoading.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelLoading.Location = new System.Drawing.Point(0, 0);
-            this.panelLoading.Name = "panelLoading";
-            this.panelLoading.Size = new System.Drawing.Size(1152, 888);
-            this.panelLoading.TabIndex = 31;
-            this.panelLoading.Visible = false;
-            // 
             // timerFade
             // 
             this.timerFade.Interval = 30;
-            // 
-            // progressBarLoading
-            // 
-            this.progressBarLoading.Location = new System.Drawing.Point(333, 394);
-            this.progressBarLoading.MarqueeAnimationSpeed = 30;
-            this.progressBarLoading.Name = "progressBarLoading";
-            this.progressBarLoading.Size = new System.Drawing.Size(527, 29);
-            this.progressBarLoading.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBarLoading.TabIndex = 1;
-            // 
-            // label27
-            // 
-            this.label27.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Modern No. 20", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(383, 320);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(411, 41);
-            this.label27.TabIndex = 2;
-            this.label27.Text = "Generating your plan...";
             // 
             // btnThemeToggle
             // 
@@ -1436,7 +1400,7 @@
             this.btnThemeToggle.UseVisualStyleBackColor = true;
             this.btnThemeToggle.Click += new System.EventHandler(this.btnThemeToggle_Click);
             // 
-            // Form1
+            // QuestionnaireForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -1444,7 +1408,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1152, 888);
             this.Controls.Add(this.btnThemeToggle);
-            this.Controls.Add(this.panelLoading);
             this.Controls.Add(this.questionPanel8);
             this.Controls.Add(this.questionPanel7);
             this.Controls.Add(this.questionPanel6);
@@ -1464,7 +1427,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "QuestionnaireForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Your next adventure";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
@@ -1496,8 +1459,6 @@
             this.questionPanel8.ResumeLayout(false);
             this.questionPanel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            this.panelLoading.ResumeLayout(false);
-            this.panelLoading.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1600,10 +1561,7 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Button btnGenerate;
-        private System.Windows.Forms.Panel panelLoading;
         private System.Windows.Forms.Timer timerFade;
-        private System.Windows.Forms.ProgressBar progressBarLoading;
-        private System.Windows.Forms.Label label27;
         private FontAwesome.Sharp.IconButton btnThemeToggle;
     }
 }

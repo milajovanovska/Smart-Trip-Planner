@@ -1,0 +1,170 @@
+[33mcommit f1b257f0020d6e78875764c75510643b238be962[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Mila <milajovanovska18@gmail.com>
+Date:   Sat May 9 18:10:56 2026 +0200
+
+    Added dark mode & commented it
+
+[33mcommit 76b639be8e1ed5604add938f5527a9d3edd0bc49[m
+Author: Mila <milajovanovska18@gmail.com>
+Date:   Fri May 8 19:56:49 2026 +0200
+
+    Added FontAwesome icons to all buttons
+
+[33mcommit df5e37e4c7cd56df0099f17eb1d736b39def5bc0[m
+Author: Mila <milajovanovska18@gmail.com>
+Date:   Fri May 8 19:41:43 2026 +0200
+
+    Fixed button cursors
+
+[33mcommit 32d4f533db40b8aa358158312e9f584ee6af9b71[m
+Author: Mila <milajovanovska18@gmail.com>
+Date:   Fri May 8 19:23:05 2026 +0200
+
+    Fixed form size
+
+[33mcommit c31a923ff449b48248280f73693171ac7a0b78f9[m
+Author: Mila <milajovanovska18@gmail.com>
+Date:   Fri May 8 19:07:42 2026 +0200
+
+    Upgraded plan generation feedback from MessageBox to Panel animation
+
+[33mcommit 205a5a537a155a0533947dbc5a0847c9c7c5c864[m
+Author: Mila <milajovanovska18@gmail.com>
+Date:   Fri May 8 18:48:18 2026 +0200
+
+    Added hover effects
+
+[33mcommit 4553533a10d65e995f2a04f13d1d93ba67704db1[m
+Author: Mila <milajovanovska18@gmail.com>
+Date:   Thu May 7 20:58:28 2026 +0200
+
+    UI update- colors & progress bar
+
+[33mcommit a0b551918e1ff5c970f9575a66401f82f0467689[m
+Merge: c0ab527 76ae4b9
+Author: Anastasija005 <anastasijastojanoska2005@gmail.com>
+Date:   Thu May 7 14:43:09 2026 +0200
+
+    Merge pull request #5 from Anastasija005/master
+    
+    Fixed overlapping panels issue
+
+[33mcommit 76ae4b9aeb3d5749ec2c823282437e7dbcccd2b6[m
+Author: Anastasija <anastasijastojanoska2005@gmail.com>
+Date:   Thu May 7 14:34:07 2026 +0200
+
+    Fixed overlapping panels issue
+
+[33mcommit c0ab527e9c8f51cd909f32ecc712c60e336561ff[m
+Author: Mila <milajovanovska18@gmail.com>
+Date:   Mon May 4 15:53:43 2026 +0200
+
+    Fixed background color
+
+[33mcommit 90a5cc202d67c58dd457eb9ede787ba8b990d849[m
+Merge: f6693ba 7e8d069
+Author: Anastasija005 <anastasijastojanoska2005@gmail.com>
+Date:   Mon May 4 12:50:47 2026 +0200
+
+    Merge pull request #4 from Anastasija005/master
+    
+    Fixed step navigation and button states
+
+[33mcommit 7e8d069a41163c4c950d35b40ae091687d8650c9[m
+Author: Anastasija <anastasijastojanoska2005@gmail.com>
+Date:   Mon May 4 12:48:44 2026 +0200
+
+    Fixed step navigation and button states
+
+[33mcommit f6693bacb113975b87e805b341bf97fcb5904c16[m
+Merge: 744497c cd55d4c
+Author: Anastasija005 <anastasijastojanoska2005@gmail.com>
+Date:   Mon May 4 11:21:14 2026 +0200
+
+    Merge pull request #3 from Anastasija005/master
+    
+    Added panel 8
+
+[33mcommit cd55d4ce4ceb575656cf27561b9e989d8999eaec[m
+Author: Anastasija <anastasijastojanoska2005@gmail.com>
+Date:   Mon May 4 09:02:17 2026 +0200
+
+    Added panel 8
+
+[33mcommit 744497c46f5b8c2224ed9b7782cd4656231de636[m
+Author: Mila <milajovanovska18@gmail.com>
+Date:   Sun May 3 23:22:28 2026 +0200
+
+    Fix back and continue button colors and hover effects
+
+[33mcommit ff3947f4a7c069aca9866fe12ca55c81c64668aa[m
+Author: Mila <milajovanovska18@gmail.com>
+Date:   Sun May 3 22:58:54 2026 +0200
+
+    fix duration calculation and label reference
+
+[33mcommit 697a5cc1a32c567edd3e3ab7948a492a42fed622[m
+Merge: 1b98412 db066ee
+Author: Anastasija005 <anastasijastojanoska2005@gmail.com>
+Date:   Sun May 3 22:20:25 2026 +0200
+
+    Merge pull request #2 from Anastasija005/master
+    
+    Error fix
+
+[33mcommit db066eea64260f5d2b7673e1264c24face8dd15d[m
+Author: Anastasija <anastasijastojanoska2005@gmail.com>
+Date:   Sun May 3 22:18:47 2026 +0200
+
+    Errors fix
+
+[33mcommit b629b873faafeec78385e1e3e60c1be33e7d1123[m
+Author: Anastasija <anastasijastojanoska2005@gmail.com>
+Date:   Sun May 3 22:12:19 2026 +0200
+
+    Errors fix
+
+[33mcommit 1b9841226f6b24c9991b2f5c7ba5e654364eb891[m
+Merge: b180aa0 aa19b93
+Author: Anastasija005 <anastasijastojanoska2005@gmail.com>
+Date:   Sun May 3 22:06:44 2026 +0200
+
+    Merge pull request #1 from Anastasija005/master
+    
+    Changes
+
+[33mcommit aa19b9378842ac9e0c5cd4cbf6ebc25e66092ef7[m
+Author: Anastasija <anastasijastojanoska2005@gmail.com>
+Date:   Sun May 3 21:28:31 2026 +0200
+
+    All
+
+[33mcommit 4bcbb6055090ebb8a9bd61243072a4541a886ee2[m
+Author: Anastasija <anastasijastojanoska2005@gmail.com>
+Date:   Fri Apr 24 15:57:15 2026 +0200
+
+    Change color and order of panels
+
+[33mcommit f992decbc61c49e44112f3e104c91796e1f86657[m
+Author: Anastasija <anastasijastojanoska2005@gmail.com>
+Date:   Thu Apr 23 23:20:29 2026 +0200
+
+    Changed the first form to blue
+
+[33mcommit 202f9f1c7af1428366fa69e35c705ff7c8310326[m
+Author: Anastasija <anastasijastojanoska2005@gmail.com>
+Date:   Thu Apr 23 22:36:09 2026 +0200
+
+    Cleaned unused functions
+
+[33mcommit b180aa04097ce5f6e6e50b6f96ae0049b4abad21[m
+Author: Mila <milajovanovska18@gmail.com>
+Date:   Thu Apr 23 19:32:04 2026 +0200
+
+    Added panel 4,5,6,7,8
+
+[33mcommit b339442304cd052a88022ee19b60e20417a87cb1[m
+Author: Mila <milajovanovska18@gmail.com>
+Date:   Thu Apr 23 17:14:30 2026 +0200
+
+    Initial commit, first 3 pages

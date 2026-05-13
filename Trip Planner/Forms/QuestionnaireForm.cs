@@ -234,6 +234,7 @@ namespace Trip_Planner
                     txtDestination_TextChanged(null, null);
                     btnContinue.Enabled = false;
                     btnBack.Visible= false;
+                    btnContinue.Visible = true;
                     break;
 
                 case 2:
@@ -243,12 +244,14 @@ namespace Trip_Planner
                     CalculateDuration();
                     btnContinue.Enabled = true;
                     btnBack.Visible = true;
+                    btnContinue.Visible = true;
                     break;
 
                 case 3:
                     lblTitle.Text = "What's your total budget?";
                     btnContinue.Enabled = true;
                     btnBack.Visible = true;
+                    btnContinue.Visible = true;
                     break;
 
                 case 4:
@@ -256,26 +259,31 @@ namespace Trip_Planner
                     ResetStyleButtons();
                     btnContinue.Enabled = false;
                     btnBack.Visible = true;
+                    btnContinue.Visible = true;
                     break;
                 case 5:
                     lblTitle.Text = "What excites you?";
                     btnContinue.Enabled = true;
                     btnBack.Visible = true;
+                    btnContinue.Visible = true;
                     break;
                 case 6:
                     lblTitle.Text = "How packed should the days be?";
                     btnContinue.Enabled = false;
                     btnBack.Visible = true;
+                    btnContinue.Visible = true;
                     break;
                 case 7:
                     lblTitle.Text = "How do you want to move?";
                     btnBack.Visible = true;
                     btnContinue.Enabled = false;
+                    btnContinue.Visible = true;
                     break;
                 case 8:
                     lblTitle.Text = "A few finishing touches";
                     btnContinue.Visible = false;
                     btnBack.Visible = true;
+                    rbAvoid.Checked=false;
                     break;
                 
             }
@@ -833,19 +841,24 @@ namespace Trip_Planner
 
         private void btnThemeToggle_Click(object sender, EventArgs e)
         {
-        /*    isDarkMode = !isDarkMode;
-            if (isDarkMode)
-            {
-                btnThemeToggle.IconChar = IconChar.Sun;
-                btnThemeToggle.IconColor = Color.Gold;
-            }
-            else
-            {
-                btnThemeToggle.IconChar = IconChar.Moon;
-                btnThemeToggle.IconColor = TEXT;
-            }
-         ApplyTheme();  
-        */ 
+            /*    isDarkMode = !isDarkMode;
+                if (isDarkMode)
+                {
+                    btnThemeToggle.IconChar = IconChar.Sun;
+                    btnThemeToggle.IconColor = Color.Gold;
+                }
+                else
+                {
+                    btnThemeToggle.IconChar = IconChar.Moon;
+                    btnThemeToggle.IconColor = TEXT;
+                }
+             ApplyTheme();  
+            */
+        }
+
+        private void rbAvoid_Click(object sender, EventArgs e)
+        {
+            rbAvoid.Checked = !rbAvoid.Checked;
         }
     }
 }

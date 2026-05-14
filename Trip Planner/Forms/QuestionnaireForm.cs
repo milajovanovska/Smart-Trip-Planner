@@ -1,6 +1,8 @@
 ﻿using FontAwesome.Sharp;
+using Microsoft.IdentityModel.Protocols;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Threading.Tasks;
@@ -8,6 +10,9 @@ using System.Windows.Forms;
 using Trip_Planner.Forms;
 using Trip_Planner.Models;
 using Trip_Planner.Services;
+using TripPlanner.Models;
+using TripPlanner.Services;
+
 
 namespace Trip_Planner
 {
@@ -16,7 +21,7 @@ namespace Trip_Planner
         [System.Runtime.InteropServices.DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
 
-      
+
         Color PRIMARY = Color.FromArgb(59, 130, 246);
         Color PRIMARY_DARK = Color.FromArgb(37, 99, 235);
 
@@ -40,7 +45,7 @@ namespace Trip_Planner
         private void SetButtonIcon(Button btn, IconChar icon, Color iconColor, int iconSize = 18)
         {
             if (btn == null) return;
-            _buttonIconMap[btn] = icon; 
+            _buttonIconMap[btn] = icon;
             btn.Image = icon.ToBitmap(iconColor, iconSize);
             btn.ImageAlign = ContentAlignment.MiddleLeft;
             btn.TextAlign = ContentAlignment.MiddleRight;
@@ -48,7 +53,7 @@ namespace Trip_Planner
             btn.Padding = new Padding(10, 0, 10, 0);
         }
         private void ApplyButtonIcons()
-        { 
+        {
             SetButtonIcon(btnLisbon, IconChar.MapMarkerAlt, ICON_COLOR);
             SetButtonIcon(btnVienna, IconChar.MapMarkerAlt, ICON_COLOR);
             SetButtonIcon(btnIstanbul, IconChar.MapMarkerAlt, ICON_COLOR);
@@ -56,7 +61,7 @@ namespace Trip_Planner
             SetButtonIcon(btnFlorence, IconChar.MapMarkerAlt, ICON_COLOR);
             SetButtonIcon(btnChicago, IconChar.MapMarkerAlt, ICON_COLOR);
 
-            
+
             SetButtonIcon(btnMuseum, IconChar.Building, ICON_COLOR);
             SetButtonIcon(btnCafes, IconChar.MugHot, ICON_COLOR);
             SetButtonIcon(btnNightLife, IconChar.GlassMartini, ICON_COLOR);
@@ -66,19 +71,19 @@ namespace Trip_Planner
             SetButtonIcon(btnShopping, IconChar.ShoppingBag, ICON_COLOR);
             SetButtonIcon(btnHiddenGems, IconChar.Gem, ICON_COLOR);
 
-            
+
             SetButtonIcon(btnActive, IconChar.Running, ICON_COLOR);
             SetButtonIcon(btnRelaxing, IconChar.Smile, ICON_COLOR);
             SetButtonIcon(btnAdventure, IconChar.Mountain, ICON_COLOR);
             SetButtonIcon(btnLuxury, IconChar.Crown, ICON_COLOR);
             SetButtonIcon(btnBackpacking, IconChar.Hiking, ICON_COLOR);
 
-            
+
             SetButtonIcon(btnRelaxed, IconChar.Moon, ICON_COLOR);
             SetButtonIcon(btnBalanced, IconChar.BalanceScale, ICON_COLOR);
             SetButtonIcon(btnPacked, IconChar.Bolt, ICON_COLOR);
 
-            
+
             SetButtonIcon(btnWalking, IconChar.Walking, ICON_COLOR);
             SetButtonIcon(btnPublicTransport, IconChar.Bus, ICON_COLOR);
             SetButtonIcon(btnBike, IconChar.Bicycle, ICON_COLOR);
@@ -91,55 +96,55 @@ namespace Trip_Planner
         }
         private void ApplyTheme()
         {
-          /*  if (isDarkMode)
-            {
-                BACKGROUND = Color.FromArgb(30, 30, 30);
-                CARD = Color.FromArgb(45, 45, 45);
-                TEXT = Color.FromArgb(240, 240, 240);
-                BORDER = Color.FromArgb(60, 60, 60);
-                PRIMARY_DARK = Color.FromArgb(80, 120, 200);
-            }
-            else
-            {
-                BACKGROUND = Color.FromArgb(245, 247, 250);
-                CARD = Color.White;
-                TEXT = Color.FromArgb(64, 64, 64);
-                BORDER = Color.FromArgb(230, 233, 237);
-                PRIMARY_DARK = Color.FromArgb(70, 130, 180);
-            }
+            /*  if (isDarkMode)
+              {
+                  BACKGROUND = Color.FromArgb(30, 30, 30);
+                  CARD = Color.FromArgb(45, 45, 45);
+                  TEXT = Color.FromArgb(240, 240, 240);
+                  BORDER = Color.FromArgb(60, 60, 60);
+                  PRIMARY_DARK = Color.FromArgb(80, 120, 200);
+              }
+              else
+              {
+                  BACKGROUND = Color.FromArgb(245, 247, 250);
+                  CARD = Color.White;
+                  TEXT = Color.FromArgb(64, 64, 64);
+                  BORDER = Color.FromArgb(230, 233, 237);
+                  PRIMARY_DARK = Color.FromArgb(70, 130, 180);
+              }
 
-            this.BackColor = BACKGROUND;
-            lblTitle.ForeColor = TEXT;
-            lblStepCount.ForeColor = TEXT;
-            lblPercentage.ForeColor = TEXT;
+              this.BackColor = BACKGROUND;
+              lblTitle.ForeColor = TEXT;
+              lblStepCount.ForeColor = TEXT;
+              lblPercentage.ForeColor = TEXT;
 
-            foreach (var panel in steps)
-            {
-                if (panel == null) continue;
+              foreach (var panel in steps)
+              {
+                  if (panel == null) continue;
 
-                panel.BackColor = Color.Transparent;
-                foreach (Control child in panel.Controls)
-                {
-                    if (child is Label)
-                    {
-                        child.ForeColor = TEXT;
-                    }
-                    else if (child is TextBox txt)
-                    {
-                        txt.ForeColor = Color.FromArgb(30, 41, 59);
-                    }
-                    else if (child is Button btn)
-                    {
-                        if (btn.BackColor != PRIMARY)
-                        {
-                            btn.ForeColor = Color.FromArgb(30, 41, 59);
-                        }
-                    }
-                }
-            }
+                  panel.BackColor = Color.Transparent;
+                  foreach (Control child in panel.Controls)
+                  {
+                      if (child is Label)
+                      {
+                          child.ForeColor = TEXT;
+                      }
+                      else if (child is TextBox txt)
+                      {
+                          txt.ForeColor = Color.FromArgb(30, 41, 59);
+                      }
+                      else if (child is Button btn)
+                      {
+                          if (btn.BackColor != PRIMARY)
+                          {
+                              btn.ForeColor = Color.FromArgb(30, 41, 59);
+                          }
+                      }
+                  }
+              }
 
-            this.Invalidate();
-          */
+              this.Invalidate();
+            */
         }
         private void UpdateButtonIconColor(Button btn, Color newColor, int iconSize = 18)
         {
@@ -174,7 +179,7 @@ namespace Trip_Planner
 
             this.DoubleBuffered = true;
 
-            steps = new Panel[] { questionPanel1, questionPanel2, questionPanel3, questionPanel4, questionPanel5, questionPanel6, questionPanel7,questionPanel8};
+            steps = new Panel[] { questionPanel1, questionPanel2, questionPanel3, questionPanel4, questionPanel5, questionPanel6, questionPanel7, questionPanel8 };
 
             dateTimePickerStart.Value = DateTime.Today;
             dateTimePickerEnd.Value = DateTime.Today.AddDays(7);
@@ -182,18 +187,22 @@ namespace Trip_Planner
 
             UpdateUI();
 
-            this.Shown += (s, e) => {
+            this.Shown += (s, e) =>
+            {
                 btnContinue.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, btnContinue.Width, btnContinue.Height, 30, 30));
             };
-            this.Shown += (s, e) => {
+            this.Shown += (s, e) =>
+            {
                 btnBack.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, btnBack.Width, btnBack.Height, 30, 30));
             };
-            this.Shown += (s, e) => {
+            this.Shown += (s, e) =>
+            {
                 dateTimePickerStart.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, dateTimePickerStart.Width, dateTimePickerStart.Height, 15, 15));
                 dateTimePickerEnd.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, dateTimePickerEnd.Width, dateTimePickerEnd.Height, 15, 15));
                 lblDuration.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, lblDuration.Width, lblDuration.Height, 20, 20));
             };
-            this.Shown += (s, e) => {
+            this.Shown += (s, e) =>
+            {
                 var allStyleButtons = new[] {
         btnMuseum, btnCafes, btnNightLife, btnNature, btnBeaches, btnFood, btnShopping, btnHiddenGems,
         btnRelaxed, btnBalanced, btnPacked, btnWalking,  btnPublicTransport, btnBike, btnTaxiUber, btnRentACar
@@ -233,7 +242,7 @@ namespace Trip_Planner
                     lblTitle.Text = "Pick your destination";
                     txtDestination_TextChanged(null, null);
                     btnContinue.Enabled = false;
-                    btnBack.Visible= false;
+                    btnBack.Visible = false;
                     btnContinue.Visible = true;
                     break;
 
@@ -283,9 +292,9 @@ namespace Trip_Planner
                     lblTitle.Text = "A few finishing touches";
                     btnContinue.Visible = false;
                     btnBack.Visible = true;
-                    rbAvoid.Checked=false;
+                    rbAvoid.Checked = false;
                     break;
-                
+
             }
         }
 
@@ -309,7 +318,7 @@ namespace Trip_Planner
 
         private void UpdateProgress(int step, int totalSteps)
         {
-            
+
             lblStepCount.Text = $"Step {step} of {totalSteps}";
 
             int percentage = (int)(((double)step / totalSteps) * 100);
@@ -344,7 +353,7 @@ namespace Trip_Planner
             DateTime start = dateTimePickerStart.Value.Date;
             DateTime end = dateTimePickerEnd.Value.Date;
 
-            int days = (end - start).Days ;
+            int days = (end - start).Days;
 
             if (days >= 1)
             {
@@ -364,7 +373,7 @@ namespace Trip_Planner
                 currentStep++;
                 UpdateUI();
             }
-            
+
         }
 
         private void btnBack_Click_1(object sender, EventArgs e)
@@ -508,7 +517,7 @@ namespace Trip_Planner
             btn.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, btn.Width, btn.Height, radius, radius));
         }
 
-        
+
         private void ToggleInterest(Button btn)
         {
             if (btn.BackColor != PRIMARY)
@@ -591,8 +600,9 @@ namespace Trip_Planner
             btnContinue.Enabled = true;
         }
 
-        private void btnRelaxed_Click(object sender, EventArgs e) { 
-            SelectPace(btnRelaxed); 
+        private void btnRelaxed_Click(object sender, EventArgs e)
+        {
+            SelectPace(btnRelaxed);
         }
         private void btnBalanced_Click(object sender, EventArgs e) { SelectPace(btnBalanced); }
         private void btnPacked_Click(object sender, EventArgs e) { SelectPace(btnPacked); }
@@ -636,14 +646,14 @@ namespace Trip_Planner
         {
             btnContinue.Enabled = true;
             ToggleTransport(btnRentACar);
-           
+
         }
 
         private void btnBike_Click(object sender, EventArgs e)
         {
             btnContinue.Enabled = true;
             ToggleTransport(btnBike);
-            
+
 
         }
 
@@ -673,7 +683,7 @@ namespace Trip_Planner
 
         private async void btnGenerate_Click(object sender, EventArgs e)
         {
-           
+
             var requestData = CollectFormData();
 
             LoadingForm loadingForm = new LoadingForm();
@@ -800,7 +810,7 @@ namespace Trip_Planner
 
             return transport;
         }
-       
+
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
@@ -831,7 +841,7 @@ namespace Trip_Planner
                 }
             }
         }
-    
+
 
         private void Form1_Resize(object sender, EventArgs e)
         {
@@ -859,6 +869,56 @@ namespace Trip_Planner
         private void rbAvoid_Click(object sender, EventArgs e)
         {
             rbAvoid.Checked = !rbAvoid.Checked;
+        }
+
+        private async void btnTestAI_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTestAI.Enabled = false;
+
+                string apiKey =
+     ConfigurationManager.AppSettings["SerpApiKey"];
+                MessageBox.Show(apiKey);
+
+                SerpApiService service =
+                    new SerpApiService(apiKey);
+
+                string json =
+                    await service.SearchPlacesAsync(
+                        "best museums in Vienna");
+
+                List<Activity> activities =
+                    service.ParseActivities(json);
+
+                txtResponse.Clear();
+
+                foreach (var activity in activities)
+                {
+                    txtResponse.AppendText(
+                        $"{activity.Name}\r\n");
+
+                    txtResponse.AppendText(
+                        $"Rating: {activity.Rating}\r\n");
+
+                    txtResponse.AppendText(
+                        $"Address: {activity.Address}\r\n");
+
+                    txtResponse.AppendText(
+                        $"Description: {activity.Description}\r\n");
+
+                    txtResponse.AppendText(
+                        $"--------------------------\r\n\r\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                btnTestAI.Enabled = true;
+            }
         }
     }
 }

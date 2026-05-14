@@ -1,0 +1,433 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Data.SqlClient.Extensions.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Data.SqlClient.SqlAuthenticationMethod">
+            <summary>Describes the different SQL authentication methods that can be used by a client connecting to Azure SQL Database. For details, see <see href="https://learn.microsoft.com/azure/azure-sql/database/authentication-aad-overview">Use Microsoft Entra Authentication</see>.</summary>
+        </member>
+        <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationMethod.NotSpecified">
+            <summary>The authentication method is not specified.</summary><value>0</value>
+        </member>
+        <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationMethod.SqlPassword">
+            <summary>The authentication method uses Sql Password. Use Sql Password to connect to a SQL Database using SQL Server authentication.</summary><value>1</value>
+        </member>
+        <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationMethod.ActiveDirectoryPassword">
+            <summary>The authentication method uses Active Directory Password. Use Active Directory Password to connect to a SQL Database using a Microsoft Entra principal name and password.</summary><value>2</value>
+        </member>
+        <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationMethod.ActiveDirectoryIntegrated">
+            <summary>The authentication method uses Active Directory Integrated. Use Active Directory Integrated to connect to a SQL Database using integrated Windows authentication.</summary><value>3</value>
+        </member>
+        <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationMethod.ActiveDirectoryInteractive">
+            <summary>The authentication method uses Active Directory Interactive. Use Active Directory Interactive to connect to a SQL Database with an interactive authentication flow.</summary><value>4</value>
+        </member>
+        <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationMethod.ActiveDirectoryServicePrincipal">
+            <summary>The authentication method uses Active Directory Service Principal. Use Active Directory Service Principal to connect to a SQL Database using the client ID and secret of a service principal identity.</summary><value>5</value>
+        </member>
+        <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationMethod.ActiveDirectoryDeviceCodeFlow">
+            <summary>The authentication method uses Active Directory Device Code Flow. Use Active Directory Device Code Flow to connect to a SQL Database from devices and operating systems that do not provide a Web browser, using another device to perform interactive authentication.</summary><value>6</value>
+        </member>
+        <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationMethod.ActiveDirectoryManagedIdentity">
+            <summary>The authentication method uses Active Directory Managed Identity. Use System Assigned or User Assigned Managed Identity to connect to SQL Database from Azure client environments that have enabled support for Managed Identity. For User Assigned Managed Identity, 'User Id' or 'UID' is required to be set to the "client ID" of the user identity.</summary><value>7</value>
+        </member>
+        <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationMethod.ActiveDirectoryMSI">
+            <summary>Alias for "Active Directory Managed Identity" authentication method. Use System Assigned or User Assigned Managed Identity to connect to SQL Database from Azure client environments that have enabled support for Managed Identity. For User Assigned Managed Identity, 'User Id' or 'UID' is required to be set to the "client ID" of the user identity.</summary><value>8</value>
+        </member>
+        <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationMethod.ActiveDirectoryDefault">
+            <summary>The authentication method uses Active Directory Default. Use this mode to connect to a SQL Database using multiple non-interactive authentication methods tried sequentially to acquire an access token. This method does not fallback to the "Active Directory Interactive" authentication method.</summary><value>9</value>
+        </member>
+        <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationMethod.ActiveDirectoryWorkloadIdentity">
+            <summary>The authentication method uses Active Directory Workload Identity. Use a federated User Assigned Managed Identity to connect to SQL Database from Azure client environments that have enabled support for Workload Identity. The 'User Id' or 'UID' is required to be set to the "client ID" of the user identity.</summary><value>10</value>
+        </member>
+        <member name="T:Microsoft.Data.SqlClient.SqlAuthenticationParameters">
+            <summary>
+        Represents AD authentication parameters passed by a driver to authentication providers.
+      </summary>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationParameters.#ctor(Microsoft.Data.SqlClient.SqlAuthenticationMethod,System.String,System.String,System.String,System.String,System.String,System.String,System.Guid,System.Int32)">
+            <summary>
+        Construct with values for all properties.
+      </summary><param name="authenticationMethod">The authentication method.</param><param name="serverName">The server name.</param><param name="databaseName">The database name.</param><param name="resource">The resource URI.</param><param name="authority">The authority URI.</param><param name="userId">The user login name/ID, or null if not applicable.</param><param name="password">The user password, or null if not applicable.</param><param name="connectionId">The connection ID.</param><param name="connectionTimeout">
+        The authentication timeout, in seconds.  The overall connection timeout
+        is managed by the driver; this timeout only applies to authentication.
+      </param>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationParameters.AuthenticationMethod">
+            <summary>Gets the authentication method.</summary><value>The authentication method.</value>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationParameters.Resource">
+            <summary>The resource URIs.</summary><value>The resource URI.</value>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationParameters.Authority">
+            <summary>Gets the authority URI.</summary><value>The authority URI.</value>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationParameters.UserId">
+            <summary>Gets the user login name/ID.</summary><value>The user login name/ID, or null if not applicable.</value>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationParameters.Password">
+            <summary>Gets the user password.</summary><value>The user password, or null if not applicable.</value>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationParameters.ConnectionId">
+            <summary>Gets the connection ID.</summary><value>The connection ID.</value>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationParameters.ServerName">
+            <summary>Gets the server name.</summary><value>The server name.</value>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationParameters.DatabaseName">
+            <summary>Gets the database name.</summary><value>The database name.</value>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationParameters.ConnectionTimeout">
+            <summary>Gets the authentication timeout value, in seconds.</summary>
+        </member>
+        <member name="T:Microsoft.Data.SqlClient.SqlAuthenticationProvider">
+            <summary>Defines the core behavior of authentication providers and provides a base class for derived classes.</summary><remarks>
+        Derived classes must provide a parameterless constructor if they can be instantiated from the app.config file.
+      </remarks><example>
+        The following example demonstrates implementing a custom SqlAuthenticationProvider and providing the same to SqlClient for overriding Device Code Flow authentication mode:
+        <code language="c#">
+          using System;
+          using System.Collections.Generic;
+          using System.Linq;
+          using System.Threading.Tasks;
+          using Microsoft.Data.SqlClient;
+          using Microsoft.Identity.Client;
+
+          namespace CustomAuthenticationProviderExamples
+          {
+              /// &lt;summary&gt;
+              /// Example demonstrating creating a custom device code flow authentication provider and attaching it to the driver.
+              /// This is helpful for applications that wish to override the Callback for the Device Code Result implemented by the SqlClient driver.
+              /// &lt;/summary&gt;
+              public class CustomDeviceCodeFlowAzureAuthenticationProvider : SqlAuthenticationProvider
+              {
+                  private const string ClientId = "my-client-id";
+                  private const string ClientName = "My Application Name";
+                  private const string DefaultScopeSuffix = "/.default";
+
+                  // Maintain a copy of the PublicClientApplication object to cache the underlying access tokens it provides
+                  private static IPublicClientApplication pcApplication;
+
+                  public override async Task&lt;SqlAuthenticationToken&gt; AcquireTokenAsync(SqlAuthenticationParameters parameters)
+                  {
+                      string[] scopes = [ parameters.Resource.EndsWith(DefaultScopeSuffix) ? parameters.Resource : parameters.Resource + DefaultScopeSuffix ];
+
+                      IPublicClientApplication app = pcApplication;
+                      if (app == null)
+                      {
+                          pcApplication = app = PublicClientApplicationBuilder.Create(ClientId)
+                              .WithAuthority(parameters.Authority)
+                              .WithClientName(ClientName)
+                              .WithRedirectUri("https://login.microsoftonline.com/common/oauth2/nativeclient")
+                              .Build();
+                      }
+
+                      AuthenticationResult result;
+                      using CancellationTokenSource connectionTimeoutCancellation = new CancellationTokenSource(TimeSpan.FromSeconds(parameters.ConnectionTimeout));
+
+                      try
+                      {
+                          IEnumerable&lt;IAccount&gt; accounts = await app.GetAccountsAsync();
+                          result = await app.AcquireTokenSilent(scopes, accounts.FirstOrDefault())
+                              .ExecuteAsync(connectionTimeoutCancellation.Token);
+                      }
+                      catch (MsalUiRequiredException)
+                      {
+                          result = await app.AcquireTokenWithDeviceCode(scopes, deviceCodeResult =&gt; CustomDeviceFlowCallback(deviceCodeResult))
+                              .ExecuteAsync(connectionTimeoutCancellation.Token);
+                      }
+
+                      return new SqlAuthenticationToken(result.AccessToken, result.ExpiresOn);
+                  }
+
+                  public override bool IsSupported(SqlAuthenticationMethod authenticationMethod) =&gt;
+                      authenticationMethod.Equals(SqlAuthenticationMethod.ActiveDirectoryDeviceCodeFlow);
+
+                  private Task CustomDeviceFlowCallback(DeviceCodeResult result)
+                  {
+                      Console.WriteLine(result.Message);
+                      return Task.CompletedTask;
+                  }
+              }
+
+              public class Program
+              {
+                  public static void Main()
+                  {
+                      // Register our custom authentication provider class to override Active Directory Device Code Flow
+                      SqlAuthenticationProvider.SetProvider(SqlAuthenticationMethod.ActiveDirectoryDeviceCodeFlow, new CustomDeviceCodeFlowAzureAuthenticationProvider());
+                      using (SqlConnection sqlConnection = new SqlConnection("Server=&lt;myserver&gt;.database.windows.net;Authentication=Active Directory Device Code Flow;Database=&lt;db&gt;;"))
+                      {
+                          sqlConnection.Open();
+                          Console.WriteLine("Connected successfully!");
+                      }
+                  }
+              }
+          }
+        </code>
+      </example>
+            <summary>Defines the core behavior of authentication providers and provides a base class for derived classes.</summary><remarks>
+        Derived classes must provide a parameterless constructor if they can be instantiated from the app.config file.
+      </remarks><example>
+        The following example demonstrates implementing a custom SqlAuthenticationProvider and providing the same to SqlClient for overriding Device Code Flow authentication mode:
+        <code language="c#">
+          using System;
+          using System.Collections.Generic;
+          using System.Linq;
+          using System.Threading.Tasks;
+          using Microsoft.Data.SqlClient;
+          using Microsoft.Identity.Client;
+
+          namespace CustomAuthenticationProviderExamples
+          {
+              /// &lt;summary&gt;
+              /// Example demonstrating creating a custom device code flow authentication provider and attaching it to the driver.
+              /// This is helpful for applications that wish to override the Callback for the Device Code Result implemented by the SqlClient driver.
+              /// &lt;/summary&gt;
+              public class CustomDeviceCodeFlowAzureAuthenticationProvider : SqlAuthenticationProvider
+              {
+                  private const string ClientId = "my-client-id";
+                  private const string ClientName = "My Application Name";
+                  private const string DefaultScopeSuffix = "/.default";
+
+                  // Maintain a copy of the PublicClientApplication object to cache the underlying access tokens it provides
+                  private static IPublicClientApplication pcApplication;
+
+                  public override async Task&lt;SqlAuthenticationToken&gt; AcquireTokenAsync(SqlAuthenticationParameters parameters)
+                  {
+                      string[] scopes = [ parameters.Resource.EndsWith(DefaultScopeSuffix) ? parameters.Resource : parameters.Resource + DefaultScopeSuffix ];
+
+                      IPublicClientApplication app = pcApplication;
+                      if (app == null)
+                      {
+                          pcApplication = app = PublicClientApplicationBuilder.Create(ClientId)
+                              .WithAuthority(parameters.Authority)
+                              .WithClientName(ClientName)
+                              .WithRedirectUri("https://login.microsoftonline.com/common/oauth2/nativeclient")
+                              .Build();
+                      }
+
+                      AuthenticationResult result;
+                      using CancellationTokenSource connectionTimeoutCancellation = new CancellationTokenSource(TimeSpan.FromSeconds(parameters.ConnectionTimeout));
+
+                      try
+                      {
+                          IEnumerable&lt;IAccount&gt; accounts = await app.GetAccountsAsync();
+                          result = await app.AcquireTokenSilent(scopes, accounts.FirstOrDefault())
+                              .ExecuteAsync(connectionTimeoutCancellation.Token);
+                      }
+                      catch (MsalUiRequiredException)
+                      {
+                          result = await app.AcquireTokenWithDeviceCode(scopes, deviceCodeResult =&gt; CustomDeviceFlowCallback(deviceCodeResult))
+                              .ExecuteAsync(connectionTimeoutCancellation.Token);
+                      }
+
+                      return new SqlAuthenticationToken(result.AccessToken, result.ExpiresOn);
+                  }
+
+                  public override bool IsSupported(SqlAuthenticationMethod authenticationMethod) =&gt;
+                      authenticationMethod.Equals(SqlAuthenticationMethod.ActiveDirectoryDeviceCodeFlow);
+
+                  private Task CustomDeviceFlowCallback(DeviceCodeResult result)
+                  {
+                      Console.WriteLine(result.Message);
+                      return Task.CompletedTask;
+                  }
+              }
+
+              public class Program
+              {
+                  public static void Main()
+                  {
+                      // Register our custom authentication provider class to override Active Directory Device Code Flow
+                      SqlAuthenticationProvider.SetProvider(SqlAuthenticationMethod.ActiveDirectoryDeviceCodeFlow, new CustomDeviceCodeFlowAzureAuthenticationProvider());
+                      using (SqlConnection sqlConnection = new SqlConnection("Server=&lt;myserver&gt;.database.windows.net;Authentication=Active Directory Device Code Flow;Database=&lt;db&gt;;"))
+                      {
+                          sqlConnection.Open();
+                          Console.WriteLine("Connected successfully!");
+                      }
+                  }
+              }
+          }
+        </code>
+      </example>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationProvider.BeforeLoad(Microsoft.Data.SqlClient.SqlAuthenticationMethod)">
+            <summary>This method is called immediately before the provider is added to the SQL authentication provider registry.</summary><remarks>
+        Avoid performing long-waiting tasks in this method, since it can block other threads from accessing the provider registry.
+
+        This method must not throw.
+      </remarks><param name="authenticationMethod">The authentication method.</param>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationProvider.BeforeUnload(Microsoft.Data.SqlClient.SqlAuthenticationMethod)">
+            <summary>This method is called immediately before the provider is removed from the SQL authentication provider registry.</summary><remarks>
+        For example, this method is called when a different provider with the same authentication method overrides this provider in the SQL authentication provider registry. Avoid performing long-waiting task in this method, since it can block other threads from accessing the provider registry.
+
+        This method must not throw.
+      </remarks><param name="authenticationMethod">The authentication method.</param>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationProvider.IsSupported(Microsoft.Data.SqlClient.SqlAuthenticationMethod)">
+            <summary>Indicates whether the specified authentication method is supported.</summary><remarks>This method must not throw.</remarks><returns>
+        <see langword="true" /> if the specified authentication method is supported; otherwise, <see langword="false" />.
+      </returns><param name="authenticationMethod">The authentication method.</param>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationProvider.AcquireTokenAsync(Microsoft.Data.SqlClient.SqlAuthenticationParameters)">
+            <summary>Acquires an access token from the authority.</summary><param name="parameters">The parameters passed to the provider by the driver.</param><throws cref="T:Microsoft.Data.SqlClient.SqlAuthenticationProviderException">If any errors occur.</throws><returns>Represents an asynchronous operation that returns the AD authentication token.</returns>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationProvider.GetProvider(Microsoft.Data.SqlClient.SqlAuthenticationMethod)">
+            <summary>Gets an authentication provider by method.</summary><param name="authenticationMethod">The authentication method.</param><returns>The authentication provider or <see langword="null" /> if not found.</returns>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationProvider.SetProvider(Microsoft.Data.SqlClient.SqlAuthenticationMethod,Microsoft.Data.SqlClient.SqlAuthenticationProvider)">
+            <summary>Sets an authentication provider by method.</summary><param name="authenticationMethod">The authentication method.</param><param name="provider">The authentication provider.</param><returns>
+        <see langword="true" /> if the operation succeeded; otherwise, <see langword="false" /> (for example, the existing provider disallows overriding).
+      </returns>
+        </member>
+        <member name="T:Microsoft.Data.SqlClient.SqlAuthenticationProvider.Internal">
+            <summary>
+            This class implements the static GetProvider and SetProvider methods by
+            using reflection to call into the Microsoft.Data.SqlClient package's
+            SqlAuthenticationProviderManager class, if that assembly is present.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationProvider.Internal._getProvider">
+            <summary>
+            Our handle to the reflected GetProvider() method.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationProvider.Internal._setProvider">
+            <summary>
+            Our handle to the reflected SetProvider() method.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationProvider.Internal.#cctor">
+            <summary>
+            Static construction performs the reflection lookups.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationProvider.Internal.GetProvider(Microsoft.Data.SqlClient.SqlAuthenticationMethod)">
+            <summary>
+            Call the reflected GetProvider method.
+            </summary>
+            <param name="authenticationMethod">
+              The authentication method whose provider to get.
+            </param>
+            <returns>
+              Returns null if reflection failed or any exceptions occur.
+              Otherwise, returns as the reflected method does.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationProvider.Internal.SetProvider(Microsoft.Data.SqlClient.SqlAuthenticationMethod,Microsoft.Data.SqlClient.SqlAuthenticationProvider)">
+            <summary>
+            Call the reflected SetProvider method.
+            </summary>
+            <param name="authenticationMethod">
+              The authentication method whose provider to set.
+            </param>
+            <param name="provider">
+              The provider to set.
+            </param>
+            <returns>
+              Returns false if reflection failed, invocation fails, or any
+              exceptions occur.  Otherwise, returns as the reflected method
+              does.
+            </returns>
+        </member>
+        <member name="T:Microsoft.Data.SqlClient.SqlAuthenticationProviderException">
+            <summary>
+        This exception is thrown for any errors that occur during the
+        authentication process.
+      </summary>
+        </member>
+        <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationProviderException.Unknown">
+            <summary>
+            The string value used when the failure code is not known.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationProviderException.#ctor(System.String,System.Exception)">
+            <summary>
+        Protected construction for derived classes to supply a minimal set of
+        values.
+
+        Method will be NotSpecified.
+        FailureCode will be "Unknown".
+        ShouldRetry will be false.
+        RetryPeriod will be 0.
+      </summary><param name="message">The error message.</param><param name="causedBy">The exception that caused this exception, if any.</param>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationProviderException.#ctor(Microsoft.Data.SqlClient.SqlAuthenticationMethod,System.String,System.Boolean,System.Int32,System.String,System.Exception)">
+            <summary>
+        Protected construction for derived classes to supply values for all
+        public properties.
+      </summary><param name="method">
+        The authentication method that failed, or NotSpecified if not known.
+      </param><param name="failureCode">
+        The failure code, or "Unknown" if not known.
+      </param><param name="shouldRetry">
+        True if the action should be retried, false otherwise.
+      </param><param name="retryPeriod">
+        The period of time, in milliseconds, to wait before retrying the action.
+        Specify 0 if no retry period is suggested.  Ignored if negative.  Not
+        used when ShouldRetry is false, in which cases 0 is assumed.
+      </param><param name="message">
+        The error message.
+      </param><param name="causedBy">
+        The exception that caused this exception, if any.
+      </param>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationProviderException.Method">
+            <summary>
+        The authentication method that failed, or NotSpecified if not known.
+      </summary>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationProviderException.FailureCode">
+            <summary>
+        The failure code, or "Unknown" if not known.
+      </summary>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationProviderException.ShouldRetry">
+            <summary>
+        True if the action should be retried, false otherwise.
+      </summary>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationProviderException.RetryPeriod">
+            <summary>
+        The period of time, in milliseconds, to wait before retrying the action.
+        0 if no retry period is suggested.  Never negative.  Always 0 when
+        ShouldRetry is false.
+      </summary>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationProviderException.ToString">
+            <returns>
+        A string that includes the base exception information along with all
+        property values.
+      </returns>
+        </member>
+        <member name="T:Microsoft.Data.SqlClient.SqlAuthenticationToken">
+            <summary>Represents an authentication token.</summary>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationToken.#ctor(System.String,System.DateTimeOffset)">
+            <summary>
+        Construct with values for all properties.
+      </summary><param name="accessToken">The token string.</param><param name="expiresOn">The token expiration time.</param><throws cref="T:Microsoft.Data.SqlClient.SqlAuthenticationProviderException">
+        <paramref name="accessToken" /> is null or empty.
+      </throws>
+        </member>
+        <member name="T:Microsoft.Data.SqlClient.SqlAuthenticationToken.TokenException">
+            <summary>
+            The exception thrown by the SqlAuthenticationToken constructor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Data.SqlClient.SqlAuthenticationToken.TokenException.#ctor(System.String)">
+            <summary>
+            Construct with the exception message.
+            </summary>
+            <param name="message">The exception message.</param>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationToken.AccessToken">
+            <summary>Gets the token string.</summary><value>The token string.</value>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SqlAuthenticationToken.ExpiresOn">
+            <summary>Gets the token expiration time.</summary><value>The token expiration time.</value>
+        </member>
+    </members>
+</doc>

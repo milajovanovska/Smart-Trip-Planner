@@ -10,8 +10,6 @@ using System.Windows.Forms;
 using Trip_Planner.Forms;
 using Trip_Planner.Models;
 using Trip_Planner.Services;
-using TripPlanner.Models;
-using TripPlanner.Services;
 
 
 namespace Trip_Planner
@@ -879,7 +877,6 @@ namespace Trip_Planner
 
                 string apiKey =
      ConfigurationManager.AppSettings["SerpApiKey"];
-                MessageBox.Show(apiKey);
 
                 SerpApiService service =
                     new SerpApiService(apiKey);

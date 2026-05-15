@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using TripPlanner.Models;
+using Trip_Planner.Models;
 using System.Collections.Generic;
 
-namespace TripPlanner.Services
+namespace Trip_Planner.Services
 {
     public class SerpApiService
     {

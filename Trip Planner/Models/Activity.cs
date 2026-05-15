@@ -1,4 +1,4 @@
-﻿namespace TripPlanner.Models
+﻿namespace Trip_Planner.Models
 {
     public class Activity
     {

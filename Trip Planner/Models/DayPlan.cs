@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TripPlanner.Models;
+using Trip_Planner.Models;
 
 namespace Trip_Planner.Models
 {

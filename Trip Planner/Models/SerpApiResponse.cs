@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Trip_Planner.Models; 
 
-namespace TripPlanner.Models
+namespace Trip_Planner.Models
 {
     public class SerpApiResponse
     {

@@ -1349,7 +1349,7 @@
             this.rbPreferences.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.rbPreferences.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.rbPreferences.Location = new System.Drawing.Point(371, 38);
-            this.rbPreferences.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbPreferences.Margin = new System.Windows.Forms.Padding(4);
             this.rbPreferences.Name = "rbPreferences";
             this.rbPreferences.Size = new System.Drawing.Size(503, 244);
             this.rbPreferences.TabIndex = 9;
@@ -1476,7 +1476,7 @@
             this.txtResponse.Multiline = true;
             this.txtResponse.Name = "txtResponse";
             this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtResponse.Size = new System.Drawing.Size(1350, 450);
+            this.txtResponse.Size = new System.Drawing.Size(700, 450);
             this.txtResponse.TabIndex = 34;
             // 
             // QuestionnaireForm
@@ -1485,7 +1485,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(768, 592);
+            this.ClientSize = new System.Drawing.Size(1316, 862);
             this.Controls.Add(this.txtResponse);
             this.Controls.Add(this.btnTestAI);
             this.Controls.Add(this.btnThemeToggle);

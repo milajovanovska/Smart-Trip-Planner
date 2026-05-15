@@ -869,53 +869,9 @@ namespace Trip_Planner
             rbAvoid.Checked = !rbAvoid.Checked;
         }
 
-        private async void btnTestAI_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                btnTestAI.Enabled = false;
-
-                string apiKey =
-     ConfigurationManager.AppSettings["SerpApiKey"];
-
-                SerpApiService service =
-                    new SerpApiService(apiKey);
-
-                string json =
-                    await service.SearchPlacesAsync(
-                        "best museums in Vienna");
-
-                List<Activity> activities =
-                    service.ParseActivities(json);
-
-                txtResponse.Clear();
-
-                foreach (var activity in activities)
-                {
-                    txtResponse.AppendText(
-                        $"{activity.Name}\r\n");
-
-                    txtResponse.AppendText(
-                        $"Rating: {activity.Rating}\r\n");
-
-                    txtResponse.AppendText(
-                        $"Address: {activity.Address}\r\n");
-
-                    txtResponse.AppendText(
-                        $"Description: {activity.Description}\r\n");
-
-                    txtResponse.AppendText(
-                        $"--------------------------\r\n\r\n");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            finally
-            {
-                btnTestAI.Enabled = true;
-            }
-        }
+        //private async void btnTestAI_Click(object sender, EventArgs e)
+        //{
+            
+        //}
     }
 }

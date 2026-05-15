@@ -127,8 +127,6 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.timerFade = new System.Windows.Forms.Timer(this.components);
             this.btnThemeToggle = new FontAwesome.Sharp.IconButton();
-            this.btnTestAI = new System.Windows.Forms.Button();
-            this.txtResponse = new System.Windows.Forms.TextBox();
             this.questionPanel2.SuspendLayout();
             this.lblDuration.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -1460,25 +1458,6 @@
             this.btnThemeToggle.UseVisualStyleBackColor = true;
             this.btnThemeToggle.Click += new System.EventHandler(this.btnThemeToggle_Click);
             // 
-            // btnTestAI
-            // 
-            this.btnTestAI.Location = new System.Drawing.Point(114, 60);
-            this.btnTestAI.Name = "btnTestAI";
-            this.btnTestAI.Size = new System.Drawing.Size(89, 41);
-            this.btnTestAI.TabIndex = 33;
-            this.btnTestAI.Text = "Test AI";
-            this.btnTestAI.UseVisualStyleBackColor = true;
-            this.btnTestAI.Click += new System.EventHandler(this.btnTestAI_Click);
-            // 
-            // txtResponse
-            // 
-            this.txtResponse.Location = new System.Drawing.Point(132, 140);
-            this.txtResponse.Multiline = true;
-            this.txtResponse.Name = "txtResponse";
-            this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtResponse.Size = new System.Drawing.Size(700, 450);
-            this.txtResponse.TabIndex = 34;
-            // 
             // QuestionnaireForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -1486,8 +1465,6 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1316, 862);
-            this.Controls.Add(this.txtResponse);
-            this.Controls.Add(this.btnTestAI);
             this.Controls.Add(this.btnThemeToggle);
             this.Controls.Add(this.questionPanel8);
             this.Controls.Add(this.questionPanel7);
@@ -1645,8 +1622,6 @@
         private System.Windows.Forms.Timer timerFade;
         private FontAwesome.Sharp.IconButton btnThemeToggle;
         private System.Windows.Forms.RichTextBox rbPreferences;
-        private System.Windows.Forms.Button btnTestAI;
-        private System.Windows.Forms.TextBox txtResponse;
     }
 }
 

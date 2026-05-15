@@ -42,17 +42,7 @@ namespace Trip_Planner.Forms
             else
             {
                 timerLoading.Stop();
-
-                Timer delayTimer = new Timer();
-                delayTimer.Interval = 300; 
-                delayTimer.Tick += (s, ev) =>
-                {
-                    delayTimer.Stop();
-
-                    new Result().Show();
-                    this.Close();
-                };
-                delayTimer.Start();
+                this.Close();
             }
 
         }

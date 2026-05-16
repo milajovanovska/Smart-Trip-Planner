@@ -92,57 +92,156 @@ namespace Trip_Planner
             SetButtonIcon(btnContinue, IconChar.ArrowRight, Color.White, 16);
             SetButtonIcon(btnBack, IconChar.ArrowLeft, ICON_COLOR, 16);
         }
+
+        private void SetLightTheme()
+        {
+
+            BACKGROUND = Color.FromArgb(180, 200, 240);
+
+            CARD = Color.White;
+
+            TEXT = Color.FromArgb(64, 64, 64);
+
+            SUBTEXT = Color.FromArgb(100, 116, 139);
+
+            BORDER = Color.FromArgb(230, 233, 237);
+
+            PRIMARY = Color.FromArgb(59, 130, 246);
+
+            PRIMARY_DARK = Color.FromArgb(70, 130, 180);
+
+            ICON_COLOR = TEXT;
+
+            lblDuration.BackColor = Color.White;
+
+            panel2.BackColor = Color.FromArgb(180, 200, 240);
+
+            rbPreferences.BackColor = Color.White;
+        }
+        private void SetDarkTheme()
+        {
+            BACKGROUND = Color.FromArgb(29, 25, 61);
+
+            CARD = Color.FromArgb(75, 70, 105);
+
+            TEXT = Color.FromArgb(240, 240, 240);
+
+            SUBTEXT = Color.FromArgb(148, 163, 184);
+
+            BORDER = Color.FromArgb(60, 60, 60);
+
+            PRIMARY = Color.FromArgb(96, 165, 250);
+
+            PRIMARY_DARK = Color.FromArgb(80, 120, 200);
+
+            ICON_COLOR = TEXT;
+
+            lblDuration.BackColor = Color.FromArgb(29, 25, 61);
+
+            panel2.BackColor = Color.FromArgb(70, 67, 100);
+
+            rbPreferences.BackColor = Color.FromArgb(70, 67, 100);
+
+            
+        }
         private void ApplyTheme()
         {
-            /*  if (isDarkMode)
-              {
-                  BACKGROUND = Color.FromArgb(30, 30, 30);
-                  CARD = Color.FromArgb(45, 45, 45);
-                  TEXT = Color.FromArgb(240, 240, 240);
-                  BORDER = Color.FromArgb(60, 60, 60);
-                  PRIMARY_DARK = Color.FromArgb(80, 120, 200);
-              }
-              else
-              {
-                  BACKGROUND = Color.FromArgb(245, 247, 250);
-                  CARD = Color.White;
-                  TEXT = Color.FromArgb(64, 64, 64);
-                  BORDER = Color.FromArgb(230, 233, 237);
-                  PRIMARY_DARK = Color.FromArgb(70, 130, 180);
-              }
+            if (isDarkMode)
+                SetDarkTheme();
+            else
+                SetLightTheme();
 
-              this.BackColor = BACKGROUND;
-              lblTitle.ForeColor = TEXT;
-              lblStepCount.ForeColor = TEXT;
-              lblPercentage.ForeColor = TEXT;
+            this.BackColor = BACKGROUND;
 
-              foreach (var panel in steps)
-              {
-                  if (panel == null) continue;
+            lblTitle.ForeColor = TEXT;
+            lblStepCount.ForeColor = TEXT;
+            lblPercentage.ForeColor = TEXT;
+            labelDuration.ForeColor = TEXT;
+            lblBudgetValue.ForeColor = TEXT;
 
-                  panel.BackColor = Color.Transparent;
-                  foreach (Control child in panel.Controls)
-                  {
-                      if (child is Label)
-                      {
-                          child.ForeColor = TEXT;
-                      }
-                      else if (child is TextBox txt)
-                      {
-                          txt.ForeColor = Color.FromArgb(30, 41, 59);
-                      }
-                      else if (child is Button btn)
-                      {
-                          if (btn.BackColor != PRIMARY)
-                          {
-                              btn.ForeColor = Color.FromArgb(30, 41, 59);
-                          }
-                      }
-                  }
-              }
+            foreach (Panel panel in steps)
+            {
+                if (panel == null)
+                    continue;
 
-              this.Invalidate();
-            */
+                panel.BackColor = Color.Transparent;
+
+                foreach (Control control in panel.Controls)
+                {
+                    if (control is Label lbl)
+                    {
+                        lbl.ForeColor = TEXT;
+                    }
+
+                    else if (control is TextBox txt)
+                    {
+                        txt.BackColor = CARD;
+                        txt.ForeColor = TEXT;
+                        txt.BorderStyle = BorderStyle.FixedSingle;
+                    }
+
+                    else if (control is Button btn)
+                    {
+                        bool isSelected = btn.BackColor == PRIMARY;
+
+                        if (!isSelected)
+                        {
+                            btn.BackColor = CARD;
+                            btn.ForeColor = TEXT;
+                        }
+
+                        btn.FlatAppearance.BorderColor = BORDER;
+
+                        UpdateButtonIconColor(
+                            btn,
+                            isSelected ? Color.White : ICON_COLOR
+                        );
+                    }
+
+                    else if (control is DateTimePicker picker)
+                    {
+                        picker.CalendarForeColor = TEXT;
+                        picker.CalendarMonthBackground = CARD;
+                        picker.CalendarTitleBackColor = PRIMARY;
+                        picker.CalendarTitleForeColor = Color.White;
+
+                        picker.BackColor = CARD;
+                        picker.ForeColor = TEXT;
+                    }
+
+                    else if (control is TrackBar)
+                    {
+                        control.BackColor = BACKGROUND;
+                    }
+                }
+            }
+
+            btnBack.BackColor = Color.Transparent;
+            btnBack.ForeColor = TEXT;
+
+            btnContinue.BackColor = PRIMARY;
+            btnContinue.ForeColor = Color.White;
+
+            UpdateButtonIconColor(btnContinue, Color.White, 16);
+            UpdateButtonIconColor(btnBack, TEXT, 16);
+
+            this.Invalidate();
+            this.Refresh();
+            this.Invalidate(true);
+        }
+        private void ConfigureButtons(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is Button btn)
+                {
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.FlatAppearance.BorderSize = 1;
+                }
+
+                if (c.HasChildren)
+                    ConfigureButtons(c);
+            }
         }
         private void UpdateButtonIconColor(Button btn, Color newColor, int iconSize = 18)
         {
@@ -172,6 +271,8 @@ namespace Trip_Planner
         public QuestionnaireForm()
         {
             InitializeComponent();
+
+            ConfigureButtons(this);
 
             ApplyButtonIcons();
 
@@ -212,6 +313,8 @@ namespace Trip_Planner
                         ApplyRoundCorners(btn, 20);
                 }
             };
+
+            ApplyTheme();
 
         }
         private void UpdateUI()
@@ -849,19 +952,20 @@ namespace Trip_Planner
 
         private void btnThemeToggle_Click(object sender, EventArgs e)
         {
-            /*    isDarkMode = !isDarkMode;
-                if (isDarkMode)
-                {
-                    btnThemeToggle.IconChar = IconChar.Sun;
-                    btnThemeToggle.IconColor = Color.Gold;
-                }
-                else
-                {
-                    btnThemeToggle.IconChar = IconChar.Moon;
-                    btnThemeToggle.IconColor = TEXT;
-                }
-             ApplyTheme();  
-            */
+            isDarkMode = !isDarkMode;
+
+            if (isDarkMode)
+            {
+                btnThemeToggle.IconChar = IconChar.Sun;
+                btnThemeToggle.IconColor = Color.Gold;
+            }
+            else
+            {
+                btnThemeToggle.IconChar = IconChar.Moon;
+                btnThemeToggle.IconColor = Color.Black;
+            }
+
+            ApplyTheme();
         }
 
         private void rbAvoid_Click(object sender, EventArgs e)
@@ -871,7 +975,7 @@ namespace Trip_Planner
 
         //private async void btnTestAI_Click(object sender, EventArgs e)
         //{
-            
+
         //}
     }
 }

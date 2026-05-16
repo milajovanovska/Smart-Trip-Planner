@@ -20,8 +20,8 @@ namespace Trip_Planner
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
 
 
-        Color PRIMARY = Color.FromArgb(59, 130, 246);
-        Color PRIMARY_DARK = Color.FromArgb(37, 99, 235);
+        Color PRIMARY = Color.FromArgb(113, 144, 199);
+        Color PRIMARY_DARK = Color.FromArgb(46, 39, 90);
 
         Color BACKGROUND = Color.FromArgb(245, 247, 250);
         Color CARD = Color.White;
@@ -95,6 +95,9 @@ namespace Trip_Planner
 
         private void SetLightTheme()
         {
+            PRIMARY = Color.FromArgb(113, 144, 199);
+
+            PRIMARY_DARK = Color.FromArgb(46, 39, 90);
 
             BACKGROUND = Color.FromArgb(180, 200, 240);
 
@@ -106,10 +109,6 @@ namespace Trip_Planner
 
             BORDER = Color.FromArgb(230, 233, 237);
 
-            PRIMARY = Color.FromArgb(59, 130, 246);
-
-            PRIMARY_DARK = Color.FromArgb(70, 130, 180);
-
             ICON_COLOR = TEXT;
 
             lblDuration.BackColor = Color.White;
@@ -117,9 +116,16 @@ namespace Trip_Planner
             panel2.BackColor = Color.FromArgb(180, 200, 240);
 
             rbPreferences.BackColor = Color.White;
+            rbPreferences.ForeColor = TEXT;
+            rbAvoid.ForeColor = TEXT;
+
         }
         private void SetDarkTheme()
         {
+            PRIMARY = Color.FromArgb(46, 39, 90) ;
+
+            PRIMARY_DARK = Color.FromArgb(113, 144, 199);
+
             BACKGROUND = Color.FromArgb(29, 25, 61);
 
             CARD = Color.FromArgb(75, 70, 105);
@@ -130,10 +136,6 @@ namespace Trip_Planner
 
             BORDER = Color.FromArgb(60, 60, 60);
 
-            PRIMARY = Color.FromArgb(96, 165, 250);
-
-            PRIMARY_DARK = Color.FromArgb(80, 120, 200);
-
             ICON_COLOR = TEXT;
 
             lblDuration.BackColor = Color.FromArgb(29, 25, 61);
@@ -141,8 +143,9 @@ namespace Trip_Planner
             panel2.BackColor = Color.FromArgb(70, 67, 100);
 
             rbPreferences.BackColor = Color.FromArgb(70, 67, 100);
+            rbPreferences.ForeColor = TEXT;
+            rbAvoid.ForeColor = TEXT;
 
-            
         }
         private void ApplyTheme()
         {
@@ -151,7 +154,37 @@ namespace Trip_Planner
             else
                 SetLightTheme();
 
-            this.BackColor = BACKGROUND;
+            foreach (Control c in GetAllControls(this))
+            {
+                if (c is Button btn )
+                {
+                    btn.BackColor = PRIMARY;
+                    btn.ForeColor = Color.White;
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.UseVisualStyleBackColor = false;
+                    UpdateButtonIconColor(btn, Color.White);
+                }
+            }
+
+            var allToggleButtons = new[] {
+                btnContinue, btnBack,
+                btnFlorence, btnChicago, btnTokyo, btnVienna, btnIstanbul, btnLisbon,
+                btnActive, btnRelaxing, btnAdventure, btnLuxury, btnBackpacking,
+                btnMuseum, btnCafes, btnNightLife, btnNature, btnBeaches, btnFood, btnShopping, btnHiddenGems,
+                btnRelaxed, btnBalanced, btnPacked,
+                btnWalking, btnPublicTransport, btnBike, btnTaxiUber, btnRentACar
+             };
+
+            foreach (var btn in allToggleButtons)
+            {
+                if (btn.BackColor == PRIMARY_DARK)
+                {
+                    btn.BackColor = PRIMARY;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = PRIMARY;
+                    UpdateButtonIconColor(btn, Color.White);
+                }
+            }
 
             lblTitle.ForeColor = TEXT;
             lblStepCount.ForeColor = TEXT;
@@ -161,66 +194,32 @@ namespace Trip_Planner
 
             foreach (Panel panel in steps)
             {
-                if (panel == null)
-                    continue;
-
+                if (panel == null) continue;
                 panel.BackColor = Color.Transparent;
 
                 foreach (Control control in panel.Controls)
                 {
                     if (control is Label lbl)
-                    {
                         lbl.ForeColor = TEXT;
-                    }
-
                     else if (control is TextBox txt)
                     {
                         txt.BackColor = CARD;
                         txt.ForeColor = TEXT;
                         txt.BorderStyle = BorderStyle.FixedSingle;
                     }
-
-                    else if (control is Button btn)
-                    {
-                        bool isSelected = btn.BackColor == PRIMARY;
-
-                        if (!isSelected)
-                        {
-                            btn.BackColor = CARD;
-                            btn.ForeColor = TEXT;
-                        }
-
-                        btn.FlatAppearance.BorderColor = BORDER;
-
-                        UpdateButtonIconColor(
-                            btn,
-                            isSelected ? Color.White : ICON_COLOR
-                        );
-                    }
-
                     else if (control is DateTimePicker picker)
                     {
                         picker.CalendarForeColor = TEXT;
                         picker.CalendarMonthBackground = CARD;
                         picker.CalendarTitleBackColor = PRIMARY;
                         picker.CalendarTitleForeColor = Color.White;
-
                         picker.BackColor = CARD;
                         picker.ForeColor = TEXT;
                     }
-
                     else if (control is TrackBar)
-                    {
                         control.BackColor = BACKGROUND;
-                    }
                 }
             }
-
-            btnBack.BackColor = Color.Transparent;
-            btnBack.ForeColor = TEXT;
-
-            btnContinue.BackColor = PRIMARY;
-            btnContinue.ForeColor = Color.White;
 
             UpdateButtonIconColor(btnContinue, Color.White, 16);
             UpdateButtonIconColor(btnBack, TEXT, 16);
@@ -229,6 +228,16 @@ namespace Trip_Planner
             this.Refresh();
             this.Invalidate(true);
         }
+
+        private IEnumerable<Control> GetAllControls(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                yield return c;
+                foreach (Control child in GetAllControls(c))
+                    yield return child;
+            }
+        }
         private void ConfigureButtons(Control parent)
         {
             foreach (Control c in parent.Controls)
@@ -236,7 +245,6 @@ namespace Trip_Planner
                 if (c is Button btn)
                 {
                     btn.FlatStyle = FlatStyle.Flat;
-                    btn.FlatAppearance.BorderSize = 1;
                 }
 
                 if (c.HasChildren)
@@ -248,6 +256,7 @@ namespace Trip_Planner
             if (btn == null || !_buttonIconMap.ContainsKey(btn)) return;
             IconChar icon = _buttonIconMap[btn];
             btn.Image = icon.ToBitmap(newColor, iconSize);
+            btnThemeToggle.BackColor = Color.Transparent;
         }
 
         private GraphicsPath GetRoundedRect(Rectangle rect, int radius)
@@ -331,14 +340,8 @@ namespace Trip_Planner
             UpdateProgress(currentStep, 8);
 
             btnBack.Enabled = (currentStep > 1);
-            if (btnBack.Enabled)
-            {
-                btnBack.ForeColor = Color.Black;
-            }
-            else
-            {
-                btnBack.ForeColor = Color.Gray;
-            }
+            btnBack.ForeColor = btnBack.Enabled ? TEXT : Color.Gray;
+            UpdateButtonIconColor(btnBack, btnBack.Enabled ? TEXT : Color.Gray, 16);
 
             switch (currentStep)
             {
@@ -369,7 +372,6 @@ namespace Trip_Planner
 
                 case 4:
                     lblTitle.Text = "What kind of trip?";
-                    ResetStyleButtons();
                     btnContinue.Enabled = false;
                     btnBack.Visible = true;
                     btnContinue.Visible = true;
@@ -425,19 +427,6 @@ namespace Trip_Planner
         private void txtDestination_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnBack_MouseEnter(object sender, EventArgs e)
-        {
-            btnBack.BackColor = PRIMARY;
-            btnBack.ForeColor = TEXT_LIGHT;
-
-        }
-
-        private void btnBack_MouseLeave(object sender, EventArgs e)
-        {
-            btnBack.BackColor = Color.Transparent;
-            btnBack.ForeColor = TEXT;
         }
 
         private void UpdateProgress(int step, int totalSteps)
@@ -509,10 +498,26 @@ namespace Trip_Planner
             }
         }
 
+        private void SelectCityButton(Button selected)
+        {
+            var cityButtons = new[] { btnLisbon, btnVienna, btnIstanbul, btnTokyo, btnFlorence, btnChicago };
+            foreach (var btn in cityButtons)
+            {
+                btn.BackColor = PRIMARY;
+                btn.ForeColor = Color.White;
+                btn.FlatAppearance.BorderColor = PRIMARY;
+                btn.FlatAppearance.BorderSize = 0;
+                UpdateButtonIconColor(btn, Color.White);
+            }
+            selected.BackColor = PRIMARY_DARK;
+            selected.FlatAppearance.BorderColor = PRIMARY_DARK;
+            UpdateButtonIconColor(selected, Color.White);
+        }
         private void btnLisbon_Click(object sender, EventArgs e)
         {
             txtDestination.Text = "Lisbon, Portugal";
             txtDestination.ForeColor = TEXT;
+            SelectCityButton(btnLisbon);
             btnContinue.Enabled = true;
         }
 
@@ -520,6 +525,7 @@ namespace Trip_Planner
         {
             txtDestination.Text = "Vienna, Austria";
             txtDestination.ForeColor = TEXT;
+            SelectCityButton(btnVienna);
             btnContinue.Enabled = true;
         }
 
@@ -527,6 +533,7 @@ namespace Trip_Planner
         {
             txtDestination.Text = "Istanbul, Turkey";
             txtDestination.ForeColor = TEXT;
+            SelectCityButton(btnIstanbul);
             btnContinue.Enabled = true;
         }
 
@@ -534,6 +541,7 @@ namespace Trip_Planner
         {
             txtDestination.Text = "Tokyo, Japan";
             txtDestination.ForeColor = TEXT;
+            SelectCityButton(btnTokyo);
             btnContinue.Enabled = true;
         }
 
@@ -541,16 +549,17 @@ namespace Trip_Planner
         {
             txtDestination.Text = "Florence, Italy";
             txtDestination.ForeColor = TEXT;
+            SelectCityButton(btnFlorence);
             btnContinue.Enabled = true;
         }
 
         private void btnChicago_Click(object sender, EventArgs e)
         {
-            txtDestination.Text = "Chicago, Illionis";
+            txtDestination.Text = "Chicago, Illinois";
             txtDestination.ForeColor = TEXT;
+            SelectCityButton(btnChicago);
             btnContinue.Enabled = true;
         }
-
         private void txtDestination_TextChanged_1(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(txtDestination.Text) && txtDestination.Text != "e. g. Rome, Sevilla, Japan")
@@ -593,24 +602,12 @@ namespace Trip_Planner
 
         private void SelectStyle(Button selectedBtn)
         {
-            ResetStyleButtons();
-            selectedBtn.BackColor = PRIMARY;
+            selectedBtn.BackColor = PRIMARY_DARK;
             selectedBtn.ForeColor = Color.White;
+            selectedBtn.FlatAppearance.BorderColor = PRIMARY_DARK;
             UpdateButtonIconColor(selectedBtn, Color.White);
             btnContinue.Enabled = true;
         }
-
-        private void ResetStyleButtons()
-        {
-            var styleButtons = new[] { btnActive, btnRelaxing, btnAdventure, btnLuxury, btnBackpacking };
-            foreach (var btn in styleButtons)
-            {
-                btn.BackColor = BACKGROUND;
-                btn.ForeColor = TEXT;
-                UpdateButtonIconColor(btn, TEXT);
-            }
-        }
-
         private void btnActive_Click(object sender, EventArgs e)
         {
             SelectStyle(btnActive);
@@ -646,17 +643,19 @@ namespace Trip_Planner
 
         private void ToggleInterest(Button btn)
         {
-            if (btn.BackColor != PRIMARY)
+            if (btn.BackColor == PRIMARY)
             {
-                btn.BackColor = PRIMARY;
+                btn.BackColor = PRIMARY_DARK;
                 btn.ForeColor = Color.White;
+                btn.FlatAppearance.BorderColor = PRIMARY_DARK;
                 UpdateButtonIconColor(btn, Color.White);
             }
             else
             {
-                btn.BackColor = CARD;
-                btn.ForeColor = TEXT;
-                UpdateButtonIconColor(btn, TEXT);
+                btn.BackColor = PRIMARY;
+                btn.ForeColor = Color.White;
+                btn.FlatAppearance.BorderColor = PRIMARY_DARK;
+                UpdateButtonIconColor(btn, Color.White);
             }
         }
         private void btnMuseum_Click(object sender, EventArgs e)
@@ -703,25 +702,23 @@ namespace Trip_Planner
             var paceButtons = new[] { btnRelaxed, btnBalanced, btnPacked };
             foreach (var btn in paceButtons)
             {
-                if (btn.BackColor == PRIMARY)
+                if (btn.BackColor == PRIMARY_DARK)
                 {
                     btn.Size = new Size(btn.Width - 10, btn.Height - 10);
                     btn.Location = new Point(btn.Location.X + 5, btn.Location.Y + 5);
                 }
-
-                btn.BackColor = BACKGROUND;
-                btn.FlatAppearance.BorderColor = BORDER;
-                btn.ForeColor = TEXT;
+                btn.BackColor = PRIMARY;
+                btn.ForeColor = Color.White;
+                btn.FlatAppearance.BorderColor = PRIMARY;
+                UpdateButtonIconColor(btn, Color.White);
                 ApplyRoundCorners(btn, 20);
             }
 
-            selectedBtn.BackColor = PRIMARY;
+            selectedBtn.BackColor = PRIMARY_DARK;
+            selectedBtn.ForeColor = Color.White;
             selectedBtn.FlatAppearance.BorderColor = PRIMARY_DARK;
-            selectedBtn.ForeColor = TEXT_LIGHT;
-
             selectedBtn.Size = new Size(selectedBtn.Width + 10, selectedBtn.Height + 10);
             selectedBtn.Location = new Point(selectedBtn.Location.X - 5, selectedBtn.Location.Y - 5);
-
             ApplyRoundCorners(selectedBtn, 20);
             btnContinue.Enabled = true;
         }
@@ -734,21 +731,21 @@ namespace Trip_Planner
         private void btnPacked_Click(object sender, EventArgs e) { SelectPace(btnPacked); }
         private void ToggleTransport(Button btn)
         {
-            if (btn.BackColor != PRIMARY)
+            if (btn.BackColor == PRIMARY)
             {
-                btn.BackColor = PRIMARY;
+                btn.BackColor = PRIMARY_DARK;
+                btn.ForeColor = Color.White;
                 btn.FlatAppearance.BorderColor = PRIMARY_DARK;
-                btn.ForeColor = TEXT_LIGHT;
-
+                UpdateButtonIconColor(btn, Color.White);
                 btn.Size = new Size(btn.Width + 6, btn.Height + 6);
                 btn.Location = new Point(btn.Location.X - 3, btn.Location.Y - 3);
             }
             else
             {
-                btn.BackColor = BACKGROUND;
-                btn.FlatAppearance.BorderColor = BORDER;
-                btn.ForeColor = TEXT;
-
+                btn.BackColor = PRIMARY;
+                btn.ForeColor = Color.White;
+                btn.FlatAppearance.BorderColor = PRIMARY;
+                UpdateButtonIconColor(btn, Color.White);
                 btn.Size = new Size(btn.Width - 6, btn.Height - 6);
                 btn.Location = new Point(btn.Location.X + 3, btn.Location.Y + 3);
             }
@@ -791,16 +788,16 @@ namespace Trip_Planner
         }
         private void ToggleQuality(Button btn, string title, string description)
         {
-            if (btn.BackColor != PRIMARY)
+            if (btn.BackColor == PRIMARY_DARK)
             {
                 btn.BackColor = PRIMARY;
-                btn.FlatAppearance.BorderColor = PRIMARY_DARK;
+                btn.FlatAppearance.BorderColor = PRIMARY;
                 btn.ForeColor = TEXT_LIGHT;
             }
             else
             {
-                btn.BackColor = BACKGROUND;
-                btn.FlatAppearance.BorderColor = BORDER;
+                btn.BackColor = PRIMARY_DARK;
+                btn.FlatAppearance.BorderColor = PRIMARY_DARK;
                 btn.ForeColor = TEXT;
             }
 
@@ -853,91 +850,49 @@ namespace Trip_Planner
                 TransportPreferences = GetSelectedTransport()
             };
         }
+
         private string GetSelectedTravelStyle()
         {
-            if (btnActive.BackColor == PRIMARY)
-                return "Active";
-
-            if (btnRelaxing.BackColor == PRIMARY)
-                return "Relaxing";
-
-            if (btnAdventure.BackColor == PRIMARY)
-                return "Adventure";
-
-            if (btnLuxury.BackColor == PRIMARY)
-                return "Luxury";
-
-            if (btnBackpacking.BackColor == PRIMARY)
-                return "Backpacking";
-
+            if (btnActive.BackColor == PRIMARY_DARK) return "Active";
+            if (btnRelaxing.BackColor == PRIMARY_DARK) return "Relaxing";
+            if (btnAdventure.BackColor == PRIMARY_DARK) return "Adventure";
+            if (btnLuxury.BackColor == PRIMARY_DARK) return "Luxury";
+            if (btnBackpacking.BackColor == PRIMARY_DARK) return "Backpacking";
             return "";
         }
+
         private List<string> GetSelectedInterests()
         {
-            List<string> interests = new List<string>();
-
-            if (btnMuseum.BackColor == PRIMARY)
-                interests.Add("Museums");
-
-            if (btnFood.BackColor == PRIMARY)
-                interests.Add("Food");
-
-            if (btnNightLife.BackColor == PRIMARY)
-                interests.Add("Nightlife");
-
-            if (btnNature.BackColor == PRIMARY)
-                interests.Add("Nature");
-
-            if (btnShopping.BackColor == PRIMARY)
-                interests.Add("Shopping");
-
-            if (btnBeaches.BackColor == PRIMARY)
-                interests.Add("Beaches");
-
-            if (btnCafes.BackColor == PRIMARY)
-                interests.Add("Cafes");
-
-            if (btnHiddenGems.BackColor == PRIMARY)
-                interests.Add("Hidden Gems");
-
+            var interests = new List<string>();
+            if (btnMuseum.BackColor == PRIMARY_DARK) interests.Add("Museums");
+            if (btnFood.BackColor == PRIMARY_DARK) interests.Add("Food");
+            if (btnNightLife.BackColor == PRIMARY_DARK) interests.Add("Nightlife");
+            if (btnNature.BackColor == PRIMARY_DARK) interests.Add("Nature");
+            if (btnShopping.BackColor == PRIMARY_DARK) interests.Add("Shopping");
+            if (btnBeaches.BackColor == PRIMARY_DARK) interests.Add("Beaches");
+            if (btnCafes.BackColor == PRIMARY_DARK) interests.Add("Cafes");
+            if (btnHiddenGems.BackColor == PRIMARY_DARK) interests.Add("Hidden Gems");
             return interests;
         }
+
         private string GetSelectedPace()
         {
-            if (btnRelaxed.BackColor == PRIMARY)
-                return "Relaxed";
-
-            if (btnBalanced.BackColor == PRIMARY)
-                return "Balanced";
-
-            if (btnPacked.BackColor == PRIMARY)
-                return "Packed";
-
+            if (btnRelaxed.BackColor == PRIMARY_DARK) return "Relaxed";
+            if (btnBalanced.BackColor == PRIMARY_DARK) return "Balanced";
+            if (btnPacked.BackColor == PRIMARY_DARK) return "Packed";
             return "";
         }
+
         private List<string> GetSelectedTransport()
         {
-            List<string> transport = new List<string>();
-
-            if (btnWalking.BackColor == PRIMARY)
-                transport.Add("Walking");
-
-            if (btnBike.BackColor == PRIMARY)
-                transport.Add("Bike");
-
-            if (btnPublicTransport.BackColor == PRIMARY)
-                transport.Add("Public Transport");
-
-            if (btnTaxiUber.BackColor == PRIMARY)
-                transport.Add("Taxi");
-
-            if (btnRentACar.BackColor == PRIMARY)
-                transport.Add("Car Rental");
-
+            var transport = new List<string>();
+            if (btnWalking.BackColor == PRIMARY_DARK) transport.Add("Walking");
+            if (btnBike.BackColor == PRIMARY_DARK) transport.Add("Bike");
+            if (btnPublicTransport.BackColor == PRIMARY_DARK) transport.Add("Public Transport");
+            if (btnTaxiUber.BackColor == PRIMARY_DARK) transport.Add("Taxi");
+            if (btnRentACar.BackColor == PRIMARY_DARK) transport.Add("Car Rental");
             return transport;
         }
-
-
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             //Color lightColor = Color.White;

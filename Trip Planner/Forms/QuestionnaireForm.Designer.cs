@@ -215,12 +215,9 @@
             // 
             // btnBack
             // 
-            this.btnBack.BackColor = System.Drawing.Color.Transparent;
             this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBack.Enabled = false;
             this.btnBack.FlatAppearance.BorderSize = 0;
-            this.btnBack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightBlue;
-            this.btnBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.AppWorkspace;
@@ -235,11 +232,9 @@
             // 
             // btnContinue
             // 
-            this.btnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
             this.btnContinue.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnContinue.Enabled = false;
-            this.btnContinue.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightBlue;
-            this.btnContinue.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnContinue.FlatAppearance.BorderSize = 0;
             this.btnContinue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnContinue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnContinue.ForeColor = System.Drawing.Color.Black;
@@ -610,9 +605,7 @@
             // 
             // btnBackpacking
             // 
-            this.btnBackpacking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
             this.btnBackpacking.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBackpacking.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
             this.btnBackpacking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBackpacking.Location = new System.Drawing.Point(455, 185);
             this.btnBackpacking.Margin = new System.Windows.Forms.Padding(2);
@@ -626,9 +619,7 @@
             // 
             // btnLuxury
             // 
-            this.btnLuxury.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
             this.btnLuxury.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLuxury.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
             this.btnLuxury.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLuxury.Location = new System.Drawing.Point(162, 185);
             this.btnLuxury.Margin = new System.Windows.Forms.Padding(2);
@@ -642,9 +633,7 @@
             // 
             // btnRelaxing
             // 
-            this.btnRelaxing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
             this.btnRelaxing.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRelaxing.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
             this.btnRelaxing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRelaxing.Location = new System.Drawing.Point(287, 98);
             this.btnRelaxing.Margin = new System.Windows.Forms.Padding(2);
@@ -658,9 +647,7 @@
             // 
             // btnAdventure
             // 
-            this.btnAdventure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
             this.btnAdventure.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdventure.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
             this.btnAdventure.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdventure.Location = new System.Drawing.Point(549, 98);
             this.btnAdventure.Margin = new System.Windows.Forms.Padding(2);
@@ -674,9 +661,7 @@
             // 
             // btnActive
             // 
-            this.btnActive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(241)))), ((int)(((byte)(232)))));
             this.btnActive.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnActive.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
             this.btnActive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActive.Location = new System.Drawing.Point(32, 98);
             this.btnActive.Margin = new System.Windows.Forms.Padding(2);
@@ -736,9 +721,7 @@
             // 
             // btnShopping
             // 
-            this.btnShopping.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnShopping.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnShopping.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnShopping.FlatAppearance.BorderSize = 0;
             this.btnShopping.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShopping.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -753,9 +736,7 @@
             // 
             // btnFood
             // 
-            this.btnFood.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnFood.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFood.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnFood.FlatAppearance.BorderSize = 0;
             this.btnFood.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFood.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -770,9 +751,7 @@
             // 
             // btnNature
             // 
-            this.btnNature.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnNature.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNature.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnNature.FlatAppearance.BorderSize = 0;
             this.btnNature.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNature.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -787,9 +766,7 @@
             // 
             // btnNightLife
             // 
-            this.btnNightLife.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnNightLife.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNightLife.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnNightLife.FlatAppearance.BorderSize = 0;
             this.btnNightLife.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNightLife.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -804,9 +781,7 @@
             // 
             // btnCafes
             // 
-            this.btnCafes.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnCafes.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCafes.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnCafes.FlatAppearance.BorderSize = 0;
             this.btnCafes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCafes.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -821,9 +796,7 @@
             // 
             // btnBeaches
             // 
-            this.btnBeaches.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnBeaches.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBeaches.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnBeaches.FlatAppearance.BorderSize = 0;
             this.btnBeaches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBeaches.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -838,9 +811,7 @@
             // 
             // btnMuseum
             // 
-            this.btnMuseum.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnMuseum.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMuseum.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnMuseum.FlatAppearance.BorderSize = 0;
             this.btnMuseum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMuseum.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -855,9 +826,7 @@
             // 
             // btnHiddenGems
             // 
-            this.btnHiddenGems.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnHiddenGems.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHiddenGems.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnHiddenGems.FlatAppearance.BorderSize = 0;
             this.btnHiddenGems.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHiddenGems.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -948,12 +917,8 @@
             // 
             // btnFlorence
             // 
-            this.btnFlorence.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(245)))), ((int)(((byte)(235)))));
             this.btnFlorence.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFlorence.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
-            this.btnFlorence.FlatAppearance.BorderSize = 3;
-            this.btnFlorence.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnFlorence.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.btnFlorence.FlatAppearance.BorderSize = 0;
             this.btnFlorence.Location = new System.Drawing.Point(513, 216);
             this.btnFlorence.Margin = new System.Windows.Forms.Padding(2);
             this.btnFlorence.Name = "btnFlorence";
@@ -965,12 +930,8 @@
             // 
             // btnTokyo
             // 
-            this.btnTokyo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(245)))), ((int)(((byte)(235)))));
             this.btnTokyo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTokyo.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
-            this.btnTokyo.FlatAppearance.BorderSize = 3;
-            this.btnTokyo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnTokyo.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.btnTokyo.FlatAppearance.BorderSize = 0;
             this.btnTokyo.Location = new System.Drawing.Point(393, 216);
             this.btnTokyo.Margin = new System.Windows.Forms.Padding(2);
             this.btnTokyo.Name = "btnTokyo";
@@ -982,12 +943,8 @@
             // 
             // btnIstanbul
             // 
-            this.btnIstanbul.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(245)))), ((int)(((byte)(235)))));
             this.btnIstanbul.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnIstanbul.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
-            this.btnIstanbul.FlatAppearance.BorderSize = 3;
-            this.btnIstanbul.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnIstanbul.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.btnIstanbul.FlatAppearance.BorderSize = 0;
             this.btnIstanbul.Location = new System.Drawing.Point(272, 216);
             this.btnIstanbul.Margin = new System.Windows.Forms.Padding(2);
             this.btnIstanbul.Name = "btnIstanbul";
@@ -999,12 +956,8 @@
             // 
             // btnVienna
             // 
-            this.btnVienna.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(245)))), ((int)(((byte)(235)))));
             this.btnVienna.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVienna.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
-            this.btnVienna.FlatAppearance.BorderSize = 3;
-            this.btnVienna.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnVienna.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.btnVienna.FlatAppearance.BorderSize = 0;
             this.btnVienna.Location = new System.Drawing.Point(155, 216);
             this.btnVienna.Margin = new System.Windows.Forms.Padding(2);
             this.btnVienna.Name = "btnVienna";
@@ -1016,12 +969,8 @@
             // 
             // btnChicago
             // 
-            this.btnChicago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(245)))), ((int)(((byte)(235)))));
             this.btnChicago.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnChicago.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
-            this.btnChicago.FlatAppearance.BorderSize = 3;
-            this.btnChicago.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnChicago.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.btnChicago.FlatAppearance.BorderSize = 0;
             this.btnChicago.Location = new System.Drawing.Point(633, 216);
             this.btnChicago.Margin = new System.Windows.Forms.Padding(2);
             this.btnChicago.Name = "btnChicago";
@@ -1033,12 +982,8 @@
             // 
             // btnLisbon
             // 
-            this.btnLisbon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(245)))), ((int)(((byte)(235)))));
             this.btnLisbon.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLisbon.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
-            this.btnLisbon.FlatAppearance.BorderSize = 3;
-            this.btnLisbon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnLisbon.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.btnLisbon.FlatAppearance.BorderSize = 0;
             this.btnLisbon.Location = new System.Drawing.Point(31, 216);
             this.btnLisbon.Margin = new System.Windows.Forms.Padding(2);
             this.btnLisbon.Name = "btnLisbon";
@@ -1196,9 +1141,7 @@
             // 
             // btnBike
             // 
-            this.btnBike.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnBike.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBike.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnBike.FlatAppearance.BorderSize = 0;
             this.btnBike.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBike.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1213,9 +1156,7 @@
             // 
             // btnTaxiUber
             // 
-            this.btnTaxiUber.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnTaxiUber.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTaxiUber.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnTaxiUber.FlatAppearance.BorderSize = 0;
             this.btnTaxiUber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTaxiUber.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1230,9 +1171,7 @@
             // 
             // btnPublicTransport
             // 
-            this.btnPublicTransport.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnPublicTransport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPublicTransport.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnPublicTransport.FlatAppearance.BorderSize = 0;
             this.btnPublicTransport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPublicTransport.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1247,9 +1186,7 @@
             // 
             // btnRentACar
             // 
-            this.btnRentACar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnRentACar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRentACar.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnRentACar.FlatAppearance.BorderSize = 0;
             this.btnRentACar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRentACar.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1264,9 +1201,7 @@
             // 
             // btnWalking
             // 
-            this.btnWalking.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnWalking.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnWalking.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.btnWalking.FlatAppearance.BorderSize = 0;
             this.btnWalking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWalking.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1366,7 +1301,6 @@
             // 
             // btnGenerate
             // 
-            this.btnGenerate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnGenerate.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.btnGenerate.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.btnGenerate.Location = new System.Drawing.Point(417, 253);

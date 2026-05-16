@@ -272,10 +272,13 @@ namespace Trip_Planner
         {
             InitializeComponent();
 
-            ConfigureButtons(this);
+            this.Resize += Form1_Resize;
 
             ApplyButtonIcons();
 
+            ConfigureButtons(this);
+
+            
             this.DoubleBuffered = true;
 
             steps = new Panel[] { questionPanel1, questionPanel2, questionPanel3, questionPanel4, questionPanel5, questionPanel6, questionPanel7, questionPanel8 };
@@ -399,6 +402,26 @@ namespace Trip_Planner
             }
         }
 
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+
+            RoundAllButtons(this);
+        }
+
+        private void RoundAllButtons(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is Button btn)
+                {
+                    ApplyRoundCorners(btn, 20);
+                }
+
+                if (c.HasChildren)
+                    RoundAllButtons(c);
+            }
+        }
         private void txtDestination_TextChanged(object sender, EventArgs e)
         {
 
@@ -615,7 +638,9 @@ namespace Trip_Planner
 
         private void ApplyRoundCorners(Button btn, int radius)
         {
-            btn.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, btn.Width, btn.Height, radius, radius));
+            if (btn == null) return;
+
+            btn.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btn.Width, btn.Height, radius, radius));
         }
 
 
@@ -948,6 +973,7 @@ namespace Trip_Planner
         {
             //panelLoading.Left = (this.ClientSize.Width - panelLoading.Width) / 2;
             //panelLoading.Top = (this.ClientSize.Height - panelLoading.Height) / 2;
+            RoundAllButtons(this);
         }
 
         private void btnThemeToggle_Click(object sender, EventArgs e)

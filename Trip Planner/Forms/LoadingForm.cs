@@ -47,11 +47,6 @@ namespace Trip_Planner.Forms
 
         }
 
-        private void progressBarLoading_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void LoadingForm_Load_1(object sender, EventArgs e)
         {
             lblGeneratingPlan.Left = (this.ClientSize.Width - lblGeneratingPlan.Width) / 2;

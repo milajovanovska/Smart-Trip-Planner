@@ -67,7 +67,6 @@
             this.progressBarLoading.Size = new System.Drawing.Size(750, 43);
             this.progressBarLoading.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBarLoading.TabIndex = 1;
-            this.progressBarLoading.Click += new System.EventHandler(this.progressBarLoading_Click);
             // 
             // timerLoading
             // 

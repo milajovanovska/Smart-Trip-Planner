@@ -941,5 +941,12 @@ namespace Trip_Planner
             rbAvoid.Checked = !rbAvoid.Checked;
         }
 
+        private void txtDestination_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnContinue.PerformClick();
+            }
+        }
     }
 }

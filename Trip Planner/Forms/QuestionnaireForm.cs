@@ -122,7 +122,7 @@ namespace Trip_Planner
         }
         private void SetDarkTheme()
         {
-            PRIMARY = Color.FromArgb(46, 39, 90) ;
+            PRIMARY = Color.FromArgb(46, 39, 90);
 
             PRIMARY_DARK = Color.FromArgb(113, 144, 199);
 
@@ -156,7 +156,7 @@ namespace Trip_Planner
 
             foreach (Control c in GetAllControls(this))
             {
-                if (c is Button btn )
+                if (c is Button btn)
                 {
                     btn.BackColor = PRIMARY;
                     btn.ForeColor = Color.White;
@@ -287,7 +287,7 @@ namespace Trip_Planner
 
             ConfigureButtons(this);
 
-            
+
             this.DoubleBuffered = true;
 
             steps = new Panel[] { questionPanel1, questionPanel2, questionPanel3, questionPanel4, questionPanel5, questionPanel6, questionPanel7, questionPanel8 };
@@ -347,7 +347,7 @@ namespace Trip_Planner
             {
                 case 1:
                     lblTitle.Text = "Pick your destination";
-                    txtDestination_TextChanged(null, null);
+                    txtDestination_TextChanged_1(null, null);
                     btnContinue.Enabled = false;
                     btnBack.Visible = false;
                     btnContinue.Visible = true;
@@ -424,10 +424,7 @@ namespace Trip_Planner
                     RoundAllButtons(c);
             }
         }
-        private void txtDestination_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void UpdateProgress(int step, int totalSteps)
         {
@@ -895,14 +892,6 @@ namespace Trip_Planner
         }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            //Color lightColor = Color.White;
-            //Color darkColor = Color.FromArgb(180, 200, 240);
-
-            //using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, lightColor, darkColor, 45F))
-            //{
-            //    e.Graphics.FillRectangle(brush, this.ClientRectangle);
-            //}
-
             using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, CARD, BACKGROUND, 45F))
             {
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
@@ -926,8 +915,6 @@ namespace Trip_Planner
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            //panelLoading.Left = (this.ClientSize.Width - panelLoading.Width) / 2;
-            //panelLoading.Top = (this.ClientSize.Height - panelLoading.Height) / 2;
             RoundAllButtons(this);
         }
 
@@ -954,9 +941,5 @@ namespace Trip_Planner
             rbAvoid.Checked = !rbAvoid.Checked;
         }
 
-        //private async void btnTestAI_Click(object sender, EventArgs e)
-        //{
-
-        //}
     }
 }

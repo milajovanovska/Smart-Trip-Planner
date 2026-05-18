@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Trip_Planner.Models;
-using System.Collections.Generic;
 
 namespace Trip_Planner.Services
 {
@@ -16,45 +15,40 @@ namespace Trip_Planner.Services
             _apiKey = apiKey;
         }
 
-        public async Task<string> SearchPlacesAsync(string query)
+        public async Task<List<Activity>> SearchPlacesAsync(string city, string category)
         {
             using (HttpClient client = new HttpClient())
             {
-                string url =
-                    $"https://serpapi.com/search.json?engine=google_maps&q={query}&api_key={_apiKey}";
+                string query = System.Uri.EscapeDataString($"{category} in {city}");
+                string url = $"https://serpapi.com/search.json?engine=google_maps&q={query}&api_key={_apiKey}";
 
-                var response =
-                    await client.GetAsync(url);
+                var response = await client.GetAsync(url);
+                string json = await response.Content.ReadAsStringAsync();
 
-                return await response.Content.ReadAsStringAsync();
+                return ParseActivities(json, category);
             }
         }
-        public List<Activity> ParseActivities(string json)
+
+        private List<Activity> ParseActivities(string json, string category)
         {
-            List<Activity> activities =
-                new List<Activity>();
+            var activities = new List<Activity>();
+            var parsed = JsonConvert.DeserializeObject<SerpApiResponse>(json);
 
-            var parsed =
-                JsonConvert.DeserializeObject<SerpApiResponse>(json);
-
-            if (parsed?.local_results == null)
-            {
-                return activities;
-            }
+            if (parsed?.local_results == null) return activities;
 
             foreach (var item in parsed.local_results)
             {
-                Activity activity = new Activity
+                activities.Add(new Activity
                 {
                     Name = item.title,
                     Rating = item.rating,
                     Address = item.address,
                     Description = item.description,
-                    Category = item.type,
-                    EstimatedCost = 25
-                };
-
-                activities.Add(activity);
+                    Category = category,
+                    EstimatedCost = 20,
+                    Latitude = item.gps?.latitude ?? 0,
+                    Longitude = item.gps?.longitude ?? 0
+                });
             }
 
             return activities;

@@ -1,0 +1,2941 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Anthropic.SDK</name>
+    </assembly>
+    <members>
+        <member name="T:Anthropic.SDK.AnthropicClient">
+            <summary>
+            Entry point to the Anthropic API, handling auth and allowing access to the various API endpoints
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.AnthropicClient.ApiUrlFormat">
+            <summary>
+            The base URL for the API
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.AnthropicClient.ApiVersion">
+            <summary>
+            Version of the Rest Api
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.AnthropicClient.AnthropicVersion">
+            <summary>
+            Version of the Anthropic API
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.AnthropicClient.AnthropicBetaVersion">
+            <summary>
+            Version of the Anthropic Beta API
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.AnthropicClient.Auth">
+            <summary>
+            The API authentication information to use for API calls
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.AnthropicClient.HttpClient">
+            <summary>
+            Optionally provide a custom HttpClient to send requests.
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.AnthropicClient._requestInterceptor">
+            <summary>
+            Optional request interceptor for custom retry logic, logging, or other cross-cutting concerns.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.AnthropicClient.RequestInterceptor">
+            <summary>
+            Gets the request interceptor if one was provided.
+            Used internally by endpoints to intercept HTTP requests.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.AnthropicClient.#ctor(Anthropic.SDK.APIAuthentication,System.Net.Http.HttpClient,Anthropic.SDK.IRequestInterceptor)">
+            <summary>
+            Creates a new entry point to the Anthropic API, handling auth and allowing access to the various API endpoints
+            </summary>
+            <param name="apiKeys">
+            The API authentication information to use for API calls,
+            or <see langword="null"/> to attempt to use the <see cref="P:Anthropic.SDK.APIAuthentication.Default"/>,
+            potentially loading from environment vars.
+            </param>
+            <param name="client">A <see cref="P:Anthropic.SDK.AnthropicClient.HttpClient"/>.</param>
+            <param name="requestInterceptor">
+            Optional request interceptor for advanced scenarios like custom retry logic, logging, or auditing.
+            Most users don't need this - the SDK works perfectly without it.
+            Only provide this if you need to intercept and customize HTTP requests before they're sent.
+            </param>
+            <remarks>
+            <para>
+            <see cref="T:Anthropic.SDK.AnthropicClient"/> implements <see cref="T:System.IDisposable"/> to manage the lifecycle of the resources it uses, including <see cref="P:Anthropic.SDK.AnthropicClient.HttpClient"/>.
+            When you initialize <see cref="T:Anthropic.SDK.AnthropicClient"/>, it will create an internal <see cref="P:Anthropic.SDK.AnthropicClient.HttpClient"/> instance if one is not provided.
+            This internal HttpClient is disposed of when AnthropicClient is disposed of.
+            If you provide an external HttpClient instance to AnthropicClient, you are responsible for managing its disposal.
+            </para>
+            <para>
+            <b>Request Interceptor:</b> This is an advanced feature for scenarios requiring custom request handling.
+            Common use cases include:
+            <list type="bullet">
+            <item>Custom retry logic beyond what HttpClient provides</item>
+            <item>Special logging/tracing requirements</item>
+            <item>Company-specific audit requirements</item>
+            <item>Request/response modification or inspection</item>
+            </list>
+            If you're already handling resilience at the HttpClient level (via Polly, HttpClientFactory policies, etc.),
+            you typically don't need a request interceptor.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Anthropic.SDK.AnthropicClient.Messages">
+            <summary>
+            Text generation is the core function of the API. You give the API a prompt, and it generates a completion. The way you “program” the API to do a task is by simply describing the task in plain english or providing a few written examples. This simple approach works for a wide range of use cases, including summarization, translation, grammar correction, question answering, chatbots, composing emails, and much more (see the prompt library for inspiration).
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.AnthropicClient.Batches">
+            <summary>
+            Batches are a way to send multiple requests to the API at once. This is useful for when you have a large number of requests to make, or when you want to make multiple requests in parallel.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.AnthropicClient.Models">
+            <summary>
+            Models are a way to manage the models that the API uses to generate completions. You can list models, as well as get information about a specific model.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.AnthropicClient.Files">
+            <summary>
+            Files API allows you to download, list, and manage Claude-generated files.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.AnthropicClient.Skills">
+            <summary>
+            Skills API allows you to create, list, retrieve, and delete custom skills that extend Claude's capabilities.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.AnthropicClient.Dispose">
+            <summary>
+            Disposes of the resources used by the <see cref="T:Anthropic.SDK.AnthropicClient"/>.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.APIAuthentication.ApiKey">
+            <summary>
+            The API key, required to access the API endpoint.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.APIAuthentication.op_Implicit(System.String)~Anthropic.SDK.APIAuthentication">
+            <summary>
+            Allows implicit casting from a string, so that a simple string API key can be provided in place of an instance of <see cref="T:Anthropic.SDK.APIAuthentication"/>
+            </summary>
+            <param name="key">The API key to convert into a <see cref="T:Anthropic.SDK.APIAuthentication"/>.</param>
+        </member>
+        <member name="M:Anthropic.SDK.APIAuthentication.#ctor(System.String)">
+            <summary>
+            Instantiates a new Authentication object with the given <paramref name="apiKey"/>, which may be <see langword="null"/>.
+            </summary>
+            <param name="apiKey">The API key, required to access the API endpoint.</param>
+        </member>
+        <member name="P:Anthropic.SDK.APIAuthentication.Default">
+            <summary>
+            The default authentication to use when no other auth is specified.  This can be set manually, or automatically loaded via environment variables.  <seealso cref="M:Anthropic.SDK.APIAuthentication.LoadFromEnv"/>
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.APIAuthentication.LoadFromEnv">
+            <summary>
+            Attempts to load api key from environment variables, as "ANTHROPIC_API_KEY".
+            </summary>
+            <returns>Returns the loaded <see cref="T:Anthropic.SDK.APIAuthentication"/> any api keys were found, or <see langword="null"/> if there were no matching environment vars.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.AuthHelpers.ThisOrDefault(Anthropic.SDK.APIAuthentication)">
+            <summary>
+            A helper method to swap out <see langword="null"/> <see cref="T:Anthropic.SDK.APIAuthentication"/> objects with the <see cref="P:Anthropic.SDK.APIAuthentication.Default"/> authentication, possibly loaded from ENV.
+            </summary>
+            <param name="auth">The specific authentication to use if not <see langword="null"/></param>
+            <returns>Either the provided <paramref name="auth"/> or the <see cref="P:Anthropic.SDK.APIAuthentication.Default"/></returns>
+        </member>
+        <member name="T:Anthropic.SDK.BaseEndpoint">
+            <summary>
+            Base class for all API endpoints with common HTTP functionality
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.BaseEndpoint.Url">
+            <summary>
+            Gets the URL of the endpoint.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.BaseEndpoint.GetClient">
+            <summary>
+            Gets an HTTPClient with the appropriate authorization and other headers set.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.BaseEndpoint.GetRequestInterceptor">
+            <summary>
+            Gets the optional request interceptor for adding custom logic to HTTP requests.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.BaseEndpoint.ReadResponseContentAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)">
+            <summary>
+            Helper method to read the response content as a string.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.BaseEndpoint.HttpRequestMessages``1(System.String,System.Net.Http.HttpMethod,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Makes an HTTP request and deserializes the response to the specified type.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.BaseEndpoint.HttpRequestMessages``1(System.String,System.Net.Http.HttpMethod,System.Object,System.Collections.Generic.Dictionary{System.String,System.String},System.Threading.CancellationToken)">
+            <summary>
+            Makes an HTTP request and deserializes the response to the specified type with additional headers.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.BaseEndpoint.HttpRequestSimple``1(System.String,System.Net.Http.HttpMethod,System.Object,System.Collections.Generic.Dictionary{System.String,System.String},System.Threading.CancellationToken)">
+            <summary>
+            Makes an HTTP request and deserializes the response to the specified type without custom converters.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.BaseEndpoint.HttpRequestRaw(System.String,System.Net.Http.HttpMethod,System.Object,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.String},System.Threading.CancellationToken)">
+            <summary>
+            Makes a raw HTTP request and returns the response with additional headers.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.BaseEndpoint.HandleErrorResponseAsync(System.Net.Http.HttpResponseMessage,System.String,System.String)">
+            <summary>
+            Handles error responses from the API.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.BaseEndpoint.HttpStreamingRequestMessages(System.String,System.Net.Http.HttpMethod,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Makes a streaming HTTP request and returns the response as an async enumerable of the specified type.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Batches.BatchesEndpoint.#ctor(Anthropic.SDK.AnthropicClient)">
+            <summary>
+            Constructor of the api endpoint.  Rather than instantiating this yourself, access it through an instance of <see cref="T:Anthropic.SDK.AnthropicClient"/> as <see cref="P:Anthropic.SDK.AnthropicClient.Batches"/>.
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:Anthropic.SDK.Batches.BatchesEndpoint.CreateBatchAsync(System.Collections.Generic.List{Anthropic.SDK.Batches.BatchRequest},System.Threading.CancellationToken)">
+            <summary>
+            Makes a call to create an asynchronous batch call to the Claude AI API.
+            </summary>
+            <param name="batches"></param>
+            <param name="ctx"></param>
+        </member>
+        <member name="M:Anthropic.SDK.Batches.BatchesEndpoint.CancelBatchAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Makes a call to cancel an asynchronous batch call to the Claude AI API.
+            </summary>
+            <param name="batchId"></param>
+            <param name="ctx"></param>
+        </member>
+        <member name="M:Anthropic.SDK.Batches.BatchesEndpoint.RetrieveBatchStatusAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Makes a call to retrieve the status of a batch call to the Claude AI API.
+            </summary>
+            <param name="batchId"></param>
+            <param name="ctx"></param>
+        </member>
+        <member name="M:Anthropic.SDK.Batches.BatchesEndpoint.RetrieveBatchResultsAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Streams strongly typed results from a batch call to the Claude AI API.
+            </summary>
+            <param name="batchId"></param>
+            <param name="ctx"></param>
+        </member>
+        <member name="M:Anthropic.SDK.Batches.BatchesEndpoint.RetrieveBatchResultsJsonlAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Streams jsonl results from a batch call to the Claude AI API.
+            </summary>
+            <param name="batchId"></param>
+            <param name="ctx"></param>
+        </member>
+        <member name="M:Anthropic.SDK.Batches.BatchesEndpoint.ListBatchesAsync(System.String,System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a paginated list of Batches you've created from the Claude AI API.
+            </summary>
+            <param name="beforeId"></param>
+            <param name="afterId"></param>
+            <param name="limit"></param>
+            <param name="ctx"></param>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Function.#ctor(System.String,System.String,System.Text.Json.Nodes.JsonNode)">
+            <summary>
+            Creates a new function description to insert into a chat conversation.
+            </summary>
+            <param name="name">
+            Required. The name of the function to generate arguments for based on the context in a message.<br/>
+            May contain a-z, A-Z, 0-9, underscores and dashes, with a maximum length of 64 characters. Recommended to not begin with a number or a dash.
+            </param>
+            <param name="description">
+            An optional description of the function, used by the API to determine if it is useful to include in the response.
+            </param>
+            <param name="parameters">
+            An optional JSON object describing the parameters of the function that the model can generate.
+            </param>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Function.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Creates a new function description to insert into a chat conversation.
+            </summary>
+            <param name="name">
+            Required. The name of the function to generate arguments for based on the context in a message.<br/>
+            May contain a-z, A-Z, 0-9, underscores and dashes, with a maximum length of 64 characters. Recommended to not begin with a number or a dash.
+            </param>
+            <param name="description">
+            An optional description of the function, used by the API to determine if it is useful to include in the response.
+            </param>
+            <param name="parameters">
+            An optional JSON describing the parameters of the function that the model can generate.
+            </param>
+        </member>
+        <member name="P:Anthropic.SDK.Common.Function.Name">
+            <summary>
+            The name of the function to generate arguments for.<br/>
+            May contain a-z, A-Z, 0-9, and underscores and dashes, with a maximum length of 64 characters.
+            Recommended to not begin with a number or a dash.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Common.Function.Strict">
+            <summary>
+            When set to true, enables strict mode for structured outputs.
+            The tool input will strictly adhere to the input_schema.
+            Requires the structured-outputs-2025-11-13 beta header.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Common.Function.Id">
+            <summary>
+            Id to Send to the API.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Common.Function.Description">
+            <summary>
+            The optional description of the function.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Common.Function.Parameters">
+            <summary>
+            The optional parameters of the function.
+            Describe the parameters that the model should generate in JSON schema format (json-schema.org).
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Common.Function.Arguments">
+            <summary>
+            The arguments to use when calling the function.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Common.Function.Instance">
+            <summary>
+            The instance of the object to invoke the method on.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Common.Function.MethodInfo">
+            <summary>
+            The method to invoke.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Function.Invoke">
+            <summary>
+            Invokes the function and returns the result as json.
+            </summary>
+            <returns>The result of the function as json.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Function.Invoke``1">
+            <summary>
+            Invokes the function and returns the result.
+            </summary>
+            <typeparam name="T">The expected return type.</typeparam>
+            <returns>The result of the function.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Function.InvokeAsync(System.Threading.CancellationToken)">
+            <summary>
+            Invokes the function and returns the result as json.
+            </summary>
+            <param name="cancellationToken">Optional, <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>The result of the function as json.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Function.InvokeAsync``1(System.Threading.CancellationToken)">
+            <summary>
+            Invokes the function and returns the result.
+            </summary>
+            <typeparam name="T">Expected return type.</typeparam>
+            <param name="cancellationToken">Optional, <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>The result of the function.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Common.FunctionParameterAttribute.#ctor(System.String,System.Boolean)">
+            <summary>
+            Function parameter attribute to help describe the parameter for the function.
+            </summary>
+            <param name="description">The description of the parameter and its usage.</param>
+        </member>
+        <member name="M:Anthropic.SDK.Common.FunctionPropertyAttribute.#ctor(System.String,System.Boolean,System.Object,System.Object[])">
+            <summary>
+            Property Attribute to help with function calling.
+            </summary>
+            <param name="description">
+            The description of the property
+            </param>
+            <param name="required">
+            Is the property required?
+            </param>
+            <param name="defaultValue">
+            The default value.
+            </param>
+            <param name="possibleValues">
+            Enums or other possible values.
+            </param>
+        </member>
+        <member name="P:Anthropic.SDK.Common.FunctionPropertyAttribute.Description">
+            <summary>
+            The description of the property
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Common.FunctionPropertyAttribute.Required">
+            <summary>
+            Is the property required?
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Common.FunctionPropertyAttribute.DefaultValue">
+            <summary>
+            The default value.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Common.FunctionPropertyAttribute.PossibleValues">
+            <summary>
+            Enums or other possible values.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Tool.InvokeFunction">
+            <summary>
+            Invokes the function and returns the result as json.
+            </summary>
+            <returns>The result of the function as json.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Tool.InvokeFunction``1">
+            <summary>
+            Invokes the function and returns the result.
+            </summary>
+            <typeparam name="T">The type to deserialize the result to.</typeparam>
+            <returns>The result of the function.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Tool.InvokeFunctionAsync(System.Threading.CancellationToken)">
+            <summary>
+            Invokes the function and returns the result as json.
+            </summary>
+            <param name="cancellationToken">Optional, A token to cancel the request.</param>
+            <returns>The result of the function as json.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Tool.InvokeFunctionAsync``1(System.Threading.CancellationToken)">
+            <summary>
+            Invokes the function and returns the result.
+            </summary>
+            <typeparam name="T">The type to deserialize the result to.</typeparam>
+            <param name="cancellationToken">Optional, A token to cancel the request.</param>
+            <returns>The result of the function.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Tool.ClearRegisteredTools">
+            <summary>
+            Clears the tool cache of all previously registered tools.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Tool.IsToolRegistered(Anthropic.SDK.Common.Tool)">
+            <summary>
+            Checks if tool exists in cache.
+            </summary>
+            <param name="tool">The tool to check.</param>
+            <returns>True, if the tool is already registered in the tool cache.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Tool.TryRegisterTool(Anthropic.SDK.Common.Tool)">
+            <summary>
+            Tries to register a tool into the Tool cache.
+            </summary>
+            <param name="tool">The tool to register.</param>
+            <returns>True, if the tool was added to the cache.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Tool.GetAllAvailableTools(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Gets a list of all available tools.
+            </summary>
+            <remarks>
+            This method will scan all assemblies for static methods decorated with the <see cref="T:Anthropic.SDK.Common.FunctionAttribute"/>.
+            </remarks>
+            <param name="includeDefaults">Optional, Whether to include the default tools (Retrieval and CodeInterpreter).</param>
+            <param name="forceUpdate">Optional, Whether to force an update of the tool cache.</param>
+            <param name="clearCache">Optional, whether to force the tool cache to be cleared before updating.</param>
+            <returns>A list of all available tools.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Tool.GetOrCreateTool(System.Type,System.String,System.String)">
+            <summary>
+            Get or create a tool from a static method.
+            </summary>
+            <remarks>
+            If the tool already exists, it will be returned. Otherwise, a new tool will be created.<br/>
+            The method doesn't need to be decorated with the <see cref="T:Anthropic.SDK.Common.FunctionAttribute"/>.<br/>
+            </remarks>
+            <param name="type">The type containing the static method.</param>
+            <param name="methodName">The name of the method.</param>
+            <param name="description">Optional, The description of the method.</param>
+            <returns>The tool for the method.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Common.Tool.GetOrCreateTool(System.Object,System.String,System.String)">
+            <summary>
+            Get or create a tool from a method of an instance of an object.
+            </summary>
+            <remarks>
+            If the tool already exists, it will be returned. Otherwise, a new tool will be created.<br/>
+            The method doesn't need to be decorated with the <see cref="T:Anthropic.SDK.Common.FunctionAttribute"/>.<br/>
+            </remarks>
+            <param name="instance">The instance of the object containing the method.</param>
+            <param name="methodName">The name of the method.</param>
+            <param name="description">Optional, The description of the method.</param>
+            <returns>The tool for the method.</returns>
+        </member>
+        <member name="T:Anthropic.SDK.Constants.AnthropicModels">
+            <summary>
+            Constants that represent Anthropic Models.
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.AnthropicModels.Claude46Opus">
+            <summary>
+            Claude 4.6 Opus
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.AnthropicModels.Claude46Sonnet">
+            <summary>
+            Claude 4.6 Opus
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.AnthropicModels.Claude45Opus">
+            <summary>
+            Claude 4.5 Opus
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.AnthropicModels.Claude4Sonnet">
+            <summary>
+            Claude 4 Sonnet
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.AnthropicModels.Claude45Sonnet">
+            <summary>
+            Claude 4.5 Sonnet
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.AnthropicModels.Claude4Opus">
+            <summary>
+            Claude 4 Opus
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.AnthropicModels.Claude41Opus">
+            <summary>
+            Claude 4.1 Opus
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.AnthropicModels.Claude45Haiku">
+            <summary>
+            Claude 4.5 Haiku
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Constants.VertexAIModels">
+            <summary>
+            Constants that represent Anthropic Models available on Vertex AI.
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.VertexAIModels.Claude3Haiku">
+            <summary>
+            Claude 3 Haiku on Vertex AI - Fastest and most compact model for near-instant responsiveness
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.VertexAIModels.Claude4Sonnet">
+            <summary>
+            Claude 4 Sonnet on Vertex AI
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.VertexAIModels.Claude45Sonnet">
+            <summary>
+            Claude 4.5 Sonnet on Vertex AI
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.VertexAIModels.Claude45Haiku">
+            <summary>
+            Claude 4.5 Haiku on Vertex AI
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.VertexAIModels.Claude4Opus">
+            <summary>
+            Claude 4 Opus on Vertex AI
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.VertexAIModels.Claude41Opus">
+            <summary>
+            Claude 4.1 Opus on Vertex AI
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.VertexAIModels.Claude45Opus">
+            <summary>
+            Claude 4.5 Opus on Vertex AI
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.VertexAIModels.Claude46Sonnet">
+            <summary>
+            Claude 4.6 Sonnet on Vertex AI
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Constants.VertexAIModels.Claude46Opus">
+            <summary>
+            Claude 4.6 Opus on Vertex AI
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.EndpointBase.Client">
+            <summary>
+            The internal reference to the Client, mostly used for authentication
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.EndpointBase.#ctor(Anthropic.SDK.AnthropicClient)">
+            <summary>
+            Constructor of the api endpoint base, to be called from the constructor of any derived classes.
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="P:Anthropic.SDK.EndpointBase.Endpoint">
+            <summary>
+            The name of the endpoint, which is the final path segment in the API URL.  Must be overriden in a derived class.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.EndpointBase.Url">
+            <summary>
+            Gets the URL of the endpoint.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.EndpointBase.GetClient">
+            <summary>
+            Gets an HTTPClient with the appropriate authorization and other headers set.
+            </summary>
+            <returns>The fully initialized HttpClient</returns>
+            <exception cref="T:System.Security.Authentication.AuthenticationException">Thrown if there is no valid authentication.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.EndpointBase.GetRequestInterceptor">
+            <summary>
+            Gets the optional request interceptor for adding custom logic to HTTP requests.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.EndpointBase.HandleErrorResponseAsync(System.Net.Http.HttpResponseMessage,System.String,System.String)">
+            <summary>
+            Handle error responses from the API
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.EndpointBase.HttpStreamingRequestMessages(System.String,System.Net.Http.HttpMethod,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Makes a streaming HTTP request and returns the response as an async enumerable of MessageResponse.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.EndpointBase.HttpStreamingRequestMessages(System.String,System.Net.Http.HttpMethod,System.Object,System.Collections.Generic.Dictionary{System.String,System.String},System.Threading.CancellationToken)">
+            <summary>
+            Makes a streaming HTTP request and returns the response as an async enumerable of MessageResponse with additional headers.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Examples.LoggingInterceptor">
+             <summary>
+             Example implementation of IRequestInterceptor that logs HTTP request and response details.
+             This is a reference implementation showing how to add logging, metrics, and diagnostics.
+             </summary>
+             <remarks>
+             This interceptor logs request/response information for debugging and monitoring purposes.
+             It measures request duration and captures status codes, URLs, and optional request/response bodies.
+            
+             Usage:
+             <code>
+             var loggingInterceptor = new LoggingInterceptor(
+                 logRequestBody: true,
+                 logResponseBody: true
+             );
+            
+             var client = new AnthropicClient(
+                 apiKeys: new APIAuthentication("your-api-key"),
+                 requestInterceptor: loggingInterceptor
+             );
+             </code>
+             </remarks>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.LoggingInterceptor.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Creates a new LoggingInterceptor with the specified logging options.
+            </summary>
+            <param name="logRequestBody">Whether to log request body content (default: false)</param>
+            <param name="logResponseBody">Whether to log response body content (default: false)</param>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.LoggingInterceptor.InvokeAsync(System.Net.Http.HttpRequestMessage,System.Func{System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}},System.Threading.CancellationToken)">
+            <summary>
+            Intercepts the HTTP request and logs request/response details.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.LoggingInterceptor.LogRequestAsync(System.String,System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>
+            Logs HTTP request details.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.LoggingInterceptor.LogResponseAsync(System.String,System.Net.Http.HttpResponseMessage,System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            Logs HTTP response details.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.LoggingInterceptor.LogException(System.String,System.Exception,System.Int64)">
+            <summary>
+            Logs exceptions that occur during request execution.
+            Override this method to implement custom logging.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.LoggingInterceptor.LogRequest(System.String,System.String,System.String,System.String)">
+            <summary>
+            Logs outgoing HTTP request.
+            Override this method to implement custom logging.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.LoggingInterceptor.LogResponse(System.String,System.Int32,System.String,System.Int64,System.String)">
+            <summary>
+            Logs incoming HTTP response.
+            Override this method to implement custom logging.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Examples.RetryInterceptor">
+             <summary>
+             Example implementation of IRequestInterceptor that adds retry logic with exponential backoff.
+             This is a reference implementation showing how to handle transient failures.
+             </summary>
+             <remarks>
+             This interceptor retries failed requests based on HTTP status codes and exceptions.
+             It uses exponential backoff to avoid overwhelming the server during outages.
+            
+             This interceptor clones HttpRequestMessage for each retry attempt.
+             Request content is buffered in memory before the first attempt,
+             so this may not be suitable for very large request bodies (>100MB).
+             For large uploads, consider implementing retries at the application level
+             or using a streaming-friendly approach.
+            
+             Usage:
+             <code>
+             var retryInterceptor = new RetryInterceptor(
+                 maxRetries: 3,
+                 initialDelay: TimeSpan.FromSeconds(1)
+             );
+            
+             var client = new AnthropicClient(
+                 apiKeys: new APIAuthentication("your-api-key"),
+                 requestInterceptor: retryInterceptor
+             );
+             </code>
+             </remarks>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.RetryInterceptor.#ctor(System.Int32,System.Nullable{System.TimeSpan},System.Double)">
+            <summary>
+            Creates a new RetryInterceptor with the specified retry configuration.
+            </summary>
+            <param name="maxRetries">Maximum number of retry attempts (default: 3)</param>
+            <param name="initialDelay">Initial delay before first retry (default: 1 second)</param>
+            <param name="backoffMultiplier">Multiplier for exponential backoff (default: 2.0)</param>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.RetryInterceptor.InvokeAsync(System.Net.Http.HttpRequestMessage,System.Func{System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}},System.Threading.CancellationToken)">
+            <summary>
+            Intercepts the HTTP request and adds retry logic with exponential backoff.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.RetryInterceptor.ShouldRetry(System.Net.HttpStatusCode,System.Int32)">
+            <summary>
+            Determines if a status code should trigger a retry.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.RetryInterceptor.IsTransientException(System.Exception,System.Threading.CancellationToken)">
+            <summary>
+            Determines if an exception is transient and should trigger a retry.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.RetryInterceptor.DelayBeforeRetry(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Calculates and applies the delay before the next retry using exponential backoff.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.RetryInterceptor.LogRetryAttempt(System.Int32,System.Net.HttpStatusCode,System.String)">
+            <summary>
+            Logs retry attempts due to HTTP status codes.
+            Override this method to implement custom logging.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.RetryInterceptor.LogExceptionRetry(System.Int32,System.Exception)">
+            <summary>
+            Logs retry attempts due to exceptions.
+            Override this method to implement custom logging.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Examples.RetryInterceptor.CloneRequest(System.Net.Http.HttpRequestMessage,System.Byte[])">
+            <summary>
+            Clones an HttpRequestMessage using pre-captured content.
+            </summary>
+            <remarks>
+            This method creates a new request with the same properties as the original,
+            using content that was buffered before the first attempt.
+            This ensures that request content can be replayed for retry attempts.
+            </remarks>
+        </member>
+        <member name="T:Anthropic.SDK.Extensions.WebFetchConfiguration">
+            <summary>
+            Configuration for the web fetch tool when used via IChatClient.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Extensions.ChatOptionsExtensions">
+            <summary>
+            Extensions for ChatOptions to support Anthropic-specific features
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.ChatOptionsExtensions.WithThinking(Microsoft.Extensions.AI.ChatOptions,System.Int32)">
+            <summary>
+            Sets thinking parameters for extended thinking support in compatible models like Claude 3.7 Sonnet
+            </summary>
+            <param name="options">The ChatOptions instance</param>
+            <param name="budgetTokens">The budget tokens for thinking (typically up to max_tokens unless using interleaved thinking)</param>
+            <returns>The ChatOptions instance for fluent chaining</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.ChatOptionsExtensions.WithThinking(Microsoft.Extensions.AI.ChatOptions,Anthropic.SDK.Messaging.ThinkingParameters)">
+            <summary>
+            Sets thinking parameters for extended thinking support in compatible models like Claude 3.7 Sonnet
+            </summary>
+            <param name="options">The ChatOptions instance</param>
+            <param name="thinkingParameters">The thinking parameters to set</param>
+            <returns>The ChatOptions instance for fluent chaining</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.ChatOptionsExtensions.WithInterleavedThinking(Microsoft.Extensions.AI.ChatOptions,System.Int32)">
+            <summary>
+            Sets interleaved thinking parameters for enhanced thinking support. This enables the interleaved-thinking-2025-05-14 beta header
+            which allows thinking tokens to exceed max_tokens. Note: On 3rd-party platforms (Bedrock, Vertex AI), this only works 
+            with Claude Opus 4.1, Opus 4, or Sonnet 4 models.
+            </summary>
+            <param name="options">The ChatOptions instance</param>
+            <param name="budgetTokens">The budget tokens for thinking (can exceed max_tokens when using interleaved thinking)</param>
+            <returns>The ChatOptions instance for fluent chaining</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.ChatOptionsExtensions.WithInterleavedThinking(Microsoft.Extensions.AI.ChatOptions,Anthropic.SDK.Messaging.ThinkingParameters)">
+            <summary>
+            Sets interleaved thinking parameters for enhanced thinking support. This enables the interleaved-thinking-2025-05-14 beta header
+            which allows thinking tokens to exceed max_tokens. Note: On 3rd-party platforms (Bedrock, Vertex AI), this only works 
+            with Claude Opus 4.1, Opus 4, or Sonnet 4 models.
+            </summary>
+            <param name="options">The ChatOptions instance</param>
+            <param name="thinkingParameters">The thinking parameters to set</param>
+            <returns>The ChatOptions instance for fluent chaining</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.ChatOptionsExtensions.WithAdaptiveThinking(Microsoft.Extensions.AI.ChatOptions)">
+            <summary>
+            Sets adaptive thinking mode, which lets Claude dynamically determine when and how much to use extended thinking.
+            Recommended for Claude Opus 4.6 and Sonnet 4.6. Interleaved thinking is automatically enabled.
+            </summary>
+            <param name="options">The ChatOptions instance</param>
+            <returns>The ChatOptions instance for fluent chaining</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.ChatOptionsExtensions.WithAdaptiveThinking(Microsoft.Extensions.AI.ChatOptions,Anthropic.SDK.Messaging.ThinkingEffort)">
+            <summary>
+            Sets adaptive thinking mode with a specific effort level. The effort level is mapped to output_config.effort
+            to guide how much thinking Claude does. Recommended for Claude Opus 4.6 and Sonnet 4.6.
+            </summary>
+            <param name="options">The ChatOptions instance</param>
+            <param name="effort">The effort level (low, medium, high, or max) to guide thinking allocation</param>
+            <returns>The ChatOptions instance for fluent chaining</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.ChatOptionsExtensions.GetThinkingParameters(Microsoft.Extensions.AI.ChatOptions)">
+            <summary>
+            Gets the thinking parameters from ChatOptions
+            </summary>
+            <param name="options">The ChatOptions instance</param>
+            <returns>The thinking parameters, or null if not set</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.ChatOptionsExtensions.WithStrictTools(Microsoft.Extensions.AI.ChatOptions,System.Boolean)">
+            <summary>
+            Enables strict mode for tool use, which guarantees that tool inputs conform exactly to the schema.
+            Requires the structured-outputs-2025-11-13 beta header (automatically added).
+            Note: Strict tools are automatically enabled when using ResponseFormat with a JSON schema.
+            </summary>
+            <param name="options">The ChatOptions instance</param>
+            <param name="strict">Whether to enable strict mode (default: true)</param>
+            <returns>The ChatOptions instance for fluent chaining</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.ChatOptionsExtensions.GetStrictToolsEnabled(Microsoft.Extensions.AI.ChatOptions)">
+            <summary>
+            Gets whether strict tools mode is enabled from ChatOptions
+            </summary>
+            <param name="options">The ChatOptions instance</param>
+            <returns>True if strict tools mode is enabled, false otherwise</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.ChatOptionsExtensions.WithWebFetch(Microsoft.Extensions.AI.ChatOptions,System.Nullable{System.Int32},System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.Boolean,System.Nullable{System.Int32})">
+            <summary>
+            Enables the web fetch tool for IChatClient requests. Since Microsoft.Extensions.AI does not
+            have a built-in HostedWebFetchTool, this extension method provides an Anthropic-specific way
+            to enable web fetch capability.
+            </summary>
+            <param name="options">The ChatOptions instance</param>
+            <param name="maxUses">Optional limit on the number of fetches per request</param>
+            <param name="allowedDomains">Optional list of domains to allow fetching from</param>
+            <param name="blockedDomains">Optional list of domains to block fetching from</param>
+            <param name="enableCitations">Whether to enable citations for fetched content</param>
+            <param name="maxContentTokens">Optional maximum content length in tokens</param>
+            <returns>The ChatOptions instance for fluent chaining</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.ChatOptionsExtensions.GetWebFetchConfiguration(Microsoft.Extensions.AI.ChatOptions)">
+            <summary>
+            Gets the web fetch configuration from ChatOptions, if set.
+            </summary>
+            <param name="options">The ChatOptions instance</param>
+            <returns>The web fetch configuration, or null if not set</returns>
+        </member>
+        <member name="T:Anthropic.SDK.Extensions.CostBreakdown">
+            <summary>
+            Detailed breakdown of estimated costs for an API request.
+            All values are in USD.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Extensions.CostBreakdown.InputTokenCost">
+            <summary>
+            Cost of base input tokens.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Extensions.CostBreakdown.OutputTokenCost">
+            <summary>
+            Cost of output tokens.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Extensions.CostBreakdown.CacheReadCost">
+            <summary>
+            Cost of cache read tokens.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Extensions.CostBreakdown.CacheCreationCost">
+            <summary>
+            Cost of cache creation tokens (combined 5-minute and 1-hour).
+            When detailed cache creation breakdown is unavailable, the legacy
+            <c>cache_creation_input_tokens</c> field is priced at the 5-minute write rate.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Extensions.CostBreakdown.WebSearchCost">
+            <summary>
+            Cost of web search requests ($0.01 per search).
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Extensions.CostBreakdown.TotalCostUsd">
+            <summary>
+            Total estimated cost in USD (sum of all components).
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Extensions.CostBreakdown.Pricing">
+            <summary>
+            The <see cref="T:Anthropic.SDK.Messaging.ModelPricing"/> used for this calculation.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Extensions.CostCalculationExtensions">
+            <summary>
+            Extension methods for calculating estimated API costs from usage data.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.CostCalculationExtensions.CalculateCost(Anthropic.SDK.Messaging.Usage,System.String,Anthropic.SDK.Messaging.ModelPricing)">
+            <summary>
+            Calculate the estimated cost of an API request from its <see cref="T:Anthropic.SDK.Messaging.Usage"/> data.
+            When the service tier is <see cref="F:Anthropic.SDK.Messaging.ServiceTier.Batch"/>, a 50% discount is applied
+            to all token costs automatically.
+            </summary>
+            <param name="usage">The usage data from the API response.</param>
+            <param name="modelId">The model ID string used for the request.</param>
+            <param name="overridePricing">
+            Optional pricing to use instead of the built-in/registered pricing.
+            </param>
+            <returns>A <see cref="T:Anthropic.SDK.Extensions.CostBreakdown"/> with per-category costs.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="usage"/> is null.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown when no pricing can be found for <paramref name="modelId"/>
+            and <paramref name="overridePricing"/> is not provided.
+            </exception>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.CostCalculationExtensions.CalculateCost(Anthropic.SDK.Messaging.MessageResponse,Anthropic.SDK.Messaging.ModelPricing)">
+            <summary>
+            Calculate the estimated cost of an API request directly from the <see cref="T:Anthropic.SDK.Messaging.MessageResponse"/>.
+            Uses the model from the response and its usage data.
+            </summary>
+            <param name="response">The message response from the API.</param>
+            <param name="overridePricing">
+            Optional pricing to use instead of the built-in/registered pricing.
+            </param>
+            <returns>A <see cref="T:Anthropic.SDK.Extensions.CostBreakdown"/> with per-category costs.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when <paramref name="response"/> or its Usage is null.
+            </exception>
+        </member>
+        <member name="T:Anthropic.SDK.Extensions.MessageResponseExtensions">
+            <summary>
+            Extension methods for MessageResponse to simplify common operations.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.MessageResponseExtensions.DownloadFilesAsync(Anthropic.SDK.Messaging.MessageResponse,Anthropic.SDK.AnthropicClient,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Downloads all file outputs from bash code execution results to the specified directory path.
+            This is a convenience method that automatically iterates through response content,
+            identifies file outputs, and downloads them using the Files API.
+            </summary>
+            <param name="response">The message response containing potential file outputs.</param>
+            <param name="client">The AnthropicClient instance to use for downloading files.</param>
+            <param name="outputPath">The directory path where files should be downloaded. If the directory doesn't exist, it will be created.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>A list of full file paths for all downloaded files.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when response, client, or outputPath is null or empty.</exception>
+            <exception cref="T:System.IO.DirectoryNotFoundException">Thrown when the output directory cannot be created.</exception>
+            <example>
+            <code>
+            var response = await client.Messages.GetClaudeMessageAsync(parameters);
+            var downloadedFiles = await response.DownloadFilesAsync(client, "C:\\Downloads\\SkillOutputs");
+            foreach (var filePath in downloadedFiles)
+            {
+                Console.WriteLine($"Downloaded: {filePath}");
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Anthropic.SDK.Extensions.MessageResponseExtensions.GetFileIds(Anthropic.SDK.Messaging.MessageResponse)">
+            <summary>
+            Gets all file IDs from bash code execution results in the response.
+            This is useful if you want to handle file downloads manually or perform other operations with the file IDs.
+            </summary>
+            <param name="response">The message response to extract file IDs from.</param>
+            <returns>A list of file IDs found in the response.</returns>
+            <example>
+            <code>
+            var response = await client.Messages.GetClaudeMessageAsync(parameters);
+            var fileIds = response.GetFileIds();
+            foreach (var fileId in fileIds)
+            {
+                var metadata = await client.Files.GetFileMetadataAsync(fileId);
+                Console.WriteLine($"File: {metadata.Filename} ({metadata.SizeBytes} bytes)");
+            }
+            </code>
+            </example>
+        </member>
+        <member name="T:Anthropic.SDK.Files.FileDeleteResponse">
+            <summary>
+            Response returned when a file is successfully deleted.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Files.FileDeleteResponse.Id">
+            <summary>
+            ID of the deleted file.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Files.FileDeleteResponse.Type">
+            <summary>
+            Deleted object type. For file deletion, this is always "file_deleted".
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Files.FileListResponse">
+            <summary>
+            Response containing a paginated list of files.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Files.FileListResponse.Data">
+            <summary>
+            List of file metadata objects.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Files.FileListResponse.HasMore">
+            <summary>
+            Whether there are more results available.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Files.FileListResponse.FirstId">
+            <summary>
+            ID of the first file in this page of results.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Files.FileListResponse.LastId">
+            <summary>
+            ID of the last file in this page of results.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Files.FileMetadata">
+            <summary>
+            Metadata for a file uploaded to Claude.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Files.FileMetadata.Id">
+            <summary>
+            Unique object identifier. The format and length of IDs may change over time.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Files.FileMetadata.Type">
+            <summary>
+            Object type. For files, this is always "file".
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Files.FileMetadata.Filename">
+            <summary>
+            Original filename of the uploaded file.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Files.FileMetadata.MimeType">
+            <summary>
+            MIME type of the file.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Files.FileMetadata.SizeBytes">
+            <summary>
+            Size of the file in bytes.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Files.FileMetadata.CreatedAt">
+            <summary>
+            RFC 3339 datetime string representing when the file was created.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Files.FileMetadata.Downloadable">
+            <summary>
+            Whether the file can be downloaded.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Files.FilesEndpoint">
+            <summary>
+            Files endpoint for managing Claude-generated files.
+            The Files API allows you to download, list, and manage files generated by Claude during conversations.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Files.FilesEndpoint.#ctor(Anthropic.SDK.AnthropicClient)">
+            <summary>
+            Constructor of the api endpoint. Rather than instantiating this yourself, access it through an instance of <see cref="T:Anthropic.SDK.AnthropicClient"/> as <see cref="P:Anthropic.SDK.AnthropicClient.Files"/>.
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:Anthropic.SDK.Files.FilesEndpoint.ListFilesAsync(System.String,System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Lists all files in the organization. Supports pagination using before_id/after_id cursors.
+            </summary>
+            <param name="beforeId">Only return files with IDs alphabetically before this file ID.</param>
+            <param name="afterId">Only return files with IDs alphabetically after this file ID.</param>
+            <param name="limit">Number of files to return per page (1-1000, default 20).</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>A paginated list of file metadata objects.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Files.FilesEndpoint.GetFileMetadataAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves metadata for a specific file by its ID.
+            </summary>
+            <param name="fileId">The ID of the file to retrieve metadata for.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The file metadata object.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when fileId is null or empty.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Files.FilesEndpoint.DeleteFileAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Deletes a file, making it inaccessible through the API.
+            </summary>
+            <param name="fileId">The ID of the file to delete.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>A response confirming the file deletion.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when fileId is null or empty.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Files.FilesEndpoint.UploadFileAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Uploads a file to Claude for use in conversations.
+            </summary>
+            <param name="filePath">Path to the file to upload.</param>
+            <param name="mimeType">Optional MIME type of the file. If not provided, will be inferred from the file extension.</param>
+            <param name="ctx">Cancellation token.</param>
+            <returns>Metadata about the uploaded file.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when filePath is null, empty, or the file doesn't exist.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Files.FilesEndpoint.UploadFileBytesAsync(System.Byte[],System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Uploads a file from a byte array to Claude for use in conversations.
+            </summary>
+            <param name="fileBytes">The file content as a byte array.</param>
+            <param name="fileName">The name of the file.</param>
+            <param name="mimeType">MIME type of the file.</param>
+            <param name="ctx">Cancellation token.</param>
+            <returns>Metadata about the uploaded file.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when parameters are invalid.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when fileBytes is null.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Files.FilesEndpoint.UploadFileStreamAsync(System.IO.Stream,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Uploads a file from a stream to Claude for use in conversations.
+            </summary>
+            <param name="fileStream">The file content as a stream.</param>
+            <param name="fileName">The name of the file.</param>
+            <param name="mimeType">MIME type of the file.</param>
+            <param name="ctx">Cancellation token.</param>
+            <returns>Metadata about the uploaded file.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when parameters are invalid.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when fileStream is null.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Files.FilesEndpoint.DownloadFileAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Downloads the contents of a Claude-generated file.
+            </summary>
+            <param name="fileId">ID of the file to download.</param>
+            <param name="outputPath">Optional path to save the file. If not provided, returns the file content as a byte array.</param>
+            <param name="ctx">Cancellation token.</param>
+            <returns>The file content as a byte array if outputPath is not provided.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when fileId is null or empty.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Files.FilesEndpoint.DownloadFileToStreamAsync(System.String,System.IO.Stream,System.Threading.CancellationToken)">
+            <summary>
+            Downloads the contents of a Claude-generated file and writes it to a stream.
+            </summary>
+            <param name="fileId">ID of the file to download.</param>
+            <param name="outputStream">The stream to write the file content to.</param>
+            <param name="ctx">Cancellation token.</param>
+            <exception cref="T:System.ArgumentException">Thrown when fileId is null or empty.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when outputStream is null.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Files.FilesEndpoint.GetMimeType(System.String)">
+            <summary>
+            Gets the MIME type based on file extension.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.IRequestInterceptor">
+            <summary>
+            Interface for intercepting HTTP requests made by the Anthropic SDK.
+            Allows users to implement custom retry logic, logging, metrics, or other cross-cutting concerns.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.IRequestInterceptor.InvokeAsync(System.Net.Http.HttpRequestMessage,System.Func{System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}},System.Threading.CancellationToken)">
+            <summary>
+            Intercepts an HTTP request and optionally wraps the call with custom logic.
+            </summary>
+            <param name="request">The HTTP request about to be sent</param>
+            <param name="next">A delegate to invoke the next handler in the chain (or the actual HTTP call).
+            Takes the request and cancellation token as parameters.</param>
+            <param name="cancellationToken">Cancellation token for the operation</param>
+            <returns>The HTTP response from the request</returns>
+            <remarks>
+            This method allows you to add retry logic, circuit breakers, logging, metrics, or other cross-cutting concerns.
+            The interceptor is invoked for every HTTP request made by the SDK.
+            You must call the next delegate to proceed with the actual HTTP request.
+            The interceptor can modify the request before passing it to the next handler.
+            </remarks>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.CacheControl.TTL">
+            <summary>
+            The duration to cache.
+            Supported values are <see cref="!:CacheDuration5Minutes"/> or <see cref="!:CacheDuration1Hour"/>
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.ChatClientHelper">
+            <summary>
+            Helper class for chat client implementations
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.ChatClientHelper.CreateUsageDetails(Anthropic.SDK.Messaging.Usage)">
+            <summary>
+            Create usage details from usage
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.ChatClientHelper.CreateMessageParameters(Microsoft.Extensions.AI.IChatClient,System.Collections.Generic.IEnumerable{Microsoft.Extensions.AI.ChatMessage},Microsoft.Extensions.AI.ChatOptions)">
+            <summary>
+            Create message parameters from chat messages and options
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.ChatClientHelper.ProcessResponseContent(Anthropic.SDK.Messaging.MessageResponse)">
+            <summary>
+            Process response content
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.ChatClientHelper.ProcessToolSchema(System.Text.Json.JsonElement)">
+            <summary>
+            Processes a tool's JSON schema to ensure all object types have additionalProperties: false,
+            as required by Anthropic's structured output API.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.ChatClientHelper.EnsureAdditionalPropertiesFalse(System.Text.Json.JsonElement)">
+            <summary>
+            Processes a JSON schema to ensure all object types have additionalProperties: false,
+            as required by Anthropic's structured output API.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.ChatClientHelper.FunctionParameters">
+            <summary>
+            Function parameters class
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.Container">
+            <summary>
+            Container configuration for Skills API
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.Container.Id">
+            <summary>
+            Optional container ID to reuse an existing container from a previous request
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.Container.Skills">
+            <summary>
+            List of skills to enable in the container (max 8 skills)
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.Skill">
+            <summary>
+            Skill definition for use in containers
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.Skill.Type">
+            <summary>
+            Type of skill - either "anthropic" for built-in skills or "custom" for custom skills
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.Skill.SkillId">
+            <summary>
+            Unique identifier for the skill
+            For anthropic type: "pptx", "xlsx", "docx", "pdf"
+            For custom type: a custom string identifier
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.Skill.Version">
+            <summary>
+            Optional version to pin to a specific version (e.g., "latest")
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.ContainerResponse">
+            <summary>
+            Container information returned in the response
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ContainerResponse.Id">
+            <summary>
+            The container ID that can be reused in subsequent requests
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ContainerResponse.ExpiresAt">
+            <summary>
+            The expiration date for the container
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.ContentBase">
+            <summary>
+            Base Class for Content to Send to Claude
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ContentBase.Type">
+            <summary>
+            Type of Content
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ServerToolUseContent.Type">
+            <summary>
+            Type of Content (Server_Tool_Use, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ServerToolUseContent.Id">
+            <summary>
+            Id of the Tool
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ServerToolUseContent.Name">
+            <summary>
+            Name of the Tool
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ServerToolUseContent.Input">
+            <summary>
+            Inputs of the Tool
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ServerToolInput.Query">
+            <summary>
+            Query for web_search tool
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ServerToolInput.Command">
+            <summary>
+            Command for text_editor_code_execution or bash_code_execution tools
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ServerToolInput.Path">
+            <summary>
+            File path for text_editor_code_execution tool
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ServerToolInput.OldStr">
+            <summary>
+            Old string to replace (for str_replace command)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ServerToolInput.NewStr">
+            <summary>
+            New string to replace with (for str_replace command)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ServerToolInput.FileText">
+            <summary>
+            File text content (for create command)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ServerToolInput.Url">
+            <summary>
+            URL for web_fetch tool
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.TextContent">
+            <summary>
+            Helper Class for Text Content to Send to Claude
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextContent.Type">
+            <summary>
+            Type of Content (Text, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextContent.Text">
+            <summary>
+            Text to send to Claude in a Block
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextContent.Citations">
+            <summary>
+            Citations
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.ThinkingContent">
+            <summary>
+            Helper Class for Thinking Content
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ThinkingContent.Type">
+            <summary>
+            Type of Content (Text, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ThinkingContent.Thinking">
+            <summary>
+            Thinking Block
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ThinkingContent.Signature">
+            <summary>
+            Encrypted Data
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.RedactedThinkingContent">
+            <summary>
+            Helper Class for Redacted Thinking Content
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.RedactedThinkingContent.Type">
+            <summary>
+            Type of Content (Text, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.RedactedThinkingContent.Data">
+            <summary>
+            Encrypted Data
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.ImageContent">
+            <summary>
+            Helper Class for Image Content to Send to Claude
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ImageContent.Type">
+            <summary>
+            Type of Content (Image, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ImageContent.Source">
+            <summary>
+            Source of Image
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.DocumentContent.Type">
+            <summary>
+            Type of Content (Image, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.DocumentContent.Source">
+            <summary>
+            Source of Document
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.DocumentContent.Citations">
+            <summary>
+            Citations
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.DocumentContent.Context">
+            <summary>
+            Context
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.DocumentContent.Title">
+            <summary>
+            Title
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.Citations">
+            <summary>
+            Helper Class for Citations
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.SourceType">
+            <summary>
+            Image/Document Format Types
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.DocumentSource">
+            <summary>
+            Definition of document to be sent to Claude
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.DocumentSource.Type">
+            <summary>
+            Image data format (pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.DocumentSource.Content">
+            <summary>
+            Content of the Document
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.DocumentSource.MediaType">
+            <summary>
+            Image format
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.DocumentSource.Data">
+            <summary>
+            Base 64 image data
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.DocumentSource.Url">
+            <summary>
+            Document URL
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.ImageSource">
+            <summary>
+            Definition of image to be sent to Claude
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ImageSource.Type">
+            <summary>
+            Image data format (pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ImageSource.MediaType">
+            <summary>
+            Image format
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ImageSource.Url">
+            <summary>
+            Image URL
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ImageSource.Data">
+            <summary>
+            Base 64 image data
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.ToolUseContent">
+            <summary>
+            Tool Use Content To Send to Claude
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ToolUseContent.Type">
+            <summary>
+            Type of Content (Tool_Use, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ToolUseContent.Id">
+            <summary>
+            Id of the Tool
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ToolUseContent.Name">
+            <summary>
+            Name of the Tool
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ToolUseContent.Input">
+            <summary>
+            Inputs of the Tool
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.MCPToolUseContent">
+            <summary>
+            Tool Use Content To Send to Claude
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPToolUseContent.Type">
+            <summary>
+            Type of Content (Tool_Use, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPToolUseContent.Id">
+            <summary>
+            Id of the Tool
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPToolUseContent.Name">
+            <summary>
+            Name of the Tool
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPToolUseContent.ServerName">
+            <summary>
+            Server Name of the Tool
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPToolUseContent.Input">
+            <summary>
+            Inputs of the Tool
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.ToolResultContent">
+            <summary>
+            Tool Result Content Returned From Claude
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ToolResultContent.Type">
+            <summary>
+            Type of Content (Tool_Result, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ToolResultContent.ToolUseId">
+            <summary>
+            Tool Use Id
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ToolResultContent.Content">
+            <summary>
+            Content of the Tool Result
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ToolResultContent.IsError">
+            <summary>
+            Indicates if the Tool Result is an Error
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.MCPToolResultContent">
+            <summary>
+            MCP Tool Result Content Returned From Claude
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPToolResultContent.Type">
+            <summary>
+            Type of Content (Tool_Result, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPToolResultContent.ToolUseId">
+            <summary>
+            Tool Use Id
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPToolResultContent.Content">
+            <summary>
+            Content of the Tool Result
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPToolResultContent.IsError">
+            <summary>
+            Indicates if the Tool Result is an Error
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.WebSearchToolResultContent">
+            <summary>
+            Web Search Tool Result Content Returned From Claude
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.WebSearchToolResultContent.Type">
+            <summary>
+            Type of Content (Tool_Result, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.WebSearchToolResultContent.ToolUseId">
+            <summary>
+            Tool Use Id
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.WebSearchToolResultContent.Content">
+            <summary>
+            Content of the Tool Result
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.WebSearchToolResultContent.IsError">
+            <summary>
+            Indicates if the Tool Result is an Error
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.WebSearchToolResultErrorContent">
+            <summary>
+            Web Search Tool Result Error Returned From Claude
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.WebSearchToolResultErrorContent.Type">
+            <summary>
+            Type of Content (Tool_Result, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.WebSearchResultContent.Type">
+            <summary>
+            Type of Content (Web_Search_Result, pre-set)
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.CodeExecutionToolResultContent">
+            <summary>
+            Code Execution Tool Result Content (used by dynamic filtering web search/fetch)
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.CodeExecutionToolResultErrorContent">
+            <summary>
+            Code Execution Tool Result Error Content
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.BashCodeExecutionToolResultContent">
+            <summary>
+            Bash Code Execution Tool Result Content
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.BashCodeExecutionToolResultContent.Type">
+            <summary>
+            Type of Content (bash_code_execution_tool_result, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.BashCodeExecutionToolResultContent.ToolUseId">
+            <summary>
+            Tool Use Id
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.BashCodeExecutionToolResultContent.Content">
+            <summary>
+            Content - can be either BashCodeExecutionResultContent or BashCodeExecutionToolResultErrorContent
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.BashCodeExecutionResultContent">
+            <summary>
+            Bash Code Execution Result Content
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.BashCodeExecutionResultContent.Type">
+            <summary>
+            Type of Content (bash_code_execution_result, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.BashCodeExecutionResultContent.Stdout">
+            <summary>
+            Standard output from the bash execution
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.BashCodeExecutionResultContent.Stderr">
+            <summary>
+            Standard error from the bash execution
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.BashCodeExecutionResultContent.ReturnCode">
+            <summary>
+            Return code from the bash execution
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.BashCodeExecutionResultContent.Content">
+            <summary>
+            Array of output content blocks (files)
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.BashCodeExecutionOutputContent">
+            <summary>
+            Bash Code Execution Output Content (represents a file)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.BashCodeExecutionOutputContent.Type">
+            <summary>
+            Type of Content (bash_code_execution_output, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.BashCodeExecutionOutputContent.FileId">
+            <summary>
+            File ID that can be used to download the file
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.BashCodeExecutionToolResultErrorContent">
+            <summary>
+            Bash Code Execution Tool Result Error Content
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.BashCodeExecutionToolResultErrorContent.Type">
+            <summary>
+            Type of Content (bash_code_execution_tool_result_error, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.BashCodeExecutionToolResultErrorContent.ErrorCode">
+            <summary>
+            Error code describing the failure
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.TextEditorCodeExecutionToolResultContent">
+            <summary>
+            Text Editor Code Execution Tool Result Content
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionToolResultContent.Type">
+            <summary>
+            Type of Content (text_editor_code_execution_tool_result, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionToolResultContent.ToolUseId">
+            <summary>
+            Tool Use Id
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionToolResultContent.Content">
+            <summary>
+            Content - can be either TextEditorCodeExecutionResultContent or TextEditorCodeExecutionToolResultErrorContent
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.TextEditorCodeExecutionResultContent">
+            <summary>
+            Text Editor Code Execution Result Content
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionResultContent.Type">
+            <summary>
+            Type of Content (text_editor_code_execution_result, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionResultContent.IsFileUpdate">
+            <summary>
+            Whether file already existed (for create operations)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionResultContent.FileType">
+            <summary>
+            File type (for view operations)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionResultContent.Content">
+            <summary>
+            Content of the file (for view operations)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionResultContent.NumLines">
+            <summary>
+            Number of lines (for view operations)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionResultContent.StartLine">
+            <summary>
+            Start line number (for view operations)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionResultContent.TotalLines">
+            <summary>
+            Total lines in file (for view operations)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionResultContent.OldStart">
+            <summary>
+            Old start line (for edit operations)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionResultContent.OldLines">
+            <summary>
+            Old number of lines (for edit operations)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionResultContent.NewStart">
+            <summary>
+            New start line (for edit operations)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionResultContent.NewLines">
+            <summary>
+            New number of lines (for edit operations)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionResultContent.Lines">
+            <summary>
+            Diff lines (for edit operations)
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.TextEditorCodeExecutionToolResultErrorContent">
+            <summary>
+            Text Editor Code Execution Tool Result Error Content
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionToolResultErrorContent.Type">
+            <summary>
+            Type of Content (text_editor_code_execution_tool_result_error, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionToolResultErrorContent.ErrorCode">
+            <summary>
+            Error code describing the failure
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionToolResultErrorContent.ErrorMessage">
+            <summary>
+            Error message providing additional details (nullable)
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.TextEditorCodeExecutionViewResultContent">
+            <summary>
+            Text Editor Code Execution View Result Content
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionViewResultContent.Type">
+            <summary>
+            Type of Content (text_editor_code_execution_view_result, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionViewResultContent.Content">
+            <summary>
+            Content of the file
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionViewResultContent.FileType">
+            <summary>
+            File type ('text', 'image', or 'pdf')
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionViewResultContent.NumLines">
+            <summary>
+            Number of lines displayed (nullable)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionViewResultContent.StartLine">
+            <summary>
+            Starting line number (nullable)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionViewResultContent.TotalLines">
+            <summary>
+            Total lines in the file (nullable)
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.TextEditorCodeExecutionCreateResultContent">
+            <summary>
+            Text Editor Code Execution Create Result Content
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionCreateResultContent.Type">
+            <summary>
+            Type of Content (text_editor_code_execution_create_result, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionCreateResultContent.IsFileUpdate">
+            <summary>
+            Whether file already existed (true if update, false if new file)
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.TextEditorCodeExecutionStrReplaceResultContent">
+            <summary>
+            Text Editor Code Execution String Replace Result Content
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionStrReplaceResultContent.Type">
+            <summary>
+            Type of Content (text_editor_code_execution_str_replace_result, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionStrReplaceResultContent.Lines">
+            <summary>
+            Diff lines showing the changes (nullable)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionStrReplaceResultContent.NewLines">
+            <summary>
+            New number of lines (nullable)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionStrReplaceResultContent.NewStart">
+            <summary>
+            New start line (nullable)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionStrReplaceResultContent.OldLines">
+            <summary>
+            Old number of lines (nullable)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.TextEditorCodeExecutionStrReplaceResultContent.OldStart">
+            <summary>
+            Old start line (nullable)
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.WebFetchToolResultContent">
+            <summary>
+            Web Fetch Tool Result Content Returned From Claude
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.WebFetchToolResultContent.Type">
+            <summary>
+            Type of Content (web_fetch_tool_result, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.WebFetchToolResultContent.ToolUseId">
+            <summary>
+            Tool Use Id
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.WebFetchToolResultContent.Content">
+            <summary>
+            Content of the Tool Result
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.WebFetchResultContent">
+            <summary>
+            Web Fetch Result Content containing the fetched document
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.WebFetchResultContent.Type">
+            <summary>
+            Type of Content (web_fetch_result, pre-set)
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.WebFetchToolErrorContent">
+            <summary>
+            Web Fetch Tool Error Content
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.WebFetchToolErrorContent.Type">
+            <summary>
+            Type of Content (web_fetch_tool_error, pre-set)
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.UnknownContent">
+            <summary>
+            Unknown content type - used as fallback for forward compatibility when the API returns new content types
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.UnknownContent.Type">
+            <summary>
+            Type of Content (Unknown, pre-set)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.UnknownContent.OriginalType">
+            <summary>
+            The original type string from the API
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.UnknownContent.RawJson">
+            <summary>
+            The raw JSON content for this unknown type
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.ContentType">
+            <summary>
+            Content Type Definitions
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Messaging.ContentType.unknown">
+            <summary>
+            Unknown content type - used as fallback for forward compatibility
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.Extensions">
+            <summary>
+            Helpers for Messaging
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.Extensions.AsAssistantMessages(System.Collections.Generic.List{Anthropic.SDK.Messaging.ContentBase})">
+            <summary>
+            Converts a list of <see cref="T:Anthropic.SDK.Messaging.ContentBase"/> to a <see cref="T:Anthropic.SDK.Messaging.Message"/> with the role of <see cref="F:Anthropic.SDK.Messaging.RoleType.Assistant"/>
+            </summary>
+            <param name="content"></param>
+            <returns><see cref="T:Anthropic.SDK.Messaging.Message"/></returns>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPServer.Type">
+            <summary>
+            The MCP Server Type
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPServer.Url">
+            <summary>
+            The URL of the MCP server to connect to.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPServer.Name">
+            <summary>
+            The name of the MCP server.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPServer.AuthorizationToken">
+            <summary>
+            The authorization token to use for connecting to the MCP server.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPToolConfiguration.Enabled">
+            <summary>
+            Whether the MCP server is enabled or not.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MCPToolConfiguration.AllowedTools">
+            <summary>
+            The list of allowed tools that can be used with the MCP server.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.Message.#ctor(System.Collections.Generic.List{Anthropic.SDK.Messaging.MessageResponse})">
+            <summary>
+            Reconstructs a single Message from a list of streaming MessageResponse events.
+            Uses a single ordered pass to preserve the natural stream order of content blocks,
+            which is required for multi-turn conversations where the API validates that every
+            server_tool_use has its corresponding result block in the correct position.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.Message.Role">
+            <summary>
+            Accepts <see cref="F:Anthropic.SDK.Messaging.RoleType.User"/> or <see cref="F:Anthropic.SDK.Messaging.RoleType.Assistant"/>
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.Message.Content">
+            <summary>
+            Accepts text, or an array of <see cref="T:Anthropic.SDK.Messaging.ImageContent"/> and/or <see cref="T:Anthropic.SDK.Messaging.TextContent"/>
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MessageParameters.OutputFormat">
+            <summary>
+            Output format configuration for structured JSON output.
+            Obsolete and will be removed in the future.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.MessageParameters.PromptCaching">
+            <summary>
+            Prompt Cache Type Definitions. Designed to be used as a bitwise assignment if you want to cache multiple types and are caching enough context.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.MessagesEndpoint.Microsoft#Extensions#AI#IChatClient#GetResponseAsync(System.Collections.Generic.IEnumerable{Microsoft.Extensions.AI.ChatMessage},Microsoft.Extensions.AI.ChatOptions,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.MessagesEndpoint.Microsoft#Extensions#AI#IChatClient#GetStreamingResponseAsync(System.Collections.Generic.IEnumerable{Microsoft.Extensions.AI.ChatMessage},Microsoft.Extensions.AI.ChatOptions,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.MessagesEndpoint.System#IDisposable#Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.MessagesEndpoint.Microsoft#Extensions#AI#IChatClient#GetService(System.Type,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.MessagesEndpoint.#ctor(Anthropic.SDK.AnthropicClient)">
+            <summary>
+            Constructor of the api endpoint.  Rather than instantiating this yourself, access it through an instance of <see cref="T:Anthropic.SDK.AnthropicClient"/> as <see cref="P:Anthropic.SDK.AnthropicClient.Messages"/>.
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.MessagesEndpoint.GetClaudeMessageAsync(Anthropic.SDK.Messaging.MessageParameters,System.Threading.CancellationToken)">
+            <summary>
+            Makes a non-streaming call to the Claude messages API. Be sure to set stream to false in <param name="parameters"></param>.
+            </summary>
+            <param name="parameters"></param>
+            <param name="ctx"></param>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.MessagesEndpoint.StreamClaudeMessageAsync(Anthropic.SDK.Messaging.MessageParameters,System.Threading.CancellationToken)">
+            <summary>
+            Makes a streaming call to the Claude completion API using an IAsyncEnumerable. Be sure to set stream to true in <param name="parameters"></param>.
+            </summary>
+            <param name="parameters"></param>
+            <param name="ctx"></param>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.MessagesEndpoint.CountMessageTokensAsync(Anthropic.SDK.Messaging.MessageCountTokenParameters,System.Threading.CancellationToken)">
+            <summary>
+            Makes a call to count the number of tokens in a request.
+            </summary>
+            <param name="parameters"></param>
+            <param name="ctx"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.ModelPricing">
+            <summary>
+            Represents per-model pricing data for estimating API request costs.
+            All costs are in USD per million tokens unless otherwise noted.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ModelPricing.InputTokenCostPerMillion">
+            <summary>
+            Cost per million input tokens.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ModelPricing.OutputTokenCostPerMillion">
+            <summary>
+            Cost per million output tokens.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ModelPricing.CacheReadCostPerMillion">
+            <summary>
+            Cost per million cache read tokens (typically 0.1x input cost).
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ModelPricing.Cache5mWriteCostPerMillion">
+            <summary>
+            Cost per million 5-minute cache write tokens (typically 1.25x input cost).
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ModelPricing.Cache1hWriteCostPerMillion">
+            <summary>
+            Cost per million 1-hour cache write tokens (typically 2x input cost).
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ModelPricing.WebSearchCostPer1000">
+            <summary>
+            Cost per 1,000 web search requests. Default is $10 per 1,000 searches.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.ModelPricing.Register(System.String,Anthropic.SDK.Messaging.ModelPricing)">
+            <summary>
+            Register or override pricing for a model ID prefix.
+            Custom registrations take priority over built-in pricing.
+            </summary>
+            <param name="modelIdPrefix">The model ID or prefix to match (e.g. "claude-sonnet-4-6").</param>
+            <param name="pricing">The pricing to use for matching models.</param>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.ModelPricing.Unregister(System.String)">
+            <summary>
+            Remove a previously registered custom pricing entry.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.ModelPricing.ClearCustomPricing">
+            <summary>
+            Clear all custom pricing registrations, reverting to built-in pricing only.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.ModelPricing.ForModel(System.String)">
+            <summary>
+            Look up pricing for a given model ID. Custom registrations are checked first
+            (longest prefix match), then built-in pricing.
+            </summary>
+            <returns>The matching <see cref="T:Anthropic.SDK.Messaging.ModelPricing"/>, or null if no match is found.</returns>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.OutputFormat">
+            <summary>
+            Represents the output format configuration for structured JSON output.
+            Used to enforce JSON schema compliance in API responses.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.OutputFormat.Type">
+            <summary>
+            The type of output format. Currently only "json_schema" is supported.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.OutputFormat.Schema">
+            <summary>
+            The JSON schema that the response must conform to.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.PromptCacheType">
+            <summary>
+            Prompt Cache Type Definitions. 
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Messaging.PromptCacheType.None">
+            <summary>
+            No Prompt Caching
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Messaging.PromptCacheType.FineGrained">
+            <summary>
+            Use the cache-control instructions from each message for fine-grained control
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Messaging.PromptCacheType.AutomaticToolsAndSystem">
+            <summary>
+            Use the cache-control instructions from the system messages for automatic tools and system message caching
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Messaging.ServerTools.WebSearchVersionDynamicFiltering">
+            <summary>
+            Default web search tool version with dynamic filtering support (requires code execution tool).
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Messaging.ServerTools.WebSearchVersionLegacy">
+            <summary>
+            Legacy web search tool version without dynamic filtering.
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Messaging.ServerTools.WebFetchVersionDynamicFiltering">
+            <summary>
+            Default web fetch tool version with dynamic filtering support (requires code execution tool).
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.Messaging.ServerTools.WebFetchVersionLegacy">
+            <summary>
+            Legacy web fetch tool version without dynamic filtering.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.ServerTools.GetWebSearchTool(System.Int32,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},Anthropic.SDK.Messaging.UserLocation,System.String)">
+            <summary>
+            Creates a web search tool configuration.
+            The default version (<c>web_search_20260209</c>) supports dynamic filtering with Claude Opus 4.6 and Sonnet 4.6,
+            which requires the code execution tool to be enabled. Pass <see cref="F:Anthropic.SDK.Messaging.ServerTools.WebSearchVersionLegacy"/> for the older version.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.ServerTools.GetWebFetchTool(System.Nullable{System.Int32},System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.Boolean,System.Nullable{System.Int32},System.String)">
+            <summary>
+            Creates a web fetch tool configuration.
+            The default version (<c>web_fetch_20260209</c>) supports dynamic filtering with Claude Opus 4.6 and Sonnet 4.6,
+            which requires the code execution tool to be enabled. Pass <see cref="F:Anthropic.SDK.Messaging.ServerTools.WebFetchVersionLegacy"/> for the older version.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ThinkingParameters.UseInterleavedThinking">
+            <summary>
+            Indicates whether to use interleaved thinking mode which allows thinking tokens to exceed max_tokens
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.ThinkingParameters.Effort">
+            <summary>
+            The effort level to map to output_config.effort when using adaptive thinking
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.InputSchema">
+            <summary>
+            Tool Input Schema Class
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.InputSchema.Type">
+            <summary>
+            Type of the Schema, default is object
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.InputSchema.Properties">
+            <summary>
+            Properties of the Schema
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.InputSchema.Required">
+            <summary>
+            Required Properties
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.Tool">
+            <summary>
+            Serializable Tool Class
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.Tool.Name">
+            <summary>
+            Tool Name
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.Tool.Description">
+            <summary>
+            Tool Description
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.Tool.InputSchema">
+            <summary>
+            Tool Input Schema
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.Property">
+            <summary>
+            Property Definition Class
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.Property.Type">
+            <summary>
+            Property Type
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.Property.Enum">
+            <summary>
+            Enum Values as Strings (if applicable)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.Property.Description">
+            <summary>
+            Description of the Property
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Messaging.VertexAIMessagesEndpoint">
+            <summary>
+            Vertex AI implementation of the Messages endpoint
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.VertexAIMessagesEndpoint.Microsoft#Extensions#AI#IChatClient#GetResponseAsync(System.Collections.Generic.IEnumerable{Microsoft.Extensions.AI.ChatMessage},Microsoft.Extensions.AI.ChatOptions,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.VertexAIMessagesEndpoint.Microsoft#Extensions#AI#IChatClient#GetStreamingResponseAsync(System.Collections.Generic.IEnumerable{Microsoft.Extensions.AI.ChatMessage},Microsoft.Extensions.AI.ChatOptions,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.VertexAIMessagesEndpoint.System#IDisposable#Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.VertexAIMessagesEndpoint.Microsoft#Extensions#AI#IChatClient#GetService(System.Type,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.VertexAIMessagesEndpoint.#ctor(Anthropic.SDK.VertexAIClient)">
+            <summary>
+            Constructor of the api endpoint. Rather than instantiating this yourself, access it through an instance of <see cref="T:Anthropic.SDK.VertexAIClient"/> as <see cref="P:Anthropic.SDK.VertexAIClient.Messages"/>.
+            </summary>
+            <param name="client">The Vertex AI client</param>
+        </member>
+        <member name="P:Anthropic.SDK.Messaging.VertexAIMessagesEndpoint.Model">
+            <summary>
+            The default model to use when no model is specified in the request parameters
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.VertexAIMessagesEndpoint.GetClaudeMessageAsync(Anthropic.SDK.Messaging.MessageParameters,System.Threading.CancellationToken)">
+            <summary>
+            Makes a non-streaming call to the Claude messages API via Vertex AI. Be sure to set stream to false in <param name="parameters"></param>.
+            </summary>
+            <param name="parameters">The message parameters</param>
+            <param name="ctx">Cancellation token</param>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.VertexAIMessagesEndpoint.StreamClaudeMessageAsync(Anthropic.SDK.Messaging.MessageParameters,System.Threading.CancellationToken)">
+            <summary>
+            Makes a streaming call to the Claude completion API via Vertex AI using an IAsyncEnumerable. Be sure to set stream to true in <param name="parameters"></param>.
+            </summary>
+            <param name="parameters">The message parameters</param>
+            <param name="ctx">Cancellation token</param>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.VertexAIMessagesEndpoint.SetCacheControls(Anthropic.SDK.Messaging.MessageParameters)">
+            <summary>
+            Sets the cache control properties based on the prompt caching type
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.VertexAIMessagesEndpoint.TryExtractContent(System.Text.Json.JsonElement,System.String@)">
+            <summary>
+            Helper method to extract content from various possible response formats
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.VertexAIMessagesEndpoint.ConvertMessageContent(System.Collections.Generic.List{Anthropic.SDK.Messaging.ContentBase})">
+            <summary>
+            Converts Anthropic content to the format expected by Claude
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Messaging.VertexAIMessagesEndpoint.CreateVertexAIRequest(Anthropic.SDK.Messaging.MessageParameters)">
+            <summary>
+            Creates a Vertex AI request from Anthropic message parameters
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Models.ModelsEndpoint">
+            <summary>
+            Endpoint for interacting with the Models API.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Models.ModelsEndpoint.#ctor(Anthropic.SDK.AnthropicClient)">
+            <summary>
+            Constructor of the api endpoint.  Rather than instantiating this yourself, access it through an instance of <see cref="T:Anthropic.SDK.AnthropicClient"/> as <see cref="P:Anthropic.SDK.AnthropicClient.Models"/>.
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:Anthropic.SDK.Models.ModelsEndpoint.ListModelsAsync(System.String,System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a paginated list of Models from the Claude AI API.
+            </summary>
+            <param name="beforeId"></param>
+            <param name="afterId"></param>
+            <param name="limit"></param>
+            <param name="ctx"></param>
+        </member>
+        <member name="M:Anthropic.SDK.Models.ModelsEndpoint.GetModelAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+             Makes a call to retrieve a specific model from the Claude AI API.
+             </summary>
+             <param name="modelId"></param>
+             <param name="ctx"></param>
+        </member>
+        <member name="T:Anthropic.SDK.RateLimitsExceeded">
+            <summary>
+            Thrown when the caller has exhausted current rate limits
+            The caller should wait until RetryAfter before making another request
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.RateLimitsExceeded.RateLimits">
+            <summary>
+            Rate limits as returned by the API
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.RateLimitsExceeded.#ctor(System.String,Anthropic.SDK.Messaging.RateLimits,System.Net.HttpStatusCode)">
+            <inheritdoc />
+        </member>
+        <member name="T:Anthropic.SDK.Skills.SkillDeleteResponse">
+            <summary>
+            Response confirming skill deletion.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillDeleteResponse.Id">
+            <summary>
+            The ID of the deleted skill.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillDeleteResponse.Type">
+            <summary>
+            Deleted object type. For Skills, this is always "skill_deleted".
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Skills.SkillListResponse">
+            <summary>
+            Response containing a paginated list of skills.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillListResponse.Data">
+            <summary>
+            List of skill objects.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillListResponse.HasMore">
+            <summary>
+            Whether there are more results available.
+            If true, there are additional results that can be fetched using the next_page token.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillListResponse.NextPage">
+            <summary>
+            Token for fetching the next page of results.
+            If null, there are no more results available. Pass this value to the page parameter in the next request to get the next page.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Skills.SkillResponse">
+            <summary>
+            Response from creating or retrieving a skill.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillResponse.Id">
+            <summary>
+            Unique identifier for the skill.
+            The format and length of IDs may change over time.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillResponse.Type">
+            <summary>
+            Object type. For Skills, this is always "skill".
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillResponse.DisplayTitle">
+            <summary>
+            Display title for the skill.
+            This is a human-readable label that is not included in the prompt sent to the model.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillResponse.Source">
+            <summary>
+            Source of the skill.
+            This may be one of the following values:
+            * "custom": the skill was created by a user
+            * "anthropic": the skill was created by Anthropic
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillResponse.LatestVersion">
+            <summary>
+            The latest version identifier for the skill.
+            This represents the most recent version of the skill that has been created.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillResponse.CreatedAt">
+            <summary>
+            ISO 8601 timestamp of when the skill was created.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillResponse.UpdatedAt">
+            <summary>
+            ISO 8601 timestamp of when the skill was last updated.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Skills.SkillsEndpoint">
+            <summary>
+            Skills endpoint for managing custom skills.
+            The Skills API allows you to create, list, retrieve, and delete custom skills that extend Claude's capabilities.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.#ctor(Anthropic.SDK.AnthropicClient)">
+            <summary>
+            Constructor of the api endpoint. Rather than instantiating this yourself, access it through an instance of <see cref="T:Anthropic.SDK.AnthropicClient"/> as <see cref="P:Anthropic.SDK.AnthropicClient.Skills"/>.
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.CreateSkillAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new custom skill by uploading skill files.
+            All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+            </summary>
+            <param name="displayTitle">Display title for the skill. This is a human-readable label that is not included in the prompt sent to the model.</param>
+            <param name="skillDirectoryPath">Path to the directory containing skill files. Must include a SKILL.md file.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The created skill response.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when parameters are invalid or SKILL.md is not found.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.CreateSkillFromZipAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new custom skill by uploading a zip file.
+            The zip file must contain a SKILL.md file at its root.
+            </summary>
+            <param name="displayTitle">Display title for the skill. This is a human-readable label that is not included in the prompt sent to the model.</param>
+            <param name="zipFilePath">Path to the zip file containing skill files. Must include a SKILL.md file.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The created skill response.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when parameters are invalid.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.CreateSkillFromStreamsAsync(System.String,System.Collections.Generic.List{System.ValueTuple{System.String,System.IO.Stream,System.String}},System.Threading.CancellationToken)">
+            <summary>
+            Creates a new custom skill by uploading file streams.
+            Files must include a SKILL.md file.
+            </summary>
+            <param name="displayTitle">Display title for the skill. This is a human-readable label that is not included in the prompt sent to the model.</param>
+            <param name="files">List of tuples containing (filename, stream, mimeType) for each file to upload.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The created skill response.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when parameters are invalid.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when files is null or empty.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.CreateSkillVersionAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new version of an existing skill by uploading skill files.
+            All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+            </summary>
+            <param name="skillId">The ID of the skill to create a version for.</param>
+            <param name="skillDirectoryPath">Path to the directory containing skill files. Must include a SKILL.md file.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The created skill version response.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when parameters are invalid or SKILL.md is not found.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.CreateSkillVersionFromZipAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new version of an existing skill by uploading a zip file.
+            The zip file must contain a SKILL.md file at its root.
+            </summary>
+            <param name="skillId">The ID of the skill to create a version for.</param>
+            <param name="zipFilePath">Path to the zip file containing skill files. Must include a SKILL.md file.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The created skill version response.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when parameters are invalid.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.CreateSkillVersionFromStreamsAsync(System.String,System.Collections.Generic.List{System.ValueTuple{System.String,System.IO.Stream,System.String}},System.Threading.CancellationToken)">
+            <summary>
+            Creates a new version of an existing skill by uploading file streams.
+            Files must include a SKILL.md file.
+            </summary>
+            <param name="skillId">The ID of the skill to create a version for.</param>
+            <param name="files">List of tuples containing (filename, stream, mimeType) for each file to upload.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The created skill version response.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when parameters are invalid.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when files is null or empty.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.ListSkillVersionsAsync(System.String,System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Lists all versions of a specific skill. Supports pagination using page tokens.
+            </summary>
+            <param name="skillId">The ID of the skill to list versions for.</param>
+            <param name="page">Pagination token for fetching a specific page of results. Optionally set to the next_page token from the previous response.</param>
+            <param name="limit">Number of items to return per page. Defaults to 20. Ranges from 1 to 1000.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>A paginated list of skill version objects.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when skillId is null or empty.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when limit is outside the valid range.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.GetSkillVersionAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves details for a specific version of a skill.
+            </summary>
+            <param name="skillId">The ID of the skill.</param>
+            <param name="version">Version identifier for the skill. Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The skill version response.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when skillId or version is null or empty.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.DeleteSkillVersionAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Deletes a specific version of a skill, making it inaccessible through the API.
+            </summary>
+            <param name="skillId">The ID of the skill.</param>
+            <param name="version">Version identifier for the skill. Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>A response confirming the skill version deletion.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when skillId or version is null or empty.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.ListSkillsAsync(System.String,System.Int32,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Lists all skills in the organization. Supports pagination using page tokens.
+            </summary>
+            <param name="page">Pagination token for fetching a specific page of results. Pass the value from a previous response's next_page field to get the next page of results.</param>
+            <param name="limit">Number of results to return per page. Maximum value is 100. Defaults to 20.</param>
+            <param name="source">Filter skills by source. If provided, only skills from the specified source will be returned: "custom" for user-created skills, "anthropic" for Anthropic-created skills.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>A paginated list of skill objects.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.GetSkillAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves details for a specific skill by its ID.
+            </summary>
+            <param name="skillId">The ID of the skill to retrieve.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The skill response.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when skillId is null or empty.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.DeleteSkillAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Deletes a skill, making it inaccessible through the API.
+            </summary>
+            <param name="skillId">The ID of the skill to delete.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>A response confirming the skill deletion.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when skillId is null or empty.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.GetMimeType(System.String)">
+            <summary>
+            Gets the MIME type based on file extension.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.Skills.SkillsEndpoint.GetRelativePath(System.String,System.String)">
+            <summary>
+            Gets the relative path from base path to target path.
+            Compatible with .NET Standard 2.0 which doesn't have Path.GetRelativePath.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Skills.SkillVersionDeleteResponse">
+            <summary>
+            Response confirming skill version deletion.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillVersionDeleteResponse.Id">
+            <summary>
+            Version identifier for the skill.
+            Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillVersionDeleteResponse.Type">
+            <summary>
+            Deleted object type. For Skill Versions, this is always "skill_version_deleted".
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Skills.SkillVersionListResponse">
+            <summary>
+            Response containing a paginated list of skill versions.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillVersionListResponse.Data">
+            <summary>
+            List of skill versions.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillVersionListResponse.HasMore">
+            <summary>
+            Indicates if there are more results in the requested page direction.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillVersionListResponse.NextPage">
+            <summary>
+            Token to provide as 'page' in the subsequent request to retrieve the next page of data.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.Skills.SkillVersionResponse">
+            <summary>
+            Response from creating or retrieving a skill version.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillVersionResponse.Id">
+            <summary>
+            Unique identifier for the skill version.
+            The format and length of IDs may change over time.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillVersionResponse.Type">
+            <summary>
+            Object type. For Skill Versions, this is always "skill_version".
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillVersionResponse.SkillId">
+            <summary>
+            Identifier for the skill that this version belongs to.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillVersionResponse.Version">
+            <summary>
+            Version identifier for the skill.
+            Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillVersionResponse.Name">
+            <summary>
+            Human-readable name of the skill version.
+            This is extracted from the SKILL.md file in the skill upload.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillVersionResponse.Description">
+            <summary>
+            Description of the skill version.
+            This is extracted from the SKILL.md file in the skill upload.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillVersionResponse.Directory">
+            <summary>
+            Directory name of the skill version.
+            This is the top-level directory name that was extracted from the uploaded files.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.Skills.SkillVersionResponse.CreatedAt">
+            <summary>
+            ISO 8601 timestamp of when the skill version was created.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.VertexAIAuthentication">
+            <summary>
+            Authentication for Google Cloud Vertex AI
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.VertexAIAuthentication.ProjectId">
+            <summary>
+            The Google Cloud Project ID
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.VertexAIAuthentication.Region">
+            <summary>
+            The Google Cloud Region (e.g., "us-east5")
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.VertexAIAuthentication.ApiKey">
+            <summary>
+            The Google Cloud API Key (optional, can use default credentials)
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.VertexAIAuthentication.AccessToken">
+            <summary>
+            The OAuth2 Access Token (optional, can use default credentials)
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.VertexAIAuthentication.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Instantiates a new Vertex AI Authentication object with the given parameters
+            </summary>
+            <param name="projectId">The Google Cloud Project ID</param>
+            <param name="region">The Google Cloud Region (e.g., "us-east5")</param>
+            <param name="apiKey">The Google Cloud API Key (optional)</param>
+            <param name="accessToken">The OAuth2 Access Token (optional)</param>
+        </member>
+        <member name="P:Anthropic.SDK.VertexAIAuthentication.Default">
+            <summary>
+            The default authentication to use when no other auth is specified. This can be set manually, or automatically loaded via environment variables.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.VertexAIAuthentication.LoadFromEnv">
+            <summary>
+            Attempts to load Vertex AI authentication from environment variables:
+            - GOOGLE_CLOUD_PROJECT: The Google Cloud Project ID
+            - GOOGLE_CLOUD_REGION: The Google Cloud Region
+            - GOOGLE_API_KEY: The Google Cloud API Key (optional)
+            - GOOGLE_ACCESS_TOKEN: The OAuth2 Access Token (optional)
+            </summary>
+            <returns>Returns the loaded <see cref="T:Anthropic.SDK.VertexAIAuthentication"/> if environment variables were found, or <see langword="null"/> if there were no matching environment vars.</returns>
+        </member>
+        <member name="M:Anthropic.SDK.VertexAIAuthHelpers.ThisOrDefault(Anthropic.SDK.VertexAIAuthentication)">
+            <summary>
+            A helper method to swap out <see langword="null"/> <see cref="T:Anthropic.SDK.VertexAIAuthentication"/> objects with the <see cref="P:Anthropic.SDK.VertexAIAuthentication.Default"/> authentication, possibly loaded from ENV.
+            </summary>
+            <param name="auth">The specific authentication to use if not <see langword="null"/></param>
+            <returns>Either the provided <paramref name="auth"/> or the <see cref="P:Anthropic.SDK.VertexAIAuthentication.Default"/></returns>
+        </member>
+        <member name="T:Anthropic.SDK.VertexAIClient">
+            <summary>
+            Entry point to the Anthropic API via Google Cloud Vertex AI, handling auth and allowing access to the API endpoints
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.VertexAIClient.ApiUrlFormat">
+            <summary>
+            The base URL format for the Vertex AI API
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.VertexAIClient.Auth">
+            <summary>
+            The API authentication information to use for API calls
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.VertexAIClient.HttpClient">
+            <summary>
+            Optionally provide a custom HttpClient to send requests.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.VertexAIClient.RequestInterceptor">
+            <summary>
+            Optional request interceptor for adding custom logic (retry, logging, etc.) to HTTP requests.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.VertexAIClient.#ctor(Anthropic.SDK.VertexAIAuthentication,System.Net.Http.HttpClient,Anthropic.SDK.IRequestInterceptor)">
+            <summary>
+            Creates a new entry point to the Anthropic API via Google Cloud Vertex AI
+            </summary>
+            <param name="auth">
+            The Vertex AI authentication information to use for API calls,
+            or <see langword="null"/> to attempt to use the <see cref="P:Anthropic.SDK.VertexAIAuthentication.Default"/>,
+            potentially loading from environment vars.
+            </param>
+            <param name="client">A <see cref="P:Anthropic.SDK.VertexAIClient.HttpClient"/>.</param>
+            <param name="requestInterceptor">
+            Optional <see cref="T:Anthropic.SDK.IRequestInterceptor"/> for adding custom logic (retry, logging, circuit breaker, etc.) to HTTP requests.
+            </param>
+            <remarks>
+            <see cref="T:Anthropic.SDK.VertexAIClient"/> implements <see cref="T:System.IDisposable"/> to manage the lifecycle of the resources it uses, including <see cref="P:Anthropic.SDK.VertexAIClient.HttpClient"/>.
+            When you initialize <see cref="T:Anthropic.SDK.VertexAIClient"/>, it will create an internal <see cref="P:Anthropic.SDK.VertexAIClient.HttpClient"/> instance if one is not provided.
+            This internal HttpClient is disposed of when VertexAIClient is disposed of.
+            If you provide an external HttpClient instance to VertexAIClient, you are responsible for managing its disposal.
+            </remarks>
+        </member>
+        <member name="P:Anthropic.SDK.VertexAIClient.Messages">
+            <summary>
+            Text generation is the core function of the API. You give the API a prompt, and it generates a completion.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.VertexAIClient.Dispose">
+            <summary>
+            Disposes of the resources used by the <see cref="T:Anthropic.SDK.VertexAIClient"/>.
+            </summary>
+        </member>
+        <member name="T:Anthropic.SDK.VertexAIEndpointBase">
+            <summary>
+            Base class for Vertex AI endpoints
+            </summary>
+        </member>
+        <member name="F:Anthropic.SDK.VertexAIEndpointBase.Client">
+            <summary>
+            The internal reference to the Client, mostly used for authentication
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.VertexAIEndpointBase.#ctor(Anthropic.SDK.VertexAIClient)">
+            <summary>
+            Constructor of the api endpoint base, to be called from the constructor of any derived classes.
+            </summary>
+            <param name="client">The Vertex AI client</param>
+        </member>
+        <member name="P:Anthropic.SDK.VertexAIEndpointBase.Endpoint">
+            <summary>
+            The name of the endpoint, which is the final path segment in the API URL. Must be overriden in a derived class.
+            </summary>
+        </member>
+        <member name="P:Anthropic.SDK.VertexAIEndpointBase.Model">
+            <summary>
+            The default Anthropic model to use with Vertex AI.
+            Can be overridden in derived classes or through method parameters.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.VertexAIEndpointBase.GetModelForRequest(Anthropic.SDK.Messaging.MessageParameters)">
+            <summary>
+            Gets the model to use for the request, either from parameters or falling back to the default model.
+            </summary>
+            <param name="parameters">Optional message parameters that may contain a model override</param>
+            <returns>The model to use for the request</returns>
+        </member>
+        <member name="P:Anthropic.SDK.VertexAIEndpointBase.Url">
+            <summary>
+            Gets the URL of the endpoint.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.VertexAIEndpointBase.GetUrlForModel(System.String)">
+            <summary>
+            Gets the URL of the endpoint for a specific model.
+            </summary>
+            <param name="model">The model to use in the URL</param>
+        </member>
+        <member name="M:Anthropic.SDK.VertexAIEndpointBase.GetClient">
+            <summary>
+            Gets an HTTPClient with the appropriate authorization and other headers set.
+            </summary>
+            <returns>The fully initialized HttpClient</returns>
+            <exception cref="T:System.Security.Authentication.AuthenticationException">Thrown if there is no valid authentication.</exception>
+        </member>
+        <member name="M:Anthropic.SDK.VertexAIEndpointBase.GetRequestInterceptor">
+            <summary>
+            Gets the optional request interceptor for adding custom logic to HTTP requests.
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.VertexAIEndpointBase.HandleErrorResponseAsync(System.Net.Http.HttpResponseMessage,System.String,System.String)">
+            <summary>
+            Handle error responses from the API
+            </summary>
+        </member>
+        <member name="M:Anthropic.SDK.VertexAIEndpointBase.HttpStreamingRequestMessages(System.String,System.Net.Http.HttpMethod,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Makes a streaming HTTP request and returns the response as an async enumerable of MessageResponse.
+            </summary>
+        </member>
+    </members>
+</doc>

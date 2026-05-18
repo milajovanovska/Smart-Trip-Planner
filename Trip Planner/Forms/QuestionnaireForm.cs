@@ -946,7 +946,7 @@ namespace Trip_Planner
             if (e.KeyCode == Keys.Enter)
             {
                 btnContinue.PerformClick();
-            }
+            } 
         }
     }
 }

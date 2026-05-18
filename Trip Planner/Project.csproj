@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Anthropic.SDK, Version=5.5.0.0, Culture=neutral, PublicKeyToken=964e90d2b32b1213, processorArchitecture=MSIL">
+      <HintPath>..\packages\Anthropic.SDK.5.10.0\lib\netstandard2.0\Anthropic.SDK.dll</HintPath>
+    </Reference>
     <Reference Include="FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.6.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
     </Reference>
@@ -55,6 +58,9 @@
     </Reference>
     <Reference Include="Microsoft.Data.SqlClient.Internal.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Data.SqlClient.Internal.Logging.1.0.0\lib\netstandard2.0\Microsoft.Data.SqlClient.Internal.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.AI.Abstractions, Version=10.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.AI.Abstractions.10.3.0\lib\net462\Microsoft.Extensions.AI.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
@@ -229,6 +235,7 @@
     <Compile Include="Models\TripRequest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AIService.cs" />
     <Compile Include="Services\SerpApiService.cs" />
     <Compile Include="Services\TripGeneratorService.cs" />
     <EmbeddedResource Include="Forms\LoadingForm.resx">
@@ -250,6 +257,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="App.config.example" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

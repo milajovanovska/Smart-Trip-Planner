@@ -1399,7 +1399,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1316, 862);
+            this.ClientSize = new System.Drawing.Size(1196, 862);
             this.Controls.Add(this.btnThemeToggle);
             this.Controls.Add(this.questionPanel8);
             this.Controls.Add(this.questionPanel7);

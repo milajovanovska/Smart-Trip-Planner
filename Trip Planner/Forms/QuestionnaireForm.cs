@@ -808,6 +808,7 @@ namespace Trip_Planner
 
             LoadingForm loadingForm = new LoadingForm();
             loadingForm.Show();
+            loadingForm.BringToFront();
             Application.DoEvents();
 
             this.Enabled = false;
@@ -821,7 +822,6 @@ namespace Trip_Planner
             this.Enabled = true;
 
             Result resultForm = new Result(generatedResult);
-
             resultForm.Show();
 
             this.Hide();

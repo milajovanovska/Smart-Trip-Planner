@@ -30,19 +30,9 @@ namespace Trip_Planner.Forms
       
         private void timerLoading_Tick_1(object sender, EventArgs e)
         {
-            int step = 5;
-
-            if (progressBarLoading.Value < 100)
+            if (progressBarLoading.Value < 90)
             {
-                progressBarLoading.Value += step;
-
-                if (progressBarLoading.Value > 100)
-                    progressBarLoading.Value = 100;
-            }
-            else
-            {
-                timerLoading.Stop();
-                this.Close();
+                progressBarLoading.Value += 1;
             }
 
         }

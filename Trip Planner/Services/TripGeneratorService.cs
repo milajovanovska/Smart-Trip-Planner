@@ -8,7 +8,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Trip_Planner.Models;
-using Trip_Planner.Services;
 
 namespace Trip_Planner.Services
 {
@@ -19,8 +18,11 @@ namespace Trip_Planner.Services
             string serpKey = ConfigurationManager.AppSettings["SerpApiKey"];
             string groqKey = ConfigurationManager.AppSettings["GroqApiKey"];
 
+            string cityIntro = await GenerateCityIntroAsync(groqKey, request.Destination, request.StartDate);
+
             var serpService = new SerpApiService(serpKey);
             var allActivities = new List<Activity>();
+
 
             var baseCategories = new List<string>
 {
@@ -58,9 +60,29 @@ namespace Trip_Planner.Services
             string placesText = BuildPlacesText(allActivities);
             string prompt = BuildPrompt(request, placesText);
 
-            return await CallGroqAsync(groqKey, prompt);
+            string tripPlan = await CallGroqAsync(groqKey, prompt);
+            return cityIntro + "|||" + tripPlan;
         }
+        private async Task<string> GenerateCityIntroAsync(string apiKey, string destination, DateTime startDate)
+        {
+            string month = startDate.ToString("MMMM");
 
+            string prompt = $@"Write a short introduction for a trip to {destination}.
+
+Return exactly 3 parts separated by newlines:
+1. One sentence describing what makes {destination} special as a travel destination
+2. One sentence about what a visitor will experience there
+3. One sentence about the weather in {month} in {destination} and what to pack, starting with a weather emoji
+
+Example format:
+Tokyo, Japan's bustling capital, offers a captivating blend of ultramodern skyscrapers and historic temples.
+It's a city that seamlessly merges tradition with innovation, providing endless opportunities for exploration.
+☀️ May in Tokyo typically offers pleasant spring weather around 15-23°C - pack light layers and an umbrella.
+
+Write only these 3 sentences, nothing else, no labels, no extra text.";
+
+            return await CallGroqAsync(apiKey, prompt);
+        }
         private List<Activity> SortByProximity(List<Activity> activities)
         {
             if (activities.Count == 0) return activities;

@@ -40,15 +40,15 @@ namespace Trip_Planner
 
         private readonly Dictionary<Button, IconChar> _buttonIconMap = new Dictionary<Button, IconChar>();
 
-        private void SetButtonIcon(Button btn, IconChar icon, Color iconColor, int iconSize = 18)
+        private void SetButtonIcon(Button btn, IconChar icon, Color iconColor, int iconSize = 25)
         {
             if (btn == null) return;
             _buttonIconMap[btn] = icon;
             btn.Image = icon.ToBitmap(iconColor, iconSize);
             btn.ImageAlign = ContentAlignment.MiddleLeft;
-            btn.TextAlign = ContentAlignment.MiddleRight;
+            btn.TextAlign = ContentAlignment.MiddleLeft;
             btn.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btn.Padding = new Padding(10, 0, 10, 0);
+            btn.Padding = new Padding(10, 0, 0, 0);
         }
         private void ApplyButtonIcons()
         {

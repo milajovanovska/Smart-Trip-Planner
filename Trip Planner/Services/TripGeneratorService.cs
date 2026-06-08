@@ -192,8 +192,27 @@ INSTRUCTIONS:
 11. End each day with a summary line and that day total cost
 12. End the whole plan with TOTAL TRIP COST and a note on whether it fits the {request.Budget} EUR budget
 13. Only use places from the list above, never invent places
-14. Use Day 1, Day 2 headers with a creative title for each day
-15. Cover as many places from the list as possible spread across all days";
+14. Format each day EXACTLY like this:
+
+━━━━━━━━━━━━━━━━━━━━
+DAY 1: Creative Title
+━━━━━━━━━━━━━━━━━━━━
+
+08:00 - Activity
+
+09:00 - Activity
+
+Day 1 Summary: ...
+
+Day 1 Total Cost: ...
+
+15. Use the exact same format for every day.
+
+16. Do NOT use markdown headings (#, ##, ###).
+
+17. Leave a blank line between activities for readability.
+
+18. Cover as many places from the list as possible spread across all days.";
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Trip_Planner.Forms
             string cityIntro = parts.Length > 1 ? parts[0].Trim() : "";
             string tripPlan = parts.Length > 1 ? parts[1].Trim() : resultText;
 
-            for (int i = 1; i <= 20; i++)
+            for (int i = 1; i <= 31; i++)
             {
                 tripPlan = tripPlan.Replace(
                     $"## Day {i}",

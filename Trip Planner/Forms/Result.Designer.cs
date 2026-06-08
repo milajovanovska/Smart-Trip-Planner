@@ -35,10 +35,11 @@
             // 
             // lblTitle
             // 
+            this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblTitle.Location = new System.Drawing.Point(229, 9);
+            this.lblTitle.Location = new System.Drawing.Point(460, 28);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(253, 60);
             this.lblTitle.TabIndex = 1;
@@ -46,10 +47,11 @@
             // 
             // lblSubtitle
             // 
+            this.lblSubtitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblSubtitle.AutoSize = true;
             this.lblSubtitle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubtitle.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lblSubtitle.Location = new System.Drawing.Point(234, 79);
+            this.lblSubtitle.Location = new System.Drawing.Point(465, 105);
             this.lblSubtitle.Name = "lblSubtitle";
             this.lblSubtitle.Size = new System.Drawing.Size(234, 28);
             this.lblSubtitle.TabIndex = 2;
@@ -57,13 +59,14 @@
             // 
             // txtResult
             // 
+            this.txtResult.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtResult.BackColor = System.Drawing.Color.White;
             this.txtResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtResult.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtResult.Location = new System.Drawing.Point(30, 180);
+            this.txtResult.Location = new System.Drawing.Point(12, 150);
             this.txtResult.Name = "txtResult";
             this.txtResult.ReadOnly = true;
-            this.txtResult.Size = new System.Drawing.Size(1050, 525);
+            this.txtResult.Size = new System.Drawing.Size(1204, 641);
             this.txtResult.TabIndex = 3;
             this.txtResult.Text = "";
             // 
@@ -72,7 +75,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(846, 601);
+            this.ClientSize = new System.Drawing.Size(1228, 803);
             this.Controls.Add(this.txtResult);
             this.Controls.Add(this.lblSubtitle);
             this.Controls.Add(this.lblTitle);

@@ -20,44 +20,154 @@ namespace Trip_Planner.Forms
             string cityIntro = parts.Length > 1 ? parts[0].Trim() : "";
             string tripPlan = parts.Length > 1 ? parts[1].Trim() : resultText;
 
+            tripPlan = tripPlan.Replace("━━━━━━━━━━━━━━━━━━━━", "");
+            tripPlan = tripPlan.Replace("━", "");
+
             for (int i = 1; i <= 31; i++)
             {
                 tripPlan = tripPlan.Replace(
                     $"## Day {i}",
-                    $"\r\n\r\n🌍 DAY {i}\r\n────────────────────────────\r\n");
+                    $"\r\n\r\n🌍 DAY {i}\r\n\r\n");
             }
 
-            txtResult.Text = cityIntro + "\r\n\r\n" + tripPlan;
+            txtResult.Text =
+                cityIntro +
+                "\r\n\r\n\r\n\r\n" +
+                tripPlan;
 
             txtResult.SelectionStart = 0;
             txtResult.SelectionLength = 0;
 
-            HighlightDays();
+            FormatDays();
+
+            ApplyFormatting();
         }
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
         }
-        private void HighlightDays()
+        private void FormatDays()
         {
-            for (int i = 1; i <= 20; i++)
+            foreach (string line in txtResult.Lines)
             {
-                string search = $"🌍 DAY {i}";
-                int start = 0;
-
-                while ((start = txtResult.Text.IndexOf(search, start)) != -1)
+                if (line.StartsWith("DAY "))
                 {
-                    txtResult.Select(start, search.Length);
+                    int start =
+                        txtResult.Text.IndexOf(line);
+
+                    txtResult.Select(start, line.Length);
+
+                    txtResult.SelectionAlignment =
+                        HorizontalAlignment.Center;
 
                     txtResult.SelectionFont =
-                        new Font("Segoe UI", 14, FontStyle.Bold);
+                        new Font(
+                            "Segoe UI",
+                            14,
+                            FontStyle.Bold);
 
-                    start += search.Length;
+                    txtResult.SelectionColor =
+                        Color.FromArgb(0, 110, 170);
+                }
+            }
+        }
+        private void ApplyFormatting()
+        {
+            FormatIntro();
+            FormatDays();
+            FormatTimes();
+            FormatTotals();
+
+            txtResult.Select(0, 0);
+            txtResult.SelectionAlignment =
+                HorizontalAlignment.Left;
+        }
+        private void FormatIntro()
+        {
+            int dayIndex = txtResult.Text.IndexOf("DAY 1");
+
+            if (dayIndex == -1)
+                return;
+
+            txtResult.Select(0, dayIndex);
+
+            txtResult.SelectionAlignment =
+                HorizontalAlignment.Center;
+
+            txtResult.SelectionFont =
+                new Font("Segoe UI", 12, FontStyle.Regular);
+
+            txtResult.SelectionColor =
+                Color.FromArgb(70, 70, 70);
+
+            txtResult.DeselectAll();
+        }
+        private void FormatTimes()
+        {
+            string text = txtResult.Text;
+
+            for (int i = 0; i < text.Length - 5; i++)
+            {
+                bool isTime =
+                    char.IsDigit(text[i]) &&
+                    char.IsDigit(text[i + 1]) &&
+                    text[i + 2] == ':' &&
+                    char.IsDigit(text[i + 3]) &&
+                    char.IsDigit(text[i + 4]);
+
+                if (isTime)
+                {
+                    txtResult.Select(i, 5);
+
+                    txtResult.SelectionFont =
+                        new Font(
+                            "Segoe UI",
+                            10,
+                            FontStyle.Bold);
+                }
+            }
+        }
+        private void FormatTotals()
+        {
+            foreach (string line in txtResult.Lines)
+            {
+                if (line.Contains("Day") &&
+                    line.Contains("Total Cost"))
+                {
+                    int start =
+                        txtResult.Text.IndexOf(line);
+
+                    txtResult.Select(start, line.Length);
+
+                    txtResult.SelectionFont =
+                        new Font(
+                            "Segoe UI",
+                            11,
+                            FontStyle.Bold);
+
+                    txtResult.SelectionColor =
+                        Color.Teal;
                 }
             }
 
-            txtResult.Select(0, 0);
+            int finalTotal =
+                txtResult.Text.LastIndexOf("TOTAL");
+
+            if (finalTotal >= 0)
+            {
+                txtResult.Select(
+                    finalTotal,
+                    txtResult.Text.Length - finalTotal);
+
+                txtResult.SelectionFont =
+                    new Font(
+                        "Segoe UI",
+                        13,
+                        FontStyle.Bold);
+
+                txtResult.SelectionColor =
+                    Color.DarkBlue;
+            }
         }
-        
     }
 }

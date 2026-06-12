@@ -60,9 +60,9 @@
             // txtResult
             // 
             this.txtResult.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtResult.BackColor = System.Drawing.Color.White;
+            this.txtResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(255)))));
             this.txtResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtResult.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtResult.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtResult.Location = new System.Drawing.Point(12, 150);
             this.txtResult.Name = "txtResult";
             this.txtResult.ReadOnly = true;

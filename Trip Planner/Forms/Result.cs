@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace Trip_Planner.Forms
 {
@@ -12,6 +13,8 @@ namespace Trip_Planner.Forms
         public Result(string resultText)
         {
             InitializeComponent();
+
+            this.WindowState = FormWindowState.Maximized;
 
             string[] parts = resultText.Split(new string[] { "|||" }, StringSplitOptions.None);
 
@@ -168,6 +171,31 @@ namespace Trip_Planner.Forms
                 txtResult.SelectionColor =
                     Color.DarkBlue;
             }
+        }
+
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                saveDialog.Title = "Save Trip Plan";
+                saveDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+                saveDialog.FileName = "MyTripPlan";
+                saveDialog.DefaultExt = "txt";
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    System.IO.File.WriteAllText(saveDialog.FileName, txtResult.Text);
+                    MessageBox.Show("Plan saved!", "Saved",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void newBtn_Click(object sender, EventArgs e)
+        {
+            QuestionnaireForm newForm = new QuestionnaireForm();
+            newForm.Show();
+            this.Close();
         }
     }
 }

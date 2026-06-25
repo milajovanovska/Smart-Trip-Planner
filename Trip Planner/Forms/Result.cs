@@ -34,9 +34,10 @@ namespace Trip_Planner.Forms
             }
 
             txtResult.Text =
-                cityIntro +
-                "\r\n\r\n\r\n\r\n" +
-                tripPlan;
+      "\r\n" +
+      cityIntro +
+      "\r\n\r\n\r\n\r\n" +
+      tripPlan;
 
             txtResult.SelectionStart = 0;
             txtResult.SelectionLength = 0;
@@ -185,7 +186,7 @@ namespace Trip_Planner.Forms
                         new Font(
                             "Segoe UI",
                             10,
-                            FontStyle.Italic);
+                            FontStyle.Regular);
 
                     txtResult.SelectionColor =
                         Color.DimGray;

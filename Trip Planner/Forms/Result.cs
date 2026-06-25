@@ -18,7 +18,7 @@ namespace Trip_Planner.Forms
 
             string[] parts = resultText.Split(new string[] { "|||" }, StringSplitOptions.None);
 
-            this.BackColor = Color.FromArgb(240, 240, 240);
+            this.DoubleBuffered = true;
 
             string cityIntro = parts.Length > 1 ? parts[0].Trim() : "";
             string tripPlan = parts.Length > 1 ? parts[1].Trim() : resultText;
@@ -29,8 +29,8 @@ namespace Trip_Planner.Forms
             for (int i = 1; i <= 31; i++)
             {
                 tripPlan = tripPlan.Replace(
-                    $"## Day {i}",
-                    $"\r\n\r\n🌍 DAY {i}\r\n\r\n");
+                    $"Day {i} Summary:",
+                    $"\r\n\r\nDay {i} Summary:");
             }
 
             txtResult.Text =
@@ -45,10 +45,29 @@ namespace Trip_Planner.Forms
 
             ApplyFormatting();
         }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            using (LinearGradientBrush brush =
+                new LinearGradientBrush(
+                    this.ClientRectangle,
+                    Color.White,
+                    Color.FromArgb(180, 200, 240),
+                    45F))
+            {
+                e.Graphics.FillRectangle(
+                    brush,
+                    this.ClientRectangle);
+            }
+
+            base.OnPaint(e);
+        }
+
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
         }
+
         private void FormatDays()
         {
             foreach (string line in txtResult.Lines)
@@ -74,17 +93,18 @@ namespace Trip_Planner.Forms
                 }
             }
         }
+
         private void ApplyFormatting()
         {
             FormatIntro();
             FormatDays();
             FormatTimes();
+            FormatSummaries();
             FormatTotals();
 
             txtResult.Select(0, 0);
-            txtResult.SelectionAlignment =
-                HorizontalAlignment.Left;
         }
+
         private void FormatIntro()
         {
             int dayIndex = txtResult.Text.IndexOf("DAY 1");
@@ -105,6 +125,7 @@ namespace Trip_Planner.Forms
 
             txtResult.DeselectAll();
         }
+
         private void FormatTimes()
         {
             string text = txtResult.Text;
@@ -130,6 +151,48 @@ namespace Trip_Planner.Forms
                 }
             }
         }
+
+        private void FormatSummaries()
+        {
+            foreach (string line in txtResult.Lines)
+            {
+                if (line.Contains("Summary:"))
+                {
+                    int start = txtResult.Text.IndexOf(line);
+
+                    if (start < 0)
+                        continue;
+
+                    int separator =
+                        line.IndexOf("Summary:") + "Summary:".Length;
+
+                    txtResult.Select(start, separator);
+
+                    txtResult.SelectionFont =
+                        new Font(
+                            "Segoe UI",
+                            10,
+                            FontStyle.Bold);
+
+                    txtResult.SelectionColor =
+                        Color.Teal;
+
+                    txtResult.Select(
+                        start + separator,
+                        line.Length - separator);
+
+                    txtResult.SelectionFont =
+                        new Font(
+                            "Segoe UI",
+                            10,
+                            FontStyle.Italic);
+
+                    txtResult.SelectionColor =
+                        Color.DimGray;
+                }
+            }
+        }
+
         private void FormatTotals()
         {
             foreach (string line in txtResult.Lines)
@@ -145,11 +208,11 @@ namespace Trip_Planner.Forms
                     txtResult.SelectionFont =
                         new Font(
                             "Segoe UI",
-                            11,
+                            12,
                             FontStyle.Bold);
 
                     txtResult.SelectionColor =
-                        Color.Teal;
+                       Color.FromArgb(0, 110, 170);
                 }
             }
 
@@ -165,7 +228,7 @@ namespace Trip_Planner.Forms
                 txtResult.SelectionFont =
                     new Font(
                         "Segoe UI",
-                        13,
+                        14,
                         FontStyle.Bold);
 
                 txtResult.SelectionColor =

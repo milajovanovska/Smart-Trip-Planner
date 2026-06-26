@@ -368,7 +368,6 @@ namespace Trip_Planner
                 case 1:
                     lblTitle.Text = "Pick your destination";
                     txtDestination_TextChanged_1(null, null);
-                    btnContinue.Enabled = false;
                     btnBack.Visible = false;
                     btnContinue.Visible = true;
                     break;
@@ -378,7 +377,6 @@ namespace Trip_Planner
                     dateTimePickerStart.MinDate = DateTime.Today;
                     dateTimePickerEnd.MinDate = DateTime.Today;
                     CalculateDuration();
-                    btnContinue.Enabled = true;
                     btnBack.Visible = true;
                     btnContinue.Visible = true;
                     break;
@@ -392,7 +390,11 @@ namespace Trip_Planner
 
                 case 4:
                     lblTitle.Text = "What kind of trip?";
-                    btnContinue.Enabled = false;
+                    btnContinue.Enabled = (btnActive.BackColor == PRIMARY_DARK ||
+                                   btnRelaxing.BackColor == PRIMARY_DARK ||
+                                   btnAdventure.BackColor == PRIMARY_DARK ||
+                                   btnLuxury.BackColor == PRIMARY_DARK ||
+                                   btnBackpacking.BackColor == PRIMARY_DARK);
                     btnBack.Visible = true;
                     btnContinue.Visible = true;
                     break;
@@ -404,14 +406,20 @@ namespace Trip_Planner
                     break;
                 case 6:
                     lblTitle.Text = "How packed should the days be?";
-                    btnContinue.Enabled = false;
+                    btnContinue.Enabled = (btnRelaxed.BackColor == PRIMARY_DARK ||
+                                   btnBalanced.BackColor == PRIMARY_DARK ||
+                                   btnPacked.BackColor == PRIMARY_DARK);
                     btnBack.Visible = true;
                     btnContinue.Visible = true;
                     break;
                 case 7:
                     lblTitle.Text = "How do you want to move?";
+                    btnContinue.Enabled = (btnWalking.BackColor == PRIMARY_DARK ||
+                                   btnBike.BackColor == PRIMARY_DARK ||
+                                   btnPublicTransport.BackColor == PRIMARY_DARK ||
+                                   btnTaxiUber.BackColor == PRIMARY_DARK ||
+                                   btnRentACar.BackColor == PRIMARY_DARK);
                     btnBack.Visible = true;
-                    btnContinue.Enabled = false;
                     btnContinue.Visible = true;
                     break;
                 case 8:

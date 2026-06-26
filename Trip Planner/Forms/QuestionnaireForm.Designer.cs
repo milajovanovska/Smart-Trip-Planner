@@ -150,10 +150,10 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Elephant", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(284, 100);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(189, 67);
+            this.label1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(603, 51);
+            this.label1.Size = new System.Drawing.Size(412, 35);
             this.label1.TabIndex = 0;
             this.label1.Text = "Plan a perfect trip in minutes";
             // 
@@ -163,10 +163,10 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label2.Location = new System.Drawing.Point(83, 178);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(55, 119);
+            this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1023, 50);
+            this.label2.Size = new System.Drawing.Size(751, 34);
             this.label2.TabIndex = 0;
             this.label2.Text = "Answer nine quick questions.\r\n We\'ll craft a day-by-day itinerary tuned to your b" +
     "udget, pace and tastes - complete with map, hours and hidden gems.";
@@ -175,30 +175,30 @@
             // panelProgressBarBack
             // 
             this.panelProgressBarBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.panelProgressBarBack.Location = new System.Drawing.Point(112, 341);
-            this.panelProgressBarBack.Margin = new System.Windows.Forms.Padding(2);
+            this.panelProgressBarBack.Location = new System.Drawing.Point(75, 227);
+            this.panelProgressBarBack.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.panelProgressBarBack.Name = "panelProgressBarBack";
-            this.panelProgressBarBack.Size = new System.Drawing.Size(922, 20);
+            this.panelProgressBarBack.Size = new System.Drawing.Size(615, 13);
             this.panelProgressBarBack.TabIndex = 2;
             this.panelProgressBarBack.Paint += new System.Windows.Forms.PaintEventHandler(this.panelProgressBarBack_Paint);
             // 
             // panelProgressBar
             // 
             this.panelProgressBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
-            this.panelProgressBar.Location = new System.Drawing.Point(112, 341);
-            this.panelProgressBar.Margin = new System.Windows.Forms.Padding(2);
+            this.panelProgressBar.Location = new System.Drawing.Point(75, 227);
+            this.panelProgressBar.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.panelProgressBar.Name = "panelProgressBar";
-            this.panelProgressBar.Size = new System.Drawing.Size(14, 20);
+            this.panelProgressBar.Size = new System.Drawing.Size(9, 13);
             this.panelProgressBar.TabIndex = 0;
             // 
             // lblStepCount
             // 
             this.lblStepCount.AutoSize = true;
             this.lblStepCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblStepCount.Location = new System.Drawing.Point(108, 308);
-            this.lblStepCount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblStepCount.Location = new System.Drawing.Point(72, 205);
+            this.lblStepCount.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lblStepCount.Name = "lblStepCount";
-            this.lblStepCount.Size = new System.Drawing.Size(87, 20);
+            this.lblStepCount.Size = new System.Drawing.Size(59, 13);
             this.lblStepCount.TabIndex = 0;
             this.lblStepCount.Text = "Step 1 of 8";
             // 
@@ -206,12 +206,13 @@
             // 
             this.lblPercentage.AutoSize = true;
             this.lblPercentage.BackColor = System.Drawing.Color.Transparent;
-            this.lblPercentage.Location = new System.Drawing.Point(994, 308);
-            this.lblPercentage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPercentage.Location = new System.Drawing.Point(663, 205);
+            this.lblPercentage.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lblPercentage.Name = "lblPercentage";
-            this.lblPercentage.Size = new System.Drawing.Size(41, 20);
+            this.lblPercentage.Size = new System.Drawing.Size(27, 13);
             this.lblPercentage.TabIndex = 3;
             this.lblPercentage.Text = "11%";
+            this.lblPercentage.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             // 
             // btnBack
             // 
@@ -221,14 +222,15 @@
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.btnBack.Location = new System.Drawing.Point(233, 788);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBack.Location = new System.Drawing.Point(155, 525);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(188, 41);
+            this.btnBack.Size = new System.Drawing.Size(125, 27);
             this.btnBack.TabIndex = 19;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click_1);
+            this.btnBack.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             // 
             // btnContinue
             // 
@@ -238,14 +240,15 @@
             this.btnContinue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnContinue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnContinue.ForeColor = System.Drawing.Color.Black;
-            this.btnContinue.Location = new System.Drawing.Point(672, 788);
-            this.btnContinue.Margin = new System.Windows.Forms.Padding(2);
+            this.btnContinue.Location = new System.Drawing.Point(448, 525);
+            this.btnContinue.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnContinue.Name = "btnContinue";
-            this.btnContinue.Size = new System.Drawing.Size(188, 41);
+            this.btnContinue.Size = new System.Drawing.Size(125, 27);
             this.btnContinue.TabIndex = 20;
             this.btnContinue.Text = "Continue ";
             this.btnContinue.UseVisualStyleBackColor = false;
             this.btnContinue.Click += new System.EventHandler(this.btnContinue_Click_1);
+            this.btnContinue.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             // 
             // questionPanel2
             // 
@@ -258,19 +261,19 @@
             this.questionPanel2.Controls.Add(this.label36);
             this.questionPanel2.Controls.Add(this.label37);
             this.questionPanel2.Controls.Add(this.label38);
-            this.questionPanel2.Location = new System.Drawing.Point(97, 384);
-            this.questionPanel2.Margin = new System.Windows.Forms.Padding(2);
+            this.questionPanel2.Location = new System.Drawing.Point(65, 256);
+            this.questionPanel2.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.questionPanel2.Name = "questionPanel2";
-            this.questionPanel2.Size = new System.Drawing.Size(934, 366);
+            this.questionPanel2.Size = new System.Drawing.Size(623, 245);
             this.questionPanel2.TabIndex = 23;
             // 
             // dateTimePickerEnd
             // 
             this.dateTimePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerEnd.Location = new System.Drawing.Point(547, 172);
-            this.dateTimePickerEnd.Margin = new System.Windows.Forms.Padding(2);
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(365, 115);
+            this.dateTimePickerEnd.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.dateTimePickerEnd.Name = "dateTimePickerEnd";
-            this.dateTimePickerEnd.Size = new System.Drawing.Size(198, 26);
+            this.dateTimePickerEnd.Size = new System.Drawing.Size(133, 20);
             this.dateTimePickerEnd.TabIndex = 11;
             this.dateTimePickerEnd.ValueChanged += new System.EventHandler(this.dateTimePickerEnd_ValueChanged_2);
             // 
@@ -280,19 +283,19 @@
             this.lblDuration.Controls.Add(this.labelDuration);
             this.lblDuration.Controls.Add(this.panel10);
             this.lblDuration.ForeColor = System.Drawing.Color.DimGray;
-            this.lblDuration.Location = new System.Drawing.Point(43, 239);
-            this.lblDuration.Margin = new System.Windows.Forms.Padding(2);
+            this.lblDuration.Location = new System.Drawing.Point(29, 159);
+            this.lblDuration.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.lblDuration.Name = "lblDuration";
-            this.lblDuration.Size = new System.Drawing.Size(703, 48);
+            this.lblDuration.Size = new System.Drawing.Size(469, 32);
             this.lblDuration.TabIndex = 10;
             // 
             // labelDuration
             // 
             this.labelDuration.AutoSize = true;
-            this.labelDuration.Location = new System.Drawing.Point(14, 12);
-            this.labelDuration.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelDuration.Location = new System.Drawing.Point(9, 8);
+            this.labelDuration.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.labelDuration.Name = "labelDuration";
-            this.labelDuration.Size = new System.Drawing.Size(128, 20);
+            this.labelDuration.Size = new System.Drawing.Size(87, 13);
             this.labelDuration.TabIndex = 0;
             this.labelDuration.Text = "Duration: 0 days.";
             // 
@@ -303,10 +306,10 @@
             this.panel10.Controls.Add(this.label31);
             this.panel10.Controls.Add(this.textBox2);
             this.panel10.Controls.Add(this.panel11);
-            this.panel10.Location = new System.Drawing.Point(2, 54);
-            this.panel10.Margin = new System.Windows.Forms.Padding(2);
+            this.panel10.Location = new System.Drawing.Point(1, 36);
+            this.panel10.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(922, 355);
+            this.panel10.Size = new System.Drawing.Size(615, 237);
             this.panel10.TabIndex = 21;
             // 
             // label29
@@ -316,10 +319,10 @@
             this.label29.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(110)))), ((int)(((byte)(64)))));
-            this.label29.Location = new System.Drawing.Point(14, 16);
-            this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label29.Location = new System.Drawing.Point(9, 11);
+            this.label29.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(92, 31);
+            this.label29.Size = new System.Drawing.Size(63, 22);
             this.label29.TabIndex = 2;
             this.label29.Text = "Budget";
             // 
@@ -327,10 +330,10 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Elephant", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(14, 48);
-            this.label30.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label30.Location = new System.Drawing.Point(9, 32);
+            this.label30.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(371, 37);
+            this.label30.Size = new System.Drawing.Size(257, 25);
             this.label30.TabIndex = 0;
             this.label30.Text = "What\'s your total budget?";
             // 
@@ -339,19 +342,19 @@
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label31.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label31.Location = new System.Drawing.Point(17, 85);
-            this.label31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label31.Location = new System.Drawing.Point(11, 57);
+            this.label31.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(390, 25);
+            this.label31.Size = new System.Drawing.Size(286, 17);
             this.label31.TabIndex = 11;
             this.label31.Text = "In euros, including stays, food and activities.";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(22, 298);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox2.Location = new System.Drawing.Point(15, 199);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(849, 26);
+            this.textBox2.Size = new System.Drawing.Size(567, 20);
             this.textBox2.TabIndex = 13;
             this.textBox2.Text = "1200 €";
             // 
@@ -362,41 +365,41 @@
             this.panel11.Controls.Add(this.label33);
             this.panel11.Controls.Add(this.trackBar2);
             this.panel11.Controls.Add(this.label34);
-            this.panel11.Location = new System.Drawing.Point(26, 142);
-            this.panel11.Margin = new System.Windows.Forms.Padding(2);
+            this.panel11.Location = new System.Drawing.Point(17, 95);
+            this.panel11.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(845, 134);
+            this.panel11.Size = new System.Drawing.Size(563, 89);
             this.panel11.TabIndex = 12;
             // 
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(710, 92);
-            this.label32.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label32.Location = new System.Drawing.Point(473, 61);
+            this.label32.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(71, 20);
+            this.label32.Size = new System.Drawing.Size(49, 13);
             this.label32.TabIndex = 3;
             this.label32.Text = "10.000 €";
             // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(52, 92);
-            this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label33.Location = new System.Drawing.Point(35, 61);
+            this.label33.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(49, 20);
+            this.label33.Size = new System.Drawing.Size(34, 13);
             this.label33.TabIndex = 2;
             this.label33.Text = "100 €";
             // 
             // trackBar2
             // 
             this.trackBar2.LargeChange = 500;
-            this.trackBar2.Location = new System.Drawing.Point(52, 42);
-            this.trackBar2.Margin = new System.Windows.Forms.Padding(2);
+            this.trackBar2.Location = new System.Drawing.Point(35, 28);
+            this.trackBar2.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.trackBar2.Maximum = 10000;
             this.trackBar2.Minimum = 100;
             this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(728, 69);
+            this.trackBar2.Size = new System.Drawing.Size(485, 45);
             this.trackBar2.SmallChange = 100;
             this.trackBar2.TabIndex = 1;
             this.trackBar2.TickStyle = System.Windows.Forms.TickStyle.None;
@@ -406,20 +409,20 @@
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Modern No. 20", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(358, 4);
-            this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label34.Location = new System.Drawing.Point(239, 3);
+            this.label34.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(143, 45);
+            this.label34.Size = new System.Drawing.Size(101, 31);
             this.label34.TabIndex = 0;
             this.label34.Text = "1200 €";
             // 
             // dateTimePickerStart
             // 
             this.dateTimePickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerStart.Location = new System.Drawing.Point(43, 182);
-            this.dateTimePickerStart.Margin = new System.Windows.Forms.Padding(2);
+            this.dateTimePickerStart.Location = new System.Drawing.Point(29, 121);
+            this.dateTimePickerStart.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.dateTimePickerStart.Name = "dateTimePickerStart";
-            this.dateTimePickerStart.Size = new System.Drawing.Size(198, 26);
+            this.dateTimePickerStart.Size = new System.Drawing.Size(133, 20);
             this.dateTimePickerStart.TabIndex = 8;
             this.dateTimePickerStart.Value = new System.DateTime(2026, 4, 23, 15, 56, 37, 0);
             this.dateTimePickerStart.ValueChanged += new System.EventHandler(this.dateTimePickerStart_ValueChanged_1);
@@ -427,20 +430,20 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(542, 142);
-            this.label35.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label35.Location = new System.Drawing.Point(361, 95);
+            this.label35.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(74, 20);
+            this.label35.Size = new System.Drawing.Size(50, 13);
             this.label35.TabIndex = 7;
             this.label35.Text = "End date";
             // 
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(38, 150);
-            this.label36.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label36.Location = new System.Drawing.Point(25, 100);
+            this.label36.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(80, 20);
+            this.label36.Size = new System.Drawing.Size(53, 13);
             this.label36.TabIndex = 6;
             this.label36.Text = "Start date";
             // 
@@ -450,10 +453,10 @@
             this.label37.BackColor = System.Drawing.Color.Transparent;
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label37.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
-            this.label37.Location = new System.Drawing.Point(32, 14);
-            this.label37.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label37.Location = new System.Drawing.Point(21, 9);
+            this.label37.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(87, 29);
+            this.label37.Size = new System.Drawing.Size(60, 20);
             this.label37.TabIndex = 2;
             this.label37.Text = "When?";
             // 
@@ -461,10 +464,10 @@
             // 
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Elephant", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(30, 58);
-            this.label38.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label38.Location = new System.Drawing.Point(20, 39);
+            this.label38.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(363, 37);
+            this.label38.Size = new System.Drawing.Size(249, 25);
             this.label38.TabIndex = 0;
             this.label38.Text = "When are you travelling?";
             // 
@@ -477,18 +480,18 @@
             this.questionPanel3.Controls.Add(this.label4);
             this.questionPanel3.Controls.Add(this.label14);
             this.questionPanel3.Controls.Add(this.label15);
-            this.questionPanel3.Location = new System.Drawing.Point(94, 400);
-            this.questionPanel3.Margin = new System.Windows.Forms.Padding(2);
+            this.questionPanel3.Location = new System.Drawing.Point(63, 267);
+            this.questionPanel3.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.questionPanel3.Name = "questionPanel3";
-            this.questionPanel3.Size = new System.Drawing.Size(924, 362);
+            this.questionPanel3.Size = new System.Drawing.Size(617, 242);
             this.questionPanel3.TabIndex = 25;
             // 
             // txtBudgetInput
             // 
-            this.txtBudgetInput.Location = new System.Drawing.Point(37, 306);
-            this.txtBudgetInput.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBudgetInput.Location = new System.Drawing.Point(25, 204);
+            this.txtBudgetInput.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txtBudgetInput.Name = "txtBudgetInput";
-            this.txtBudgetInput.Size = new System.Drawing.Size(846, 26);
+            this.txtBudgetInput.Size = new System.Drawing.Size(565, 20);
             this.txtBudgetInput.TabIndex = 26;
             this.txtBudgetInput.Text = "1,200 €";
             this.txtBudgetInput.TextChanged += new System.EventHandler(this.txtBudgetInput_TextChanged);
@@ -500,41 +503,41 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.trkBudget_Scroll);
             this.panel2.Controls.Add(this.lblBudgetValue);
-            this.panel2.Location = new System.Drawing.Point(37, 148);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Location = new System.Drawing.Point(25, 99);
+            this.panel2.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(847, 146);
+            this.panel2.Size = new System.Drawing.Size(565, 97);
             this.panel2.TabIndex = 4;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(706, 109);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(471, 73);
+            this.label7.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(71, 20);
+            this.label7.Size = new System.Drawing.Size(49, 13);
             this.label7.TabIndex = 3;
             this.label7.Text = "10,000 €";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(66, 109);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(44, 73);
+            this.label6.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 20);
+            this.label6.Size = new System.Drawing.Size(34, 13);
             this.label6.TabIndex = 2;
             this.label6.Text = "100 €";
             // 
             // trkBudget_Scroll
             // 
             this.trkBudget_Scroll.LargeChange = 500;
-            this.trkBudget_Scroll.Location = new System.Drawing.Point(53, 60);
-            this.trkBudget_Scroll.Margin = new System.Windows.Forms.Padding(2);
+            this.trkBudget_Scroll.Location = new System.Drawing.Point(35, 40);
+            this.trkBudget_Scroll.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.trkBudget_Scroll.Maximum = 10000;
             this.trkBudget_Scroll.Minimum = 100;
             this.trkBudget_Scroll.Name = "trkBudget_Scroll";
-            this.trkBudget_Scroll.Size = new System.Drawing.Size(727, 69);
+            this.trkBudget_Scroll.Size = new System.Drawing.Size(485, 45);
             this.trkBudget_Scroll.SmallChange = 100;
             this.trkBudget_Scroll.TabIndex = 1;
             this.trkBudget_Scroll.Value = 1200;
@@ -544,10 +547,10 @@
             // 
             this.lblBudgetValue.AutoSize = true;
             this.lblBudgetValue.Font = new System.Drawing.Font("Rockwell", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBudgetValue.Location = new System.Drawing.Point(354, 10);
-            this.lblBudgetValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblBudgetValue.Location = new System.Drawing.Point(236, 7);
+            this.lblBudgetValue.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lblBudgetValue.Name = "lblBudgetValue";
-            this.lblBudgetValue.Size = new System.Drawing.Size(142, 50);
+            this.lblBudgetValue.Size = new System.Drawing.Size(97, 33);
             this.lblBudgetValue.TabIndex = 0;
             this.lblBudgetValue.Text = "1200 €";
             // 
@@ -555,10 +558,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label4.Location = new System.Drawing.Point(34, 106);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(23, 71);
+            this.label4.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(317, 20);
+            this.label4.Size = new System.Drawing.Size(215, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "In euros, including stays, food and activities.";
             // 
@@ -568,10 +571,10 @@
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
-            this.label14.Location = new System.Drawing.Point(32, 14);
-            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Location = new System.Drawing.Point(21, 9);
+            this.label14.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(90, 29);
+            this.label14.Size = new System.Drawing.Size(61, 20);
             this.label14.TabIndex = 2;
             this.label14.Text = "Budget";
             // 
@@ -579,10 +582,10 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Elephant", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(30, 58);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Location = new System.Drawing.Point(20, 39);
+            this.label15.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(371, 37);
+            this.label15.Size = new System.Drawing.Size(257, 25);
             this.label15.TabIndex = 0;
             this.label15.Text = "What\'s your total budget?";
             // 
@@ -597,20 +600,20 @@
             this.questionPanel4.Controls.Add(this.btnActive);
             this.questionPanel4.Controls.Add(this.label11);
             this.questionPanel4.Controls.Add(this.label13);
-            this.questionPanel4.Location = new System.Drawing.Point(98, 404);
-            this.questionPanel4.Margin = new System.Windows.Forms.Padding(2);
+            this.questionPanel4.Location = new System.Drawing.Point(65, 269);
+            this.questionPanel4.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.questionPanel4.Name = "questionPanel4";
-            this.questionPanel4.Size = new System.Drawing.Size(924, 361);
+            this.questionPanel4.Size = new System.Drawing.Size(617, 241);
             this.questionPanel4.TabIndex = 26;
             // 
             // btnBackpacking
             // 
             this.btnBackpacking.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBackpacking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBackpacking.Location = new System.Drawing.Point(546, 222);
-            this.btnBackpacking.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBackpacking.Location = new System.Drawing.Point(364, 148);
+            this.btnBackpacking.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnBackpacking.Name = "btnBackpacking";
-            this.btnBackpacking.Size = new System.Drawing.Size(248, 68);
+            this.btnBackpacking.Size = new System.Drawing.Size(165, 45);
             this.btnBackpacking.TabIndex = 9;
             this.btnBackpacking.Text = "Backpacking\r\n-Light & lean";
             this.btnBackpacking.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -621,10 +624,10 @@
             // 
             this.btnLuxury.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLuxury.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLuxury.Location = new System.Drawing.Point(194, 222);
-            this.btnLuxury.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLuxury.Location = new System.Drawing.Point(129, 148);
+            this.btnLuxury.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnLuxury.Name = "btnLuxury";
-            this.btnLuxury.Size = new System.Drawing.Size(248, 68);
+            this.btnLuxury.Size = new System.Drawing.Size(165, 45);
             this.btnLuxury.TabIndex = 8;
             this.btnLuxury.Text = "Luxury\r\n-Comfort first";
             this.btnLuxury.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -635,10 +638,10 @@
             // 
             this.btnRelaxing.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRelaxing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRelaxing.Location = new System.Drawing.Point(344, 118);
-            this.btnRelaxing.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRelaxing.Location = new System.Drawing.Point(229, 79);
+            this.btnRelaxing.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnRelaxing.Name = "btnRelaxing";
-            this.btnRelaxing.Size = new System.Drawing.Size(248, 68);
+            this.btnRelaxing.Size = new System.Drawing.Size(165, 45);
             this.btnRelaxing.TabIndex = 6;
             this.btnRelaxing.Text = "Relaxing\r\n-Slow & calm";
             this.btnRelaxing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -649,10 +652,10 @@
             // 
             this.btnAdventure.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdventure.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdventure.Location = new System.Drawing.Point(659, 118);
-            this.btnAdventure.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAdventure.Location = new System.Drawing.Point(439, 79);
+            this.btnAdventure.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnAdventure.Name = "btnAdventure";
-            this.btnAdventure.Size = new System.Drawing.Size(248, 68);
+            this.btnAdventure.Size = new System.Drawing.Size(165, 45);
             this.btnAdventure.TabIndex = 4;
             this.btnAdventure.Text = "Adventure\r\n-Off the beaten path";
             this.btnAdventure.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -663,10 +666,10 @@
             // 
             this.btnActive.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnActive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActive.Location = new System.Drawing.Point(38, 118);
-            this.btnActive.Margin = new System.Windows.Forms.Padding(2);
+            this.btnActive.Location = new System.Drawing.Point(25, 79);
+            this.btnActive.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnActive.Name = "btnActive";
-            this.btnActive.Size = new System.Drawing.Size(248, 68);
+            this.btnActive.Size = new System.Drawing.Size(165, 45);
             this.btnActive.TabIndex = 3;
             this.btnActive.Text = "Active\r\n-Move every day \r\n";
             this.btnActive.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -679,10 +682,10 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
-            this.label11.Location = new System.Drawing.Point(32, 14);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Location = new System.Drawing.Point(21, 9);
+            this.label11.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(66, 29);
+            this.label11.Size = new System.Drawing.Size(44, 20);
             this.label11.TabIndex = 2;
             this.label11.Text = "Style";
             // 
@@ -690,10 +693,10 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Elephant", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(30, 58);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Location = new System.Drawing.Point(20, 39);
+            this.label13.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(274, 37);
+            this.label13.Size = new System.Drawing.Size(189, 25);
             this.label13.TabIndex = 0;
             this.label13.Text = "What kind of trip?";
             // 
@@ -713,10 +716,10 @@
             this.questionPanel5.Controls.Add(this.label9);
             this.questionPanel5.Controls.Add(this.label5);
             this.questionPanel5.Controls.Add(this.label8);
-            this.questionPanel5.Location = new System.Drawing.Point(98, 404);
-            this.questionPanel5.Margin = new System.Windows.Forms.Padding(2);
+            this.questionPanel5.Location = new System.Drawing.Point(65, 269);
+            this.questionPanel5.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.questionPanel5.Name = "questionPanel5";
-            this.questionPanel5.Size = new System.Drawing.Size(924, 361);
+            this.questionPanel5.Size = new System.Drawing.Size(617, 241);
             this.questionPanel5.TabIndex = 27;
             // 
             // btnShopping
@@ -725,10 +728,10 @@
             this.btnShopping.FlatAppearance.BorderSize = 0;
             this.btnShopping.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShopping.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShopping.Location = new System.Drawing.Point(508, 244);
-            this.btnShopping.Margin = new System.Windows.Forms.Padding(2);
+            this.btnShopping.Location = new System.Drawing.Point(339, 163);
+            this.btnShopping.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnShopping.Name = "btnShopping";
-            this.btnShopping.Size = new System.Drawing.Size(136, 92);
+            this.btnShopping.Size = new System.Drawing.Size(91, 61);
             this.btnShopping.TabIndex = 11;
             this.btnShopping.Text = "Shopping";
             this.btnShopping.UseVisualStyleBackColor = false;
@@ -740,10 +743,10 @@
             this.btnFood.FlatAppearance.BorderSize = 0;
             this.btnFood.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFood.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFood.Location = new System.Drawing.Point(272, 244);
-            this.btnFood.Margin = new System.Windows.Forms.Padding(2);
+            this.btnFood.Location = new System.Drawing.Point(181, 163);
+            this.btnFood.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnFood.Name = "btnFood";
-            this.btnFood.Size = new System.Drawing.Size(137, 92);
+            this.btnFood.Size = new System.Drawing.Size(91, 61);
             this.btnFood.TabIndex = 10;
             this.btnFood.Text = "Food";
             this.btnFood.UseVisualStyleBackColor = false;
@@ -755,10 +758,10 @@
             this.btnNature.FlatAppearance.BorderSize = 0;
             this.btnNature.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNature.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNature.Location = new System.Drawing.Point(738, 132);
-            this.btnNature.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNature.Location = new System.Drawing.Point(492, 88);
+            this.btnNature.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnNature.Name = "btnNature";
-            this.btnNature.Size = new System.Drawing.Size(134, 92);
+            this.btnNature.Size = new System.Drawing.Size(89, 61);
             this.btnNature.TabIndex = 9;
             this.btnNature.Text = "Nature";
             this.btnNature.UseVisualStyleBackColor = false;
@@ -770,10 +773,10 @@
             this.btnNightLife.FlatAppearance.BorderSize = 0;
             this.btnNightLife.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNightLife.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNightLife.Location = new System.Drawing.Point(508, 132);
-            this.btnNightLife.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNightLife.Location = new System.Drawing.Point(339, 88);
+            this.btnNightLife.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnNightLife.Name = "btnNightLife";
-            this.btnNightLife.Size = new System.Drawing.Size(136, 92);
+            this.btnNightLife.Size = new System.Drawing.Size(91, 61);
             this.btnNightLife.TabIndex = 8;
             this.btnNightLife.Text = "Nightlife";
             this.btnNightLife.UseVisualStyleBackColor = false;
@@ -785,10 +788,10 @@
             this.btnCafes.FlatAppearance.BorderSize = 0;
             this.btnCafes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCafes.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCafes.Location = new System.Drawing.Point(272, 132);
-            this.btnCafes.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCafes.Location = new System.Drawing.Point(181, 88);
+            this.btnCafes.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnCafes.Name = "btnCafes";
-            this.btnCafes.Size = new System.Drawing.Size(137, 92);
+            this.btnCafes.Size = new System.Drawing.Size(91, 61);
             this.btnCafes.TabIndex = 7;
             this.btnCafes.Text = "Cafes";
             this.btnCafes.UseVisualStyleBackColor = false;
@@ -800,10 +803,10 @@
             this.btnBeaches.FlatAppearance.BorderSize = 0;
             this.btnBeaches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBeaches.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBeaches.Location = new System.Drawing.Point(38, 244);
-            this.btnBeaches.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBeaches.Location = new System.Drawing.Point(25, 163);
+            this.btnBeaches.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnBeaches.Name = "btnBeaches";
-            this.btnBeaches.Size = new System.Drawing.Size(145, 92);
+            this.btnBeaches.Size = new System.Drawing.Size(97, 61);
             this.btnBeaches.TabIndex = 6;
             this.btnBeaches.Text = "Beaches";
             this.btnBeaches.UseVisualStyleBackColor = false;
@@ -815,10 +818,10 @@
             this.btnMuseum.FlatAppearance.BorderSize = 0;
             this.btnMuseum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMuseum.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMuseum.Location = new System.Drawing.Point(37, 132);
-            this.btnMuseum.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMuseum.Location = new System.Drawing.Point(25, 88);
+            this.btnMuseum.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnMuseum.Name = "btnMuseum";
-            this.btnMuseum.Size = new System.Drawing.Size(145, 92);
+            this.btnMuseum.Size = new System.Drawing.Size(97, 61);
             this.btnMuseum.TabIndex = 5;
             this.btnMuseum.Text = "Museums";
             this.btnMuseum.UseVisualStyleBackColor = false;
@@ -830,10 +833,10 @@
             this.btnHiddenGems.FlatAppearance.BorderSize = 0;
             this.btnHiddenGems.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHiddenGems.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHiddenGems.Location = new System.Drawing.Point(734, 244);
-            this.btnHiddenGems.Margin = new System.Windows.Forms.Padding(2);
+            this.btnHiddenGems.Location = new System.Drawing.Point(489, 163);
+            this.btnHiddenGems.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnHiddenGems.Name = "btnHiddenGems";
-            this.btnHiddenGems.Size = new System.Drawing.Size(138, 92);
+            this.btnHiddenGems.Size = new System.Drawing.Size(92, 61);
             this.btnHiddenGems.TabIndex = 12;
             this.btnHiddenGems.Text = "Hidden gems";
             this.btnHiddenGems.UseVisualStyleBackColor = false;
@@ -843,20 +846,20 @@
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label10.Location = new System.Drawing.Point(35, 90);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Location = new System.Drawing.Point(23, 60);
+            this.label10.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(193, 20);
+            this.label10.Size = new System.Drawing.Size(133, 13);
             this.label10.TabIndex = 4;
             this.label10.Text = "Pick as many as you want.";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(382, 1256);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(255, 837);
+            this.label9.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(182, 20);
+            this.label9.Size = new System.Drawing.Size(126, 13);
             this.label9.TabIndex = 3;
             this.label9.Text = "Pick as many as you like.";
             // 
@@ -866,10 +869,10 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
-            this.label5.Location = new System.Drawing.Point(32, 14);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(21, 9);
+            this.label5.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(104, 29);
+            this.label5.Size = new System.Drawing.Size(72, 20);
             this.label5.TabIndex = 2;
             this.label5.Text = "Interests";
             // 
@@ -877,10 +880,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Elephant", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(28, 48);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(19, 32);
+            this.label8.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(269, 37);
+            this.label8.Size = new System.Drawing.Size(184, 25);
             this.label8.TabIndex = 0;
             this.label8.Text = "What excites you?";
             // 
@@ -898,20 +901,20 @@
             this.questionPanel1.Controls.Add(this.txtDestination);
             this.questionPanel1.Controls.Add(this.label12);
             this.questionPanel1.Controls.Add(this.lblTitle);
-            this.questionPanel1.Location = new System.Drawing.Point(112, 380);
-            this.questionPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.questionPanel1.Location = new System.Drawing.Point(75, 253);
+            this.questionPanel1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.questionPanel1.Name = "questionPanel1";
-            this.questionPanel1.Size = new System.Drawing.Size(924, 361);
+            this.questionPanel1.Size = new System.Drawing.Size(617, 241);
             this.questionPanel1.TabIndex = 24;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label3.Location = new System.Drawing.Point(34, 128);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(23, 85);
+            this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(343, 20);
+            this.label3.Size = new System.Drawing.Size(232, 13);
             this.label3.TabIndex = 10;
             this.label3.Text = "A city, region or country - we\'ll take it from there.";
             // 
@@ -919,10 +922,10 @@
             // 
             this.btnFlorence.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFlorence.FlatAppearance.BorderSize = 0;
-            this.btnFlorence.Location = new System.Drawing.Point(616, 259);
-            this.btnFlorence.Margin = new System.Windows.Forms.Padding(2);
+            this.btnFlorence.Location = new System.Drawing.Point(411, 173);
+            this.btnFlorence.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnFlorence.Name = "btnFlorence";
-            this.btnFlorence.Size = new System.Drawing.Size(122, 35);
+            this.btnFlorence.Size = new System.Drawing.Size(81, 23);
             this.btnFlorence.TabIndex = 9;
             this.btnFlorence.Text = "Florence";
             this.btnFlorence.UseVisualStyleBackColor = false;
@@ -932,10 +935,10 @@
             // 
             this.btnTokyo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTokyo.FlatAppearance.BorderSize = 0;
-            this.btnTokyo.Location = new System.Drawing.Point(472, 259);
-            this.btnTokyo.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTokyo.Location = new System.Drawing.Point(315, 173);
+            this.btnTokyo.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnTokyo.Name = "btnTokyo";
-            this.btnTokyo.Size = new System.Drawing.Size(122, 35);
+            this.btnTokyo.Size = new System.Drawing.Size(81, 23);
             this.btnTokyo.TabIndex = 8;
             this.btnTokyo.Text = "Tokyo";
             this.btnTokyo.UseVisualStyleBackColor = false;
@@ -945,10 +948,10 @@
             // 
             this.btnIstanbul.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnIstanbul.FlatAppearance.BorderSize = 0;
-            this.btnIstanbul.Location = new System.Drawing.Point(326, 259);
-            this.btnIstanbul.Margin = new System.Windows.Forms.Padding(2);
+            this.btnIstanbul.Location = new System.Drawing.Point(217, 173);
+            this.btnIstanbul.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnIstanbul.Name = "btnIstanbul";
-            this.btnIstanbul.Size = new System.Drawing.Size(122, 35);
+            this.btnIstanbul.Size = new System.Drawing.Size(81, 23);
             this.btnIstanbul.TabIndex = 7;
             this.btnIstanbul.Text = "Istanbul";
             this.btnIstanbul.UseVisualStyleBackColor = false;
@@ -958,10 +961,10 @@
             // 
             this.btnVienna.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVienna.FlatAppearance.BorderSize = 0;
-            this.btnVienna.Location = new System.Drawing.Point(186, 259);
-            this.btnVienna.Margin = new System.Windows.Forms.Padding(2);
+            this.btnVienna.Location = new System.Drawing.Point(124, 173);
+            this.btnVienna.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnVienna.Name = "btnVienna";
-            this.btnVienna.Size = new System.Drawing.Size(122, 35);
+            this.btnVienna.Size = new System.Drawing.Size(81, 23);
             this.btnVienna.TabIndex = 6;
             this.btnVienna.Text = "Vienna";
             this.btnVienna.UseVisualStyleBackColor = false;
@@ -971,10 +974,10 @@
             // 
             this.btnChicago.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnChicago.FlatAppearance.BorderSize = 0;
-            this.btnChicago.Location = new System.Drawing.Point(760, 259);
-            this.btnChicago.Margin = new System.Windows.Forms.Padding(2);
+            this.btnChicago.Location = new System.Drawing.Point(507, 173);
+            this.btnChicago.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnChicago.Name = "btnChicago";
-            this.btnChicago.Size = new System.Drawing.Size(122, 35);
+            this.btnChicago.Size = new System.Drawing.Size(81, 23);
             this.btnChicago.TabIndex = 5;
             this.btnChicago.Text = "Chicago";
             this.btnChicago.UseVisualStyleBackColor = false;
@@ -984,10 +987,10 @@
             // 
             this.btnLisbon.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLisbon.FlatAppearance.BorderSize = 0;
-            this.btnLisbon.Location = new System.Drawing.Point(37, 259);
-            this.btnLisbon.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLisbon.Location = new System.Drawing.Point(25, 173);
+            this.btnLisbon.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnLisbon.Name = "btnLisbon";
-            this.btnLisbon.Size = new System.Drawing.Size(122, 35);
+            this.btnLisbon.Size = new System.Drawing.Size(81, 23);
             this.btnLisbon.TabIndex = 4;
             this.btnLisbon.Text = "Lisbon";
             this.btnLisbon.UseVisualStyleBackColor = false;
@@ -996,10 +999,10 @@
             // txtDestination
             // 
             this.txtDestination.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtDestination.Location = new System.Drawing.Point(37, 178);
-            this.txtDestination.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDestination.Location = new System.Drawing.Point(25, 119);
+            this.txtDestination.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txtDestination.Name = "txtDestination";
-            this.txtDestination.Size = new System.Drawing.Size(844, 26);
+            this.txtDestination.Size = new System.Drawing.Size(564, 20);
             this.txtDestination.TabIndex = 3;
             this.txtDestination.Text = "e. g. Rome, Sevilla, Japan";
             this.txtDestination.TextChanged += new System.EventHandler(this.txtDestination_TextChanged_1);
@@ -1011,10 +1014,10 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
-            this.label12.Location = new System.Drawing.Point(32, 18);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Location = new System.Drawing.Point(21, 12);
+            this.label12.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(96, 29);
+            this.label12.Size = new System.Drawing.Size(65, 20);
             this.label12.TabIndex = 2;
             this.label12.Text = "Where?";
             // 
@@ -1022,10 +1025,10 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Elephant", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(30, 74);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTitle.Location = new System.Drawing.Point(20, 49);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(315, 37);
+            this.lblTitle.Size = new System.Drawing.Size(213, 25);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Pick your destination";
             // 
@@ -1039,20 +1042,20 @@
             this.questionPanel6.Controls.Add(this.label17);
             this.questionPanel6.Controls.Add(this.label18);
             this.questionPanel6.Controls.Add(this.label19);
-            this.questionPanel6.Location = new System.Drawing.Point(102, 408);
-            this.questionPanel6.Margin = new System.Windows.Forms.Padding(2);
+            this.questionPanel6.Location = new System.Drawing.Point(68, 272);
+            this.questionPanel6.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.questionPanel6.Name = "questionPanel6";
-            this.questionPanel6.Size = new System.Drawing.Size(924, 361);
+            this.questionPanel6.Size = new System.Drawing.Size(617, 241);
             this.questionPanel6.TabIndex = 28;
             // 
             // btnPacked
             // 
             this.btnPacked.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPacked.Location = new System.Drawing.Point(34, 264);
-            this.btnPacked.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPacked.Location = new System.Drawing.Point(23, 176);
+            this.btnPacked.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnPacked.Name = "btnPacked";
-            this.btnPacked.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.btnPacked.Size = new System.Drawing.Size(862, 68);
+            this.btnPacked.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnPacked.Size = new System.Drawing.Size(575, 45);
             this.btnPacked.TabIndex = 6;
             this.btnPacked.Text = "Packed\r\n6+ stops/day";
             this.btnPacked.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1062,11 +1065,11 @@
             // btnBalanced
             // 
             this.btnBalanced.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBalanced.Location = new System.Drawing.Point(34, 185);
-            this.btnBalanced.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBalanced.Location = new System.Drawing.Point(23, 123);
+            this.btnBalanced.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnBalanced.Name = "btnBalanced";
-            this.btnBalanced.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.btnBalanced.Size = new System.Drawing.Size(862, 68);
+            this.btnBalanced.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnBalanced.Size = new System.Drawing.Size(575, 45);
             this.btnBalanced.TabIndex = 5;
             this.btnBalanced.Text = "Balanced\r\n3-5 stops/day";
             this.btnBalanced.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1076,11 +1079,11 @@
             // btnRelaxed
             // 
             this.btnRelaxed.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRelaxed.Location = new System.Drawing.Point(35, 106);
-            this.btnRelaxed.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRelaxed.Location = new System.Drawing.Point(23, 71);
+            this.btnRelaxed.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnRelaxed.Name = "btnRelaxed";
-            this.btnRelaxed.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.btnRelaxed.Size = new System.Drawing.Size(862, 68);
+            this.btnRelaxed.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnRelaxed.Size = new System.Drawing.Size(575, 45);
             this.btnRelaxed.TabIndex = 4;
             this.btnRelaxed.Text = "Relaxed\r\n2-3 stops/day";
             this.btnRelaxed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1090,10 +1093,10 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(382, 1256);
-            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Location = new System.Drawing.Point(255, 837);
+            this.label17.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(182, 20);
+            this.label17.Size = new System.Drawing.Size(126, 13);
             this.label17.TabIndex = 3;
             this.label17.Text = "Pick as many as you like.";
             // 
@@ -1103,10 +1106,10 @@
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
-            this.label18.Location = new System.Drawing.Point(32, 14);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Location = new System.Drawing.Point(21, 9);
+            this.label18.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(68, 29);
+            this.label18.Size = new System.Drawing.Size(45, 20);
             this.label18.TabIndex = 2;
             this.label18.Text = "Pace";
             // 
@@ -1114,10 +1117,10 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Elephant", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(28, 48);
-            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Location = new System.Drawing.Point(19, 32);
+            this.label19.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(463, 37);
+            this.label19.Size = new System.Drawing.Size(317, 25);
             this.label19.TabIndex = 0;
             this.label19.Text = "How packed should the days be?";
             // 
@@ -1134,10 +1137,10 @@
             this.questionPanel7.Controls.Add(this.label20);
             this.questionPanel7.Controls.Add(this.label21);
             this.questionPanel7.Controls.Add(this.label22);
-            this.questionPanel7.Location = new System.Drawing.Point(98, 392);
-            this.questionPanel7.Margin = new System.Windows.Forms.Padding(2);
+            this.questionPanel7.Location = new System.Drawing.Point(65, 261);
+            this.questionPanel7.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.questionPanel7.Name = "questionPanel7";
-            this.questionPanel7.Size = new System.Drawing.Size(922, 361);
+            this.questionPanel7.Size = new System.Drawing.Size(615, 241);
             this.questionPanel7.TabIndex = 29;
             // 
             // btnBike
@@ -1146,10 +1149,10 @@
             this.btnBike.FlatAppearance.BorderSize = 0;
             this.btnBike.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBike.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBike.Location = new System.Drawing.Point(476, 142);
-            this.btnBike.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBike.Location = new System.Drawing.Point(317, 95);
+            this.btnBike.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnBike.Name = "btnBike";
-            this.btnBike.Size = new System.Drawing.Size(374, 71);
+            this.btnBike.Size = new System.Drawing.Size(249, 47);
             this.btnBike.TabIndex = 10;
             this.btnBike.Text = "Bike";
             this.btnBike.UseVisualStyleBackColor = false;
@@ -1161,10 +1164,10 @@
             this.btnTaxiUber.FlatAppearance.BorderSize = 0;
             this.btnTaxiUber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTaxiUber.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTaxiUber.Location = new System.Drawing.Point(476, 239);
-            this.btnTaxiUber.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTaxiUber.Location = new System.Drawing.Point(317, 159);
+            this.btnTaxiUber.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnTaxiUber.Name = "btnTaxiUber";
-            this.btnTaxiUber.Size = new System.Drawing.Size(374, 74);
+            this.btnTaxiUber.Size = new System.Drawing.Size(249, 49);
             this.btnTaxiUber.TabIndex = 8;
             this.btnTaxiUber.Text = "Taxi/Uber";
             this.btnTaxiUber.UseVisualStyleBackColor = false;
@@ -1176,10 +1179,10 @@
             this.btnPublicTransport.FlatAppearance.BorderSize = 0;
             this.btnPublicTransport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPublicTransport.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPublicTransport.Location = new System.Drawing.Point(35, 240);
-            this.btnPublicTransport.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPublicTransport.Location = new System.Drawing.Point(23, 160);
+            this.btnPublicTransport.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnPublicTransport.Name = "btnPublicTransport";
-            this.btnPublicTransport.Size = new System.Drawing.Size(374, 72);
+            this.btnPublicTransport.Size = new System.Drawing.Size(249, 48);
             this.btnPublicTransport.TabIndex = 7;
             this.btnPublicTransport.Text = "Public transport";
             this.btnPublicTransport.UseVisualStyleBackColor = false;
@@ -1191,10 +1194,10 @@
             this.btnRentACar.FlatAppearance.BorderSize = 0;
             this.btnRentACar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRentACar.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRentACar.Location = new System.Drawing.Point(476, 54);
-            this.btnRentACar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRentACar.Location = new System.Drawing.Point(317, 36);
+            this.btnRentACar.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnRentACar.Name = "btnRentACar";
-            this.btnRentACar.Size = new System.Drawing.Size(374, 66);
+            this.btnRentACar.Size = new System.Drawing.Size(249, 44);
             this.btnRentACar.TabIndex = 6;
             this.btnRentACar.Text = "Rent a car";
             this.btnRentACar.UseVisualStyleBackColor = false;
@@ -1206,10 +1209,10 @@
             this.btnWalking.FlatAppearance.BorderSize = 0;
             this.btnWalking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWalking.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWalking.Location = new System.Drawing.Point(38, 142);
-            this.btnWalking.Margin = new System.Windows.Forms.Padding(2);
+            this.btnWalking.Location = new System.Drawing.Point(25, 95);
+            this.btnWalking.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnWalking.Name = "btnWalking";
-            this.btnWalking.Size = new System.Drawing.Size(372, 66);
+            this.btnWalking.Size = new System.Drawing.Size(248, 44);
             this.btnWalking.TabIndex = 5;
             this.btnWalking.Text = "Walking";
             this.btnWalking.UseVisualStyleBackColor = false;
@@ -1219,20 +1222,20 @@
             // 
             this.label16.AutoSize = true;
             this.label16.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label16.Location = new System.Drawing.Point(35, 90);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Location = new System.Drawing.Point(23, 60);
+            this.label16.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(222, 20);
+            this.label16.Size = new System.Drawing.Size(153, 13);
             this.label16.TabIndex = 4;
             this.label16.Text = "Pick everything you\'re open to.";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(382, 1256);
-            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Location = new System.Drawing.Point(255, 837);
+            this.label20.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(182, 20);
+            this.label20.Size = new System.Drawing.Size(126, 13);
             this.label20.TabIndex = 3;
             this.label20.Text = "Pick as many as you like.";
             // 
@@ -1242,10 +1245,10 @@
             this.label21.BackColor = System.Drawing.Color.Transparent;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
-            this.label21.Location = new System.Drawing.Point(28, 12);
-            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label21.Location = new System.Drawing.Point(19, 8);
+            this.label21.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(171, 29);
+            this.label21.Size = new System.Drawing.Size(116, 20);
             this.label21.TabIndex = 2;
             this.label21.Text = "Getting around";
             // 
@@ -1253,10 +1256,10 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Elephant", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(28, 48);
-            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label22.Location = new System.Drawing.Point(19, 32);
+            this.label22.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(383, 37);
+            this.label22.Size = new System.Drawing.Size(264, 25);
             this.label22.TabIndex = 0;
             this.label22.Text = "How do you want to move?";
             // 
@@ -1272,20 +1275,19 @@
             this.questionPanel8.Controls.Add(this.label24);
             this.questionPanel8.Controls.Add(this.label25);
             this.questionPanel8.Controls.Add(this.label26);
-            this.questionPanel8.Location = new System.Drawing.Point(104, 384);
-            this.questionPanel8.Margin = new System.Windows.Forms.Padding(2);
+            this.questionPanel8.Location = new System.Drawing.Point(69, 256);
+            this.questionPanel8.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.questionPanel8.Name = "questionPanel8";
-            this.questionPanel8.Size = new System.Drawing.Size(931, 385);
+            this.questionPanel8.Size = new System.Drawing.Size(621, 257);
             this.questionPanel8.TabIndex = 30;
             // 
             // rbPreferences
             // 
             this.rbPreferences.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.rbPreferences.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.rbPreferences.Location = new System.Drawing.Point(371, 38);
-            this.rbPreferences.Margin = new System.Windows.Forms.Padding(4);
+            this.rbPreferences.Location = new System.Drawing.Point(247, 25);
             this.rbPreferences.Name = "rbPreferences";
-            this.rbPreferences.Size = new System.Drawing.Size(503, 244);
+            this.rbPreferences.Size = new System.Drawing.Size(337, 164);
             this.rbPreferences.TabIndex = 9;
             this.rbPreferences.Text = " Include anything that will help us refine your trip…";
             // 
@@ -1294,10 +1296,10 @@
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.label28.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label28.Location = new System.Drawing.Point(59, 234);
-            this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label28.Location = new System.Drawing.Point(39, 156);
+            this.label28.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(202, 20);
+            this.label28.Size = new System.Drawing.Size(137, 13);
             this.label28.TabIndex = 8;
             this.label28.Text = "Favor authentic local spots.";
             // 
@@ -1305,10 +1307,10 @@
             // 
             this.btnGenerate.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.btnGenerate.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.btnGenerate.Location = new System.Drawing.Point(500, 304);
-            this.btnGenerate.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnGenerate.Location = new System.Drawing.Point(333, 203);
+            this.btnGenerate.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(298, 58);
+            this.btnGenerate.Size = new System.Drawing.Size(199, 39);
             this.btnGenerate.TabIndex = 6;
             this.btnGenerate.Text = "Generate plan";
             this.btnGenerate.UseVisualStyleBackColor = false;
@@ -1319,10 +1321,10 @@
             this.rbAvoid.AutoCheck = false;
             this.rbAvoid.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbAvoid.Font = new System.Drawing.Font("Elephant", 11F);
-            this.rbAvoid.Location = new System.Drawing.Point(32, 196);
-            this.rbAvoid.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.rbAvoid.Location = new System.Drawing.Point(21, 131);
+            this.rbAvoid.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
             this.rbAvoid.Name = "rbAvoid";
-            this.rbAvoid.Size = new System.Drawing.Size(266, 42);
+            this.rbAvoid.Size = new System.Drawing.Size(177, 28);
             this.rbAvoid.TabIndex = 5;
             this.rbAvoid.TabStop = true;
             this.rbAvoid.Text = "Explore like a local";
@@ -1333,20 +1335,20 @@
             // 
             this.label23.AutoSize = true;
             this.label23.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label23.Location = new System.Drawing.Point(32, 113);
-            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Location = new System.Drawing.Point(21, 75);
+            this.label23.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(280, 20);
+            this.label23.Size = new System.Drawing.Size(189, 13);
             this.label23.TabIndex = 4;
             this.label23.Text = " Final touches before we plan your trip.";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(382, 1256);
-            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label24.Location = new System.Drawing.Point(255, 837);
+            this.label24.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(182, 20);
+            this.label24.Size = new System.Drawing.Size(126, 13);
             this.label24.TabIndex = 3;
             this.label24.Text = "Pick as many as you like.";
             // 
@@ -1356,10 +1358,10 @@
             this.label25.BackColor = System.Drawing.Color.Transparent;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
             this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(150)))), ((int)(((byte)(200)))));
-            this.label25.Location = new System.Drawing.Point(37, 31);
-            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label25.Location = new System.Drawing.Point(25, 21);
+            this.label25.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(149, 29);
+            this.label25.Size = new System.Drawing.Size(100, 20);
             this.label25.TabIndex = 2;
             this.label25.Text = "Preferences";
             // 
@@ -1367,10 +1369,10 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Elephant", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(32, 74);
-            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label26.Location = new System.Drawing.Point(21, 49);
+            this.label26.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(256, 37);
+            this.label26.Size = new System.Drawing.Size(175, 25);
             this.label26.TabIndex = 0;
             this.label26.Text = "Any preferences?";
             // 
@@ -1385,21 +1387,22 @@
             this.btnThemeToggle.IconChar = FontAwesome.Sharp.IconChar.Moon;
             this.btnThemeToggle.IconColor = System.Drawing.Color.Black;
             this.btnThemeToggle.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnThemeToggle.Location = new System.Drawing.Point(1051, 26);
-            this.btnThemeToggle.Margin = new System.Windows.Forms.Padding(2);
+            this.btnThemeToggle.Location = new System.Drawing.Point(701, 17);
+            this.btnThemeToggle.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnThemeToggle.Name = "btnThemeToggle";
-            this.btnThemeToggle.Size = new System.Drawing.Size(55, 49);
+            this.btnThemeToggle.Size = new System.Drawing.Size(37, 33);
             this.btnThemeToggle.TabIndex = 32;
             this.btnThemeToggle.UseVisualStyleBackColor = true;
             this.btnThemeToggle.Click += new System.EventHandler(this.btnThemeToggle_Click);
+            this.btnThemeToggle.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             // 
             // QuestionnaireForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1196, 862);
+            this.ClientSize = new System.Drawing.Size(797, 570);
             this.Controls.Add(this.btnThemeToggle);
             this.Controls.Add(this.questionPanel8);
             this.Controls.Add(this.questionPanel7);
@@ -1418,8 +1421,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimizeBox = false;
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.MinimizeBox = true;
+            this.MaximizeBox = true;
             this.Name = "QuestionnaireForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Your next adventure";
@@ -1454,6 +1458,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.panelProgressBarBack.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
 
         }
 

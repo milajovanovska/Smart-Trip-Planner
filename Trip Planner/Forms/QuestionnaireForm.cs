@@ -19,6 +19,15 @@ namespace Trip_Planner
         [System.Runtime.InteropServices.DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }
 
         Color PRIMARY = Color.FromArgb(113, 144, 199);
         Color PRIMARY_DARK = Color.FromArgb(46, 39, 90);
@@ -39,7 +48,10 @@ namespace Trip_Planner
         bool isDarkMode = false;
 
         private readonly Dictionary<Button, IconChar> _buttonIconMap = new Dictionary<Button, IconChar>();
-
+        private Size baseFormSize;
+        private Dictionary<Control, Rectangle> originalBounds = new Dictionary<Control, Rectangle>();
+        private Dictionary<Control, Font> originalFonts = new Dictionary<Control, Font>();
+        private System.Windows.Forms.Timer resizeTimer;
         private void SetButtonIcon(Button btn, IconChar icon, Color iconColor, int iconSize = 25)
         {
             if (btn == null) return;
@@ -281,6 +293,11 @@ namespace Trip_Planner
         {
             InitializeComponent();
 
+            resizeTimer = new System.Windows.Forms.Timer { Interval = 150 };
+            resizeTimer.Tick += (s, e) => { resizeTimer.Stop(); DoActualScale(); };
+
+            this.MinimumSize = new Size(797, 499);
+
             this.Resize += Form1_Resize;
 
             ApplyButtonIcons();
@@ -297,6 +314,9 @@ namespace Trip_Planner
 
 
             UpdateUI();
+
+            baseFormSize = this.ClientSize;
+            CacheOriginalLayout(this);
 
             this.Shown += (s, e) =>
             {
@@ -634,7 +654,13 @@ namespace Trip_Planner
         {
             if (btn == null) return;
 
+            int safeRadius = Math.Min(radius, Math.Min(btn.Width, btn.Height) / 2);
+
+            if (safeRadius < 1) safeRadius = 1;
+
+            var oldRegion = btn.Region;
             btn.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btn.Width, btn.Height, radius, radius));
+            oldRegion?.Dispose();
         }
 
 
@@ -699,23 +725,18 @@ namespace Trip_Planner
             var paceButtons = new[] { btnRelaxed, btnBalanced, btnPacked };
             foreach (var btn in paceButtons)
             {
-                if (btn.BackColor == PRIMARY_DARK)
-                {
-                    btn.Size = new Size(btn.Width - 10, btn.Height - 10);
-                    btn.Location = new Point(btn.Location.X + 5, btn.Location.Y + 5);
-                }
                 btn.BackColor = PRIMARY;
                 btn.ForeColor = Color.White;
                 btn.FlatAppearance.BorderColor = PRIMARY;
+                btn.FlatAppearance.BorderSize = 0;
                 UpdateButtonIconColor(btn, Color.White);
                 ApplyRoundCorners(btn, 20);
             }
 
             selectedBtn.BackColor = PRIMARY_DARK;
             selectedBtn.ForeColor = Color.White;
-            selectedBtn.FlatAppearance.BorderColor = PRIMARY_DARK;
-            selectedBtn.Size = new Size(selectedBtn.Width + 10, selectedBtn.Height + 10);
-            selectedBtn.Location = new Point(selectedBtn.Location.X - 5, selectedBtn.Location.Y - 5);
+            selectedBtn.FlatAppearance.BorderColor = Color.White;
+            selectedBtn.FlatAppearance.BorderSize = 2;
             ApplyRoundCorners(selectedBtn, 20);
             btnContinue.Enabled = true;
         }
@@ -732,19 +753,17 @@ namespace Trip_Planner
             {
                 btn.BackColor = PRIMARY_DARK;
                 btn.ForeColor = Color.White;
-                btn.FlatAppearance.BorderColor = PRIMARY_DARK;
+                btn.FlatAppearance.BorderColor = Color.White;
+                btn.FlatAppearance.BorderSize = 2;
                 UpdateButtonIconColor(btn, Color.White);
-                btn.Size = new Size(btn.Width + 6, btn.Height + 6);
-                btn.Location = new Point(btn.Location.X - 3, btn.Location.Y - 3);
             }
             else
             {
                 btn.BackColor = PRIMARY;
                 btn.ForeColor = Color.White;
                 btn.FlatAppearance.BorderColor = PRIMARY;
+                btn.FlatAppearance.BorderSize = 0;
                 UpdateButtonIconColor(btn, Color.White);
-                btn.Size = new Size(btn.Width - 6, btn.Height - 6);
-                btn.Location = new Point(btn.Location.X + 3, btn.Location.Y + 3);
             }
             ApplyRoundCorners(btn, 20);
         }
@@ -915,7 +934,8 @@ namespace Trip_Planner
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            RoundAllButtons(this);
+            resizeTimer.Stop();
+            resizeTimer.Start();
         }
 
         private void btnThemeToggle_Click(object sender, EventArgs e)
@@ -947,6 +967,79 @@ namespace Trip_Planner
             {
                 btnContinue.PerformClick();
             } 
+        }
+
+        private void CacheOriginalLayout(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                originalBounds[c] = c.Bounds;
+                originalFonts[c] = c.Font;
+                if (c.HasChildren)
+                    CacheOriginalLayout(c);
+            }
+        }
+
+        private void ScaleLayout(Control parent, float scaleX, float scaleY)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (!originalBounds.ContainsKey(c)) continue;
+
+                Rectangle orig = originalBounds[c];
+                c.Location = new Point((int)(orig.X * scaleX), (int)(orig.Y * scaleY));
+                c.Size = new Size((int)(orig.Width * scaleX), (int)(orig.Height * scaleY));
+
+                float fontScale = Math.Min(scaleX, scaleY);
+                Font origFont = originalFonts[c];
+                float newSize = origFont.Size * fontScale;
+                if (newSize > 4f)
+                {
+                    Font oldFont = c.Font;
+                    c.Font = new Font(origFont.FontFamily, newSize, origFont.Style);
+                    if (oldFont != null && oldFont != origFont)
+                        oldFont.Dispose();
+                }
+
+                if (c is DateTimePicker dtp)
+                {
+                    var oldRegion = dtp.Region;
+                    dtp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, dtp.Width, dtp.Height, (int)(15 * fontScale), (int)(15 * fontScale)));
+                    oldRegion?.Dispose();
+                }
+
+                if (c is Panel pnl && pnl.Name == "lblDuration")
+                {
+                    var oldRegion = pnl.Region;
+                    pnl.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnl.Width, pnl.Height, (int)(20 * fontScale), (int)(20 * fontScale)));
+                    oldRegion?.Dispose();
+                }
+
+                if (c.HasChildren)
+                    ScaleLayout(c, scaleX, scaleY);
+            }
+        }
+
+        private void DoActualScale()
+        {
+            if (baseFormSize.Width == 0 || baseFormSize.Height == 0) return;
+
+            this.SuspendLayout();
+
+            float scaleX = (float)this.ClientSize.Width / baseFormSize.Width;
+            float scaleY = (float)this.ClientSize.Height / baseFormSize.Height;
+
+            ScaleLayout(this, scaleX, scaleY);
+            RoundAllButtons(this);
+
+            btnContinue.BringToFront();
+            btnBack.BringToFront();
+            btnThemeToggle.BringToFront();
+
+            this.ResumeLayout(true);
+
+            this.Invalidate(true);
+            this.Update();
         }
     }
 }

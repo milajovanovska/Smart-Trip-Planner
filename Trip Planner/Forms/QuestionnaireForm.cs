@@ -942,6 +942,9 @@ namespace Trip_Planner
 
         private void Form1_Resize(object sender, EventArgs e)
         {
+            if (resizeTimer == null)
+                return;
+
             resizeTimer.Stop();
             resizeTimer.Start();
         }
